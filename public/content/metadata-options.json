@@ -1,0 +1,71 @@
+{
+  "fileOptions": {
+    "version": [
+      { "label": "1", "value": "1", "description": "Currently used version" }
+    ]
+  },
+  "apiOptions": {
+    "visibilityOptions":[
+      {
+        "label": "Content Missing",
+        "value": "Content Missing",
+        "description": "Content Missing",
+        "filter": "Content Missing"
+      }
+    ]
+  },
+  "apiVersionOptions": {
+    "releaseStatusOptions": [
+      {
+        "label": "Content Missing",
+        "value": "Content Missing",
+        "description": "Content Missing",
+        "filter": "Content Missing"
+      }
+    ]
+  },
+  "organizationOptions": {
+    "architectureLayerOptions": [
+      {
+        "label": "Content Missing",
+        "value": "Content Missing",
+        "description": "Content Missing",
+        "filter": "Content Missing"
+      }
+    ],
+    "businessUnitOptions": [
+      {
+        "label": "Content Missing",
+        "value": "Content Missing",
+        "description": "Content Missing",
+        "filter": "Content Missing"
+      }
+    ]
+  },
+  "implementationDetailsOptions": {
+    "interfaceSpecificationImplementationOptions": [
+      {
+        "label": "Content Missing",
+        "value": "Content Missing",
+        "description": "Content Missing",
+        "filter": "Content Missing"
+      }
+    ],
+    "interfaceSpecificationSpecificationOptions": [
+      {
+        "label": "Content Missing",
+        "value": "Content Missing",
+        "description": "Content Missing",
+        "filter": "Content Missing"
+      }
+    ],
+    "interfaceDescriptionLanguageOptions": [
+      {
+        "label": "Content Missing",
+        "value": "Content Missing",
+        "description": "Content Missing",
+        "filter": "Content Missing"
+      }
+    ]
+  }
+}

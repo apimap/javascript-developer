@@ -1,0 +1,25 @@
+:root {
+ --link-color: #dbd8e3;
+ --hover-link-color: #5c5470;
+
+ --background-color: #2a2438;
+ --text-color: #dbd8e3;
+ --header-color: #dbd8e3;
+
+ --button-background-color: #5c5470;
+ --button-text-color: #dbd8e3;
+ --disabled-button-background-color: #dbd8e3;
+ --disabled-button-text-color: #b1acb6;
+ --hover-button-background-color: #dbd8e3;
+ --hover-button-text-color: #5c5470;
+
+ --badge-background-color: #5c5470;
+ --badge-text-color: #dbd8e3;
+
+ --table-header-background-color: #5c5470;
+ --table-header-text-color: #dbd8e3;
+ --table-row-background-color: white;
+ --table-row-text-color: #5c5470;
+ --hover-table-row-background-color: #5c5470;
+ --hover-table-row-text-color: white;
+}

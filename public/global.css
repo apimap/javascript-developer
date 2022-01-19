@@ -1,0 +1,126 @@
+a, .link {
+    color: var(--link-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover, .link:hover {
+    text-decoration: underline;
+    text-decoration-color:  var(--hover-link-color);
+    text-decoration-thickness: 0.2em;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.button {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+}
+
+.button.active {
+    color: var(--hover-button-text-color);
+    background-color: var(--hover-button-background-color);
+}
+
+.button.disabled {
+    color: var(--disabled-button-text-color) !important;
+    background-color: var(--disabled-button-background-color) !important;
+}
+
+.button:hover {
+    color: var(--hover-button-text-color);
+    background-color: var(--hover-button-background-color);
+    cursor: pointer;
+}
+
+.button:hover > h1 {
+    color: var(--hover-button-text-color);
+}
+
+.button:hover > h2 {
+    color: var(--hover-button-text-color);
+}
+
+.button:hover > h3 {
+    color: var(--hover-button-text-color);
+}
+
+.button:hover > h4 {
+    color: var(--hover-button-text-color);
+}
+
+.button:hover > h5 {
+    color: var(--hover-button-text-color);
+}
+
+.the-side-bar {
+    border-right-color: #DBD8E3;
+}
+
+h1 {
+    color: var(--header-color);
+    font-size: 2.4em;
+    font-weight: lighter;
+    line-height: 1.1em;
+}
+
+h2 {
+    color: var(--header-color);
+    font-size: 1.8em;
+    font-weight: lighter;
+    line-height: 1.1em;
+}
+
+h3 {
+    text-transform: uppercase;
+    font-size: 0.8em;
+    line-height: 1.2em;
+    font-weight: bold;
+    color: var(--header-color);
+}
+
+.badge {
+    background-color: var(--badge-background-color);
+    color: var(--badge-text-color);
+}
+
+option {
+    background-color: var(--background-color)
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: var(--table-header-background-color);
+    color: var(--table-header-text-color);
+}
+
+tr:nth-child(even){
+    background-color: var(--hover-table-row-background-color);
+}
+
+tr:hover {
+    color: var(--hover-table-row-text-color);
+    background-color: var(--hover-table-row-background-color);
+}
+
+td,th {
+    line-height: 1.6em;
+    padding: 0.2em;
+    border: 1px solid var(--table-header-background-color);
+}
+
+thead {
+    background-color: var(--table-header-background-color);
+    color: var(--table-header-text-color);
+    font-size: 0.8em;
+}
