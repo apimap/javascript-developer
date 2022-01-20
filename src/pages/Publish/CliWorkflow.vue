@@ -47,7 +47,7 @@
           and run the publish command to create or update your API information.
           <CommandLine
               title="Publish Your API"
-              :available="['v1.0','v1.1','v1.2','v1.3','v1.3.1']"
+              :available="['1.*.*']"
               command='apimap publish --metadata="metadata filename" --taxonomy="taxonomy filename" --endpoint-url=https://api.apimap.io --code-repository-url=&lt;git repo url&gt;"'>
             <p>Publish your metadata and taxonomy to the designated Apimap instance. This command creates your API if it is missing and manages your access tokens automatically.</p>
           </CommandLine>

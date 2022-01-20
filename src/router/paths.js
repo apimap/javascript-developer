@@ -87,13 +87,13 @@ export const Downloads = {
 	},
 	cli: {
 		linux: {
-			v1: "/downloads/cli/1.0/apimap"
+			"1.0.0": "/downloads/cli/1.0.0/apimap.zip"
 		},
 		windows: {
-            v1: "/downloads/cli/1.0/apimap.exe"
+            "1.0.0": "/downloads/cli/1.0.0/apimap.exe.zip"
 		},
         macos: {
-            v1: "/downloads/cli/1.0/apimap.app"
+            "1.0.0": "/downloads/cli/1.0.0/apimap.app.zip"
         }
 	}
 }

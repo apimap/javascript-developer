@@ -7,17 +7,23 @@
       <TabContainer :titles="['Windows', 'Linux', 'Mac']">
         <template v-slot:Windows>
           <Tab>
-            None
+            <ul>
+              <li><a v-bind:href="paths.windows['1.0.0']">Download version 1.0.0</a></li>
+            </ul>
           </Tab>
           </template>
         <template v-slot:Mac>
           <Tab>
-            None
+            <ul>
+              <li><a v-bind:href="paths.macos['1.0.0']">Download version 1.0.0</a></li>
+            </ul>
           </Tab>
         </template>
         <template v-slot:Linux>
           <Tab>
-            None
+            <ul>
+              <li><a v-bind:href="paths.linux['1.0.0']">Download version 1.0.0</a></li>
+            </ul>
           </Tab>
          </template>
        </TabContainer>
@@ -27,38 +33,37 @@
     <Content>
       <CommandLine
         title="Publish Your API"
-        :available="['v1.0']"
+        :available="['1.*.*']"
         command='apimap publish --metadata="metadata filename" --taxonomy="taxonomy filename" --endpoint-url=https://api.apimap.io --code-repository-url=&lt;git repo url&gt;"'>
         <p>Publish your metadata and taxonomy to the designated Apimap instance. This command creates your API if it is missing and manages your access tokens automatically.</p>
       </CommandLine>
       <CommandLine
         title="Manage Your Tokens"
-        :available="['v1.0']"
+        :available="['1.*.*']"
         command='apimap token list'>
         <p>The API is open for all to use, although only the one creating an API gets the token to update or delete it afterwards. This token is automatically returned from the API upon creation and <strong>must be retained (Take backup)</strong>. Without this token you will never be able to update or delete any related information.</p>
       </CommandLine>
       <CommandLine
         title="Validate Your Content"
-        :available="['v1.0']"
+        :available="['1.*.*']"
         command='apimap validate --metadata="metadata filename" --taxonomy="taxonomy filename"'>
         <p>Validate the file format and content requirements in your files locally.</p>
       </CommandLine>
       <CommandLine
         title="Rename API"
-        :available="['v1.1']"
+        :available="['1.*.*']"
         command='apimap rename --from "old api name" --to "new api name" --endpoint-url=https://api.apimap.io'>
         <p>If your API changes name the change itself is not part of the automatic metadata upload since the change could have changes outside of the catalog</p>
       </CommandLine>
       <CommandLine
         title="Change API description"
-        :available="['v1.1']"
-        :deprecated="['v1.2']"
+        :available="['1.*.*']"
         command='apimap description --metadata="metadata filename" --endpoint-url=https://api.apimap.io'>
         <p>Change only the API description to match the specified metadata file</p>
       </CommandLine>
       <CommandLine
         title="More Commands"
-        :available="['v1.0']"
+        :available="['1.*.*']"
         command="apimap --help">
         <p>Use the --help command to explore more possibilities</p>
       </CommandLine>
