@@ -10,10 +10,10 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "@apimap/code-display": "2.0.0",
+    "@apimap/command-line": "2.0.0",
     "@apimap/input-core": "2.0.0",
     "@apimap/layout-core": "2.0.0",
-    "@apimap/command-line": "2.0.0",
-    "@apimap/code-display": "2.0.0",
     "@apimap/output-note": "2.0.0",
     "@apimap/the-breadcrumbs": "2.0.0",
     "@reststate/vuex": "git+https://github.com/apimap/reststate-vuex.git",
