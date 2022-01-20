@@ -33,6 +33,14 @@ find useful, create the rest to custom fit your organization.
 - A **Jenkins plugin** to automate information parsing and upload
 - A **CLI** to enable manual information uploads
 
+## Screenshots
+
+### Startpage
+![Startpage](doc/screenshot1.png)
+
+### Metadata Wizard
+![Metadata Wizard Screenshot](doc/screenshot2.png)
+
 ## Run
 ___
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/apimap)](https://artifacthub.io/packages/search?repo=apimap)
