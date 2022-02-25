@@ -1,12 +1,11 @@
-import { mapResourceModules } from "@reststate/vuex";
-
 import client from "../client.js";
+
+import { jsonapiModule } from 'jsonapi-vuex'
+
+const config = { recurseRelationships: true }
 
 export default {
     modules: {
-        ...mapResourceModules({
-            names: ["taxonomy", "api", "taxonomies", "classification"],
-            httpClient: client
-        }),
+        jv: jsonapiModule(client, config),
     },
 }

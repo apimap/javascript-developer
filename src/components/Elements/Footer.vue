@@ -3,11 +3,14 @@
     <VerticalStackLayout>
       <div class="left">
         <p>Apimap.io</p>
-        <p class="small">http://github.com/apimap</p>
-        <a href="https://github.com/apimap" class="button" target="_blank">Contribute</a>
-        <p class="small">Licensed under Apache 2.0</p>
+        <ul>
+          <li><a href="https://github.com/apimap" target="_blank">Contribute</a></li>
+          <li><a href="https://github.com/apimap" target="_blank">Report a bug</a></li>
+        </ul>
+        <p class="small"><a href="http://www.apache.org/licenses/" target="_blank">Apache License, Version 2.0</a></p>
       </div>
       <div class="right">
+        <h3>HELP AND SUPPORT</h3>
         <p>{{ support }}</p>
         <MediumButton :target="toTop" title="Scroll Back To Top" />
         <p class="version">Version {{ version }} created {{ created }}</p>
@@ -49,6 +52,13 @@ export default {
 
 <style scoped>
 
+ul {
+  list-style-type: none;
+  padding: 0;
+  line-height: 1.2em;
+  font-size: 0.7em;
+}
+
 .version{
   padding-top: 3em;
 }
@@ -66,6 +76,7 @@ export default {
 }
 
 .right{
+  text-align: left;
   padding-left: 1em;
   width: 50em;
   color: #5c5470;

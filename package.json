@@ -1,6 +1,6 @@
 {
   "name": "apimap-developer",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "build": "vue-cli-service build --mode production",
@@ -16,11 +16,11 @@
     "@apimap/layout-core": "2.0.0",
     "@apimap/output-note": "2.0.0",
     "@apimap/the-breadcrumbs": "2.0.0",
-    "@reststate/vuex": "git+https://github.com/apimap/reststate-vuex.git",
-    "@vue/cli-service": "4.5.15",
-    "axios": "0.24.0",
+    "@vue/cli-service": "5.0.1",
+    "axios": "0.26.0",
+    "jsonapi-vuex": "4.5.3",
     "connect-history-api-fallback": "1.6.0",
-    "express": "4.17.1",
+    "express": "4.17.3",
     "uuid": "8.3.2",
     "vue": "2.6.14",
     "vue-router": "3.5.3",
@@ -28,6 +28,7 @@
     "vuex": "3.6.2"
   },
   "devDependencies": {
-    "vue-svg-loader": "0.16.0"
+    "vue-svg-loader": "0.16.0",
+    "vm-browserify": "1.1.2"
   }
 }

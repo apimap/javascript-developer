@@ -4,7 +4,7 @@
     <p>Select the taxonomy you want to categorize your functionality according to. Your API can only be categorized using one taxonomy and all sub-levels will be according to this.</p>
     <div>
       <RadioGroup
-        label=""
+        label="Available taxonomies"
         name="taxonomy"
         :options="taxonomyOptions"
         v-model="form.taxonomy"
@@ -20,7 +20,7 @@ import { RadioGroup } from "@apimap/input-core"
 export default {
   name: "Taxonomy",
   props: {
-    taxonomy: Array,
+    taxonomy: Object,
     form: Object
   },
   components: {
@@ -35,8 +35,8 @@ export default {
   },
   computed: {
     taxonomyOptions() {
-      return this.taxonomy.map((tax) => {
-        return { label: tax.attributes.name, value: tax.id, description: tax.attributes.description };
+      return Object.keys(this.taxonomy).map((key) => {
+        return { label: this.taxonomy[key].name, value: this.taxonomy[key].nid, description: this.taxonomy[key].description };
       });
     },
   },
@@ -50,10 +50,6 @@ export default {
 
 h2{
   margin-bottom: 0em;
-}
-
-p{
-  margin-bottom: 4em;
 }
 
 </style>

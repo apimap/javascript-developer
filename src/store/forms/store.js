@@ -1,11 +1,8 @@
-import { mapResourceModules } from "@reststate/vuex";
-
 export const SET_METADATA_FORM_SELECTIONS = 'SET_METADATA_FORM_SELECTIONS';
 export const RESET_METADATA_FORM_SELECTIONS = 'RESET_METADATA_FORM_SELECTIONS';
 export const SET_TAXONOMY_FORM_SELECTIONS = 'SET_TAXONOMY_FORM_SELECTIONS';
 export const RESET_TAXONOMY_FORM_SELECTIONS = 'RESET_TAXONOMY_FORM_SELECTIONS';
-
-import client from "../client.js";
+export const RESET_TAXONOMY_FORM = 'RESET_TAXONOMY_FORM';
 
 const defaultMetadata = {
     "data": {
@@ -27,7 +24,7 @@ const defaultMetadata = {
 const defaultTaxonomy = {
     "data": {
         "classifications": [],
-        "taxonomy": ""
+        "taxonomy": undefined
     },
     "api catalog version": "1"
 };
@@ -56,6 +53,9 @@ export default {
             state.metadata = {...defaultMetadata.data}
         },
         [RESET_TAXONOMY_FORM_SELECTIONS](state) {
+            state.taxonomy.classifications = []
+        },
+        [RESET_TAXONOMY_FORM](state) {
             state.taxonomy = {...defaultTaxonomy.data}
         }
     },
@@ -71,12 +71,9 @@ export default {
         },
         RESET_TAXONOMY_FORM_SELECTIONS({commit}){
             commit(RESET_TAXONOMY_FORM_SELECTIONS)
+        },
+        RESET_TAXONOMY_FORM({commit}){
+            commit(RESET_TAXONOMY_FORM)
         }
-    },
-    modules: {
-        ...mapResourceModules({
-            names: ["taxonomyClassifications"],
-            httpClient: client,
-        }),
-    },
+    }
 }

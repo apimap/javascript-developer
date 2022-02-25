@@ -1,40 +1,24 @@
 <template>
   <div class="form-section">
-    <h2>Level 2</h2>
-    <p>Choose one or multiple categories within your chosen level 1 taxonomy that best fits your application. Once again descriptions of the categories can be found in the <router-link to='/taxonomy' target="_blank">taxonomy descriptions</router-link>.
-      Note that if you have selected multiple taxonomies in level one, you must choose at least one category for each taxonomy. </p>
-    <div class="form-body">
-      <div class="form-description">
-        <span v-for="hint in hints" :key="hint" class="description">
-          {{ hint }}
-        </span>
-      </div>
-      <div class="form-container">
-        <CheckboxGroup
+    <h2>Level 3</h2>
+    <p>Choose one or multiple classifications within your chosen <b>"Level 2"</b> classification that best fits your application.</p>
+    <div class="level-container">
+      <CheckboxGroup
           v-for="parent in taxonomyOptions"
           :key="parent.name"
           :label="parent.name"
-          labelSize="small"
-          name="level1"
-        >
-          <CheckboxGroup
-            v-for="child in parent.children"
-            :key="child.name"
-            :label="child.name"
-            labelSize="normal"
-            name="level1"
-          >
-            <Checkbox
-              v-for="option in child.options"
-              :key="option.name"
-              :label="option.label"
-              :option="option.name"
-              :description="option.description"
-              v-model="form.classifications"
-            />
-          </CheckboxGroup>
-        </CheckboxGroup>
-      </div>
+          labelSize="normal"
+          name="level2"
+      >
+        <Checkbox
+            v-for="option in parent.entities"
+            :key="option.name"
+            :label="option.label"
+            :option="option.name"
+            :description="option.description"
+            v-model="form.classifications"
+        />
+      </CheckboxGroup>
     </div>
   </div>
 </template>
@@ -42,37 +26,29 @@
 import { CheckboxGroup, Checkbox } from "@apimap/input-core";
 
 export default {
-  name: "Level2",
-  props: { taxonomyItems: Array, form: Object },
+  name: "Level3",
+  props: { 
+    items: Array,
+    form: Object 
+  },
   components: {
     CheckboxGroup,
     Checkbox,
   },
   computed: {
     taxonomyOptions() {
-      const data = this.taxonomyItems
-        .map((tax) => {
-          return {
-            name: tax.attributes.title,
-            children: tax.attributes.entities.map((child) => {
-              return {
-                name: child.attributes.title,
-                options: child.attributes.entities.map((el) => {
-                  return {
-                    label: el.attributes.title,
-                    name: el.attributes.urn,
-                    description: el.attributes.description,
-                  };
-                }),
-              };
-            }),
-          };
-        })
-        .filter((parent) => {
-          return parent.children.some((child) => {
-            return child.options.length > 0;
-          });
-        });
+      const data = this.items.map((tax) => {
+        return {
+          name: tax.attributes.title,
+          entities: tax.attributes.entities.map((child) => {
+            return {
+              label: child.attributes.title,
+              name: child.attributes.urn,
+              description: child.attributes.description,
+            };
+          }),
+        };
+      });
       return data;
     },
   },
@@ -84,19 +60,13 @@ export default {
   line-height: 1.2em;
 }
 
-.form-section {
-  width: 100%;
+.level-container {
+  flex-direction: row;
   display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  padding: 2em;
-  border-radius: 0.2em;
-}
-
-.form-section > .form-body {
   width: 100%;
-  box-sizing: border-box;
-  display: flex;
+  flex-wrap: nowrap;
+  align-self: flex-start;
+  align-items: flex-start;
 }
 
 .form-body > .form-description {
@@ -114,4 +84,9 @@ export default {
   display: flex;
   flex-direction: column;
 }
+
+p{
+  margin-bottom: 4em;
+}
+
 </style>

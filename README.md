@@ -14,11 +14,19 @@ to be tied to an API proxy or management solution? The Apimap.io project uploads
 your organizations APIs. We care about the source code, removing the limitation of where the API is hosted and how your
 network is constructed.
 
+### Telenor Open Source Project
+This project is a part of the Open Source initiatives in Telenor. Read more about our company at http://www.telenor.com
+
+![TelenorLogo](doc/telenor.png)
+
+
 ## Table of Contents
 
 * [Project Components](#project-components)
 * [Run](#run)
 * [Contributing](#contributing)
+* [Screenshots](#screenshots)
+
 
 I want to know more of the technical details and implementation guides: [DEVELOPER.md](DEVELOPER.md)
 
@@ -32,14 +40,6 @@ find useful, create the rest to custom fit your organization.
 - An **API** to accommodate all the information
 - A **Jenkins plugin** to automate information parsing and upload
 - A **CLI** to enable manual information uploads
-
-## Screenshots
-
-### Startpage
-![Startpage](doc/screenshot1.png)
-
-### Metadata Wizard
-![Metadata Wizard Screenshot](doc/screenshot2.png)
 
 ## Run
 ___
@@ -76,3 +76,15 @@ You can find our default configuration in the Dockerfile file, and we recommend 
 ___
 
 Read [howto contribute](CONTRIBUTING.md) to this project.
+
+## Screenshots
+___
+
+### Taxonomy Wizard
+![TaxonomyWizard](doc/screenshot1.png)
+
+### Git focus
+![GitFocus](doc/screenshot2.png)
+
+### Light / Dark mode
+![DarkMode](doc/screenshot3.png)

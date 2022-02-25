@@ -16,64 +16,61 @@
               description="Select required level 1 categories"
               :target="scrollToComponent"
               reference="level1"
-              :disabled="!this.chosenLevels.taxonomy"/>
+              :disabled="!this.selectedLevels.taxonomy"/>
           <StepNavigationElement
               title="Level 2"
               description="Select required level 2 categories"
               :target="scrollToComponent"
               reference="level2"
-              :disabled="!this.chosenLevels.level1"/>
+              :disabled="!this.selectedLevels.level1"/>
           <StepNavigationElement
               title="Level 3"
               description="Select optional level 3 categories"
               :target="scrollToComponent"
               reference="level3"
-              :disabled="!this.chosenLevels.level2"/>
+              :disabled="!this.selectedLevels.level2"/>
           <StepNavigationElement
               title="Download file"
               description="Download a new taxonomy.apimap with your current selections"
               :target="scrollToComponent"
               reference="completed"
-              :disabled="!this.chosenLevels.taxonomy"/>
+              :disabled="!this.selectedLevels.taxonomy"/>
         </StepNavigationContainer>
         <div>
           <div class="forms-container">
             <div ref="taxonomy">
-              <Taxonomy v-if="allTaxonomies" :taxonomy="allTaxonomies" :form="form" />
+              <Taxonomy v-if="getTaxonomies" :taxonomy="getTaxonomies" :form="form" />
+              <Separator size="normal" />
+              <MediumButton title="Continue to Level 1" :target="setTaxonomy" v-if="shouldDisplayLevel1" />
             </div>
-            <Separator size="normal" />
-            <MediumButton title="Download and Start Categorizing" :target="chooseTaxonomy" v-if="shouldDisplayLevel1" />
-            <Separator size="normal" />
             <div ref="level1">
-              <div v-if="chosenLevels.taxonomy">
-                <Level1 :taxonomyItems="level1Elements" :form="form" />
+              <div v-if="selectedLevels.taxonomy">
+                <Level1 :items="level1" :form="form" />
                 <Separator size="normal" />
-                <MediumButton title="Download and Start Categorizing" :target="chooseLevel1" v-if="shouldDisplayLevel2" />
-                <Separator size="normal" />
+                <MediumButton title="Continue to Level 2" :target="setLevel1" v-if="shouldDisplayLevel2" />
               </div>
             </div>
             <div ref="level2">
-              <div v-if="chosenLevels.level1">
-                <Level2 :taxonomyItems="level2Elements" :form="form" />
+              <div v-if="selectedLevels.level1">
+                <Level2 :items="level2" :form="form" />
                 <Separator size="normal" />
-                <MediumButton title="Continue to Taxonomy Sub-Levels" :target="chooseLevel2" v-if="shouldDisplayLevel3" />
+                <MediumButton title="Continue to Level 3" :target="setLevel2" v-if="shouldDisplayLevel3" />
               </div>
             </div>
             <div ref="level3">
-              <div v-if="chosenLevels.level2">
-                <Separator size="normal" />
-                <Level3 :taxonomyItems="level3Elements" :form="form" />
+              <div v-if="selectedLevels.level2">
+                <Level3 :items="level3" :form="form" />
               </div>
             </div>
           </div>
           <Separator size="large" />
-          <div ref="completed" class="footer" v-if="this.chosenLevels.taxonomy">
+          <div ref="completed" class="footer" v-if="shouldDisplayDownloadButton">
             <div class="footer-container">
               <div class="all-done-container">
                 <img :src="allDoneIllustration" alt="Taxonomy Wizard Completed" />
                 <h2>Taxonomy.apimap</h2>
               </div>
-              <LargeButton title="Download a new taxonomy.apimap with your current selections" :target="saveFile" />
+              <LargeButton title="Download and save a new taxonomy.apimap file to your folder " :target="saveFile" />
             </div>
           </div>
         </div>
@@ -105,7 +102,7 @@ import { Content, ContentHeader, Separator, VerticalStackLayout } from "@apimap/
 import { saveToFile } from "@/utils/file-management.js";
 import { scrollToComponentWithoutHistory, scrollToPageTop } from "@/utils/window-management.js";
 import { mapActions, mapGetters } from "vuex";
-import { RESET_TAXONOMY_FORM_SELECTIONS, SET_TAXONOMY_FORM_SELECTIONS } from "@/store/forms/store";
+import { RESET_TAXONOMY_FORM, RESET_TAXONOMY_FORM_SELECTIONS, SET_TAXONOMY_FORM_SELECTIONS } from "@/store/forms/store";
 
 export default {
   name: "TaxonomyWizard",
@@ -125,12 +122,19 @@ export default {
     Separator
   },
   mounted() {
-    this.$store.dispatch(RESET_TAXONOMY_FORM_SELECTIONS);
-    this.loadTaxonomyList({ rel: "taxonomy:collection" });
+    this.$store.dispatch(RESET_TAXONOMY_FORM);
+    this.$store.commit('jv/clearRecords', { _jv: { type: 'urn:element' } })
+    // TODO: Make this dynamic from returned urls
+    this.$store.dispatch('jv/get', "taxonomy").then((data) => {})
   },
   data: function() {
     return {
-      chosenLevels: {
+      levels: {
+        taxonomy: undefined,
+        level1: new Array(),
+        level2: new Array(),
+      },
+      selectedLevels: {
         taxonomy: false,
         level1: false,
         level2: false,
@@ -140,107 +144,79 @@ export default {
         level1: false,
         level2: false,
       },
-      taxonomyTree: {},
-      level1Elements: [],
-      level2Elements: [],
-      level3Elements: [],
       allDoneIllustration,
     };
   },
   methods: {
-    ...mapActions({
-      loadTaxonomyList: "taxonomies/loadByRel",
-      loadTaxonomy: "taxonomy/loadByRelationship"
-    }),
-    chooseTaxonomy: async function(refName) {
-      if (!this.chosenLevels.taxonomy) {
+    setTaxonomy: async function() {
+      this.$store.commit('jv/clearRecords', { _jv: { type: 'urn:element' } });
 
-        let selectedTaxonomyObject = this.allTaxonomies.find(e => e.id === this.form.taxonomy)
-        console.log("Selected " + selectedTaxonomyObject)
-
-        await this.loadTaxonomy({ resource: selectedTaxonomyObject, relationship:"urn:collection" })
-        this.chosenLevels.taxonomy = true;
-
-        this.level1Elements = this.taxonomy;
-        scrollToComponentWithoutHistory(this, refName);
-      }
-    },
-    chooseLevel1: function(refName) {
-      this.level2Elements = this.level1Elements.filter((tax) => {
-        return this.form.classifications.includes(tax.attributes.urn);
-      });
-      if (this.level2Elements.some((el) => el.attributes.entities.length > 0)) {
-        this.chosenLevels.level1 = true;
-        scrollToComponentWithoutHistory(this, refName);
-      } else {
-        scrollToComponentWithoutHistory(this, "footer");
-      }
-    },
-    chooseLevel2: function(refName) {
-      this.level3Elements = this.level2Elements.map((tax) => {
-        return {
-          ...tax,
-          attributes: {
-            ...tax.attributes,
-            entities: tax.attributes.entities.filter((el) =>
-              this.form.classifications.includes(el.attributes.urn)
-            ),
-          },
-        };
+      // TODO: Make this dynamic from returned urls
+      await this.$store.dispatch('jv/get', "taxonomy/" + this.form.taxonomy + '/version/latest/urn').then((data) => {
+        this.levels.level1 = Object.keys(data).map((key) => { return data[key] });
+        this.levels.taxonomy = this.form.taxonomy;
+        this.selectedLevels.taxonomy = true;
       });
 
-      if (
-        this.level3Elements.filter((tax) => {
-          return tax.attributes.entities.some(
-            (el) => el.attributes.entities.length > 0
-          );
-        }).length > 0
-      ) {
-        this.chosenLevels.level2 = true;
-        scrollToComponentWithoutHistory(this, refName);
+      scrollToComponentWithoutHistory(this, "level1");
+    },
+    setLevel1: function() {
+      if (this.levels.level2.some((el) => el.entities.length > 0)) {
+        this.selectedLevels.level1 = true;
+        scrollToComponentWithoutHistory(this, "level2");
       } else {
-        scrollToComponentWithoutHistory(this, "footer");
+        this.selectedLevels.level1 = false;
+        scrollToComponentWithoutHistory(this, "completed");
+      }
+    },
+    setLevel2: function() {
+      if (this.levels.level3.filter((object) => object.attributes.entities.some( (el) => el.attributes )).length > 0) {
+        this.selectedLevels.level2 = true;
+        scrollToComponentWithoutHistory(this, "level3");
+      } else {
+        this.selectedLevels.level2 = false;
+        scrollToComponentWithoutHistory(this, "completed");
       }
     },
     removeParentUrns() {
-      for (let i = 0; i < this.level1Elements.length; i++) {
+      for (let i = 0; i < this.levels.level1.length; i++) {
         if (
           this.form.classifications.includes(
-            this.level1Elements[i].attributes.urn
+            this.levels.level1[i].urn
           )
         ) {
           for (
             let j = 0;
-            j < this.level1Elements[i].attributes.entities.length;
+            j < this.levels.level1[i].entities.length;
             j++
           ) {
             if (
               this.form.classifications.includes(
-                this.level1Elements[i].attributes.entities[j].attributes.urn
+                this.levels.level1[i].entities[j].attributes.urn
               )
             ) {
               this.form.classifications.splice(
                 this.form.classifications.indexOf(
-                  this.level1Elements[i].attributes.urn
+                  this.levels.level1[i].urn
                 ),
                 1
               );
               for (
                 let k = 0;
                 k <
-                this.level1Elements[i].attributes.entities[j].attributes
+                this.levels.level1[i].entities[j].attributes
                   .entities.length;
                 k++
               ) {
                 if (
                   this.form.classifications.includes(
-                    this.level1Elements[i].attributes.entities[j].attributes
+                    this.levels.level1[i].entities[j].attributes
                       .entities[k].attributes.urn
                   )
                 ) {
                   this.form.classifications.splice(
                     this.form.classifications.indexOf(
-                      this.level1Elements[i].attributes.entities[j].attributes
+                      this.levels.level1[i].entities[j].attributes
                         .urn
                     ),
                     1
@@ -262,35 +238,94 @@ export default {
         data: this.form,
       };
       saveToFile(dataobj, "taxonomy.apimap");
+      this.$store.dispatch(RESET_TAXONOMY_FORM);
     },
   },
   computed: {
+    level1: function() {
+      if(!this.availableLevels.taxonomy) {
+        this.levels.level1 = [];
+      }
+      return this.levels.level1;
+    },
+    level2: function() {
+      if(!this.availableLevels.level1){
+        this.levels.level2 = [];
+      }
+      return this.levels.level2;
+    },
+    level3: function() {
+      if(!this.availableLevels.level2){
+        this.levels.level3 = [];
+      }
+      return this.levels.level3;
+    },
+    getTaxonomies: function(){
+      return this.$store.getters['jv/get']('taxonomy:element');
+    },
     shouldDisplayLevel1(){
-      return this.availableLevels.taxonomy
+      return this.availableLevels.taxonomy;
     },
     shouldDisplayLevel2(){
-      return this.availableLevels.level1
+      return this.availableLevels.level1;
     },
     shouldDisplayLevel3(){
-      return this.availableLevels.level2
+      return this.availableLevels.level2;
+    },
+    shouldDisplayDownloadButton(){
+      return this.form.classifications.length > 0;
     },
     form() {
       return this.$store.state.forms.taxonomy;
-    },
-    ...mapGetters({
-      allTaxonomies: "taxonomies/all",
-      taxonomy: "taxonomy/all"
-    })
+    }
   },
   watch: {
-    form: {
+    'form.taxonomy': {
+      handler(newValue, oldValue) {
+        // Reset selections when taxonomy changes
+        if(newValue !== oldValue){
+          this.levels = {
+            taxonomy: newValue,
+            level1: new Array(),
+            level2: new Array(),
+          };
+
+          this.selectedLevels = {
+            taxonomy: false,
+            level1: false,
+            level2: false,
+          };
+
+          this.availableLevels = {
+            taxonomy: newValue !== undefined,
+            level1: false,
+            level2: false,
+          };
+
+          this.$store.dispatch(RESET_TAXONOMY_FORM_SELECTIONS);
+        }
+      }
+    },
+    'form.classifications': {
+      handler(newValue, oldValue){
+        this.levels.level2 = this.levels.level1.filter(option => newValue.includes(option.urn));
+        this.selectedLevels.level1 = this.levels.level2.length > 0;
+
+        this.levels.level3 = this.levels.level2
+            .filter(option => newValue.includes(option.urn))
+            .flatMap((object) => object.entities.filter((el) => newValue.includes(el.attributes.urn)))
+            .filter(object => object.attributes.entities.length > 0);
+
+        this.selectedLevels.level2 = this.levels.level3.length > 0;
+
+        this.availableLevels.level1 = this.levels.level1.some(lv => newValue.includes(lv.urn) && lv.entities.length > 0);
+        this.availableLevels.level2 = this.levels.level2.some(lv => lv.entities.some(lv2 => newValue.includes(lv2.attributes.urn) && lv2.attributes.entities.length > 0));
+      }
+    },
+    'form': {
       handler(value) {
-        this.availableLevels.taxonomy = value.taxonomy !== undefined;
-        this.availableLevels.level1 = this.level1Elements.some(lv => value.classifications.includes(lv.attributes.urn) && lv.attributes.entities.length > 0);
-        this.availableLevels.level2 = this.level2Elements.some(lv => lv.attributes.entities.some(lv2 => value.classifications.includes(lv2.attributes.urn) && lv2.attributes.entities.length > 0));
         this.$store.dispatch(SET_TAXONOMY_FORM_SELECTIONS, value);
-      },
-      deep: true,
+      }
     },
   },
 };
@@ -311,6 +346,7 @@ export default {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  gap: 6em;
 }
 
 .footer-container {

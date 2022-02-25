@@ -29,7 +29,7 @@ export const Paths = {
 	},
 	'cli-tool': {
 		url:  "/tools/cli",
-		name: "Command-line interface (CLI)"
+		name: "Command-line interface (CLI) Tool"
 	},
 	'metadata': {
 		url:  "/metadata",

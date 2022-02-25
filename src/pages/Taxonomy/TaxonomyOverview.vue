@@ -4,22 +4,23 @@
         title="Available Taxonomies"
         introduction="The following taxonomies are available for use in this system." />
     <Content>
-      <div v-for="taxonomy in allTaxonomies" :key="taxonomy.id" v-on:click="selectTaxonomy(taxonomy)" v-bind:class="(taxonomy.id === selectedTaxonomyId) ? 'taxonomySelected' : 'taxonomyNotSelected'">
-        <h5>{{taxonomy.attributes.name}}</h5>
-        <p>{{taxonomy.attributes.description}}</p>
-      </div>
       <p>Select a taxonomy to view the complete list of categorization options.</p>
+      <div v-for="taxonomy in getTaxonomies" :key="taxonomy.nid" v-on:click="selectTaxonomy(taxonomy)" v-bind:class="(taxonomy.nid === selectedTaxonomyId) ? 'taxonomySelected' : 'taxonomyNotSelected'">
+        <h5>{{taxonomy.name}}</h5>
+        <p>{{taxonomy.description}}</p>
+      </div>
     </Content>
     <Content>
-      <div class="list" id="print-content">
+      <LoadingIndicator :visible="this.loadingTaxonomy"/>
+      <div class="list" id="print-content" v-show="!this.loadingTaxonomy">
         <h2 v-show="this.selectedTaxonomyId">{{ this.selectedTaxonomyName }}</h2>
-        <div v-for="l0 in taxonomyTree" :key="l0.id" class="tree">
-          <div class="level0-heading"><div class="level-indicator">Level 1</div>{{l0.attributes.title}}</div>
-          <pre class="description" v-show="l0.attributes.description">{{l0.attributes.description}}</pre>
-          <div v-for="l1 in l0.attributes.entities" :key="l1.id" class="level1">
+        <div v-for="l0 in getTaxonomy" :key="l0.id" class="tree">
+          <div class="level0-heading"><div class="level-indicator">Level 1</div>{{l0.title}}</div>
+          <pre class="description" v-show="l0.description">{{l0.description}}</pre>
+          <div v-for="l1 in l0.entities" :key="l1.id" class="level1">
             <div class="level1-heading"><div class="level-indicator">Level 2</div>{{l1.attributes.title}}</div>
             <pre class="description" v-show="l1.attributes.description">{{l1.attributes.description}}</pre>
-            <div v-for="l2 in l1.attributes.entities" :key="l2.id">
+            <div v-for="l2 in l1.entities" :key="l2.id">
               <h4>{{l2.attributes.title}}</h4>
               <pre class="description">{{l2.attributes.description}}</pre>
             </div>
@@ -34,36 +35,43 @@
 <script>
 import Footer from "@/components/Elements/Footer";
 
+import LoadingIndicator from "@/components/Elements/LoadingIndicator";
+
 import { Content, ContentHeader, VerticalStackLayout } from "@apimap/layout-core";
 
 import { mapActions, mapGetters } from "vuex";
+
+import { utils } from "jsonapi-vuex";
 
 export default {
   name: "TaxonomyOverview",
   components: {
     VerticalStackLayout,
     Footer,
+    LoadingIndicator,
     Content,
     ContentHeader
   },
   mounted() {
-    this.loadTaxonomyList({ rel: "taxonomy:collection" });
+    this.$store.commit('jv/clearRecords', { _jv: { type: 'urn:element' } })
+    // TODO: Make this dynamic from returned urls
+    this.$store.dispatch('jv/get', "taxonomy").then((data) => {})
   },
   methods: {
-    ...mapActions({
-      loadTaxonomyList: "taxonomies/loadByRel",
-      loadTaxonomy: "taxonomy/loadByRelationship"
-    }),
     selectTaxonomy: async function(object) {
       if(this.selectedTaxonomyId === object.id){
         this.selectedTaxonomyName = undefined;
         this.selectedTaxonomyId = undefined;
         this.taxonomyTree = undefined;
       } else {
-        this.selectedTaxonomyName = object.attributes.name;
-        this.selectedTaxonomyId = object.id;
-        await this.loadTaxonomy({ resource: object, relationship:"urn:collection" })
-        this.taxonomyTree = this.taxonomy
+        this.selectedTaxonomyName = object.name;
+        this.selectedTaxonomyId = object.nid;
+        this.loadingTaxonomy = true;
+        this.$store.commit('jv/clearRecords', { _jv: { type: 'urn:element' } })
+        // TODO: Make this dynamic from returned urls
+        this.$store.dispatch('jv/get', "taxonomy/" + object.nid + '/version/latest/urn').then((data) => {
+          this.loadingTaxonomy = false;
+        })
       }
     },
   },
@@ -71,19 +79,30 @@ export default {
     return {
       taxonomyTree: {},
       selectedTaxonomyId: String,
-      selectedTaxonomyName: ''
+      selectedTaxonomyName: '',
+      loadingTaxonomy: false
     };
   },
   computed: {
-    ...mapGetters({
-      allTaxonomies: "taxonomies/all",
-      taxonomy: "taxonomy/all"
-    })
+    getTaxonomies: function(){
+      return this.$store.getters['jv/get']('taxonomy:element');
+    },
+    getTaxonomy: function(){
+      return this.$store.getters['jv/get']('urn:element');
+    }
   },
 };
 </script>
 
 <style scoped>
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-leave-active {
+  opacity: 0;
+}
 
 @media print {
   body * {

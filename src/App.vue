@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <TheSideBar width=16>
+      <TheSideBar :width="16">
         <SideBarAction target="/" :image="home"></SideBarAction>
         <SideBarSection title="Step 1: Create Folder">
           <SideBarSectionAction title="Create Folder" target="/folder" />
@@ -16,7 +16,7 @@
         </SideBarSection>
         <SideBarSection title="Advanced" :sections="advanced"/>
       </TheSideBar>
-      <CenterLayout width=60>
+      <CenterLayout :width="60">
         <TheBreadcrumbs/>
         <router-view/>
       </CenterLayout>

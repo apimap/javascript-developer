@@ -216,7 +216,7 @@
 <script>
 import Footer from "@/components/Elements/Footer";
 import SpecificationDefinition from "@/components/Elements/SpecificationDefintion";
-import { Note } from "@apimap/output-note";
+import Note from "@apimap/output-note";
 
 import { Content, ContentHeader, HorizontalStackLayout, ContentTable, ContentSection, HorizontalLargeSmallStackLayout } from "@apimap/layout-core";
 
