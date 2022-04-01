@@ -1,6 +1,6 @@
-FROM node:17
+FROM node:17-alpine
 MAINTAINER apimap.io
-RUN addgroup --system vue && adduser --system vue --ingroup vue --no-create-home --disabled-login
+RUN addgroup --system vue && adduser --system vue --ingroup vue --no-create-home
 USER vue:vue
 ENV APIMAP_API_URL="http://localhost"
 ENV APIMAP_PORTAL_URL="http://localhost"

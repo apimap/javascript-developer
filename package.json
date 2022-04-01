@@ -1,6 +1,6 @@
 {
   "name": "apimap-developer",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "scripts": {
     "build": "vue-cli-service build --mode production",
@@ -16,8 +16,8 @@
     "@apimap/layout-core": "2.0.0",
     "@apimap/output-note": "2.0.0",
     "@apimap/the-breadcrumbs": "2.0.0",
-    "@vue/cli-service": "5.0.1",
-    "axios": "0.26.0",
+    "@vue/cli-service": "5.0.4",
+    "axios": "0.26.1",
     "jsonapi-vuex": "4.5.3",
     "connect-history-api-fallback": "1.6.0",
     "express": "4.17.3",
