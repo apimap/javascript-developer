@@ -1,6 +1,10 @@
 Changelog
 ===
 
+### 25.04.2022
+- New CLI version, new CLI description
+- Optimized SVG files
+
 ### 01.04.2022
 - Updated docker base image and dep.
 

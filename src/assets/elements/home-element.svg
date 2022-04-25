@@ -1,86 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   width="120"
-   height="120"
-   viewBox="0 0 31.749999 31.750002"
-   version="1.1"
-   id="svg5"
-   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
-   sodipodi:docname="home-element.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview7"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:document-units="px"
-     showgrid="false"
-     units="px"
-     width="40px"
-     inkscape:zoom="3.00136"
-     inkscape:cx="43.313698"
-     inkscape:cy="41.814378"
-     inkscape:window-width="3072"
-     inkscape:window-height="1580"
-     inkscape:window-x="0"
-     inkscape:window-y="27"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
-  <defs
-     id="defs2" />
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1">
-    <text
-       xml:space="preserve"
-       style="font-size:5.47501px;line-height:1.25;font-family:Helvetica-Light;-inkscape-font-specification:'Helvetica-Light, Normal';display:inline;stroke-width:0.256641"
-       x="68.735435"
-       y="-39.344406"
-       id="text42538"><tspan
-         sodipodi:role="line"
-         id="tspan42536"
-         x="68.735435"
-         y="-39.344406"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.47501px;font-family:Helvetica;-inkscape-font-specification:Helvetica;stroke-width:0.256641" /></text>
-    <path
-       style="display:inline;fill:none;stroke:#5c5470;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 11.443393,13.413701 1.79268,2.25493 3.46336,-3.51918"
-       id="path42543-5"
-       sodipodi:nodetypes="ccc" />
-    <circle
-       style="fill:none;fill-opacity:0;stroke:#5c5470;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="path1991"
-       cx="14.071415"
-       cy="13.876821"
-       r="5.5177679" />
-    <rect
-       style="fill:none;fill-opacity:0;stroke:#5c5470;stroke-width:0.264583;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect2004"
-       width="2.6586721"
-       height="5.9018474"
-       x="-1.0469648"
-       y="25.363749"
-       rx="0.52916676"
-       ry="0.52916676"
-       transform="rotate(-45)" />
-    <circle
-       style="fill:none;fill-opacity:0;stroke:#5c5470;stroke-width:0.278953;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="circle2006"
-       cx="14.071415"
-       cy="13.876821"
-       r="4.9380851" />
-    <path
-       style="fill:none;stroke:#5c5470;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 18.726893,18.697851 2.98854,2.98853"
-       id="path2008" />
+<svg width="120" height="120" version="1.1" viewBox="0 0 31.75 31.75" xmlns="http://www.w3.org/2000/svg">
+ <text x="68.735435" y="-39.344406" font-family="Helvetica-Light" font-size="5.475px" stroke-width=".25664" style="line-height:1.25" xml:space="preserve"><tspan x="68.735435" y="-39.344406" font-family="Helvetica" font-size="5.475px" stroke-width=".25664"/></text>
+ <g fill="none" stroke="#5c5470">
+  <g stroke-linecap="round">
+   <path d="m11.443 13.414 1.7927 2.2549 3.4634-3.5192" stroke-width=".52917"/>
+   <circle cx="14.071" cy="13.877" r="5.5178" stroke-width=".26458"/>
+   <rect transform="rotate(-45)" x="-1.047" y="25.364" width="2.6587" height="5.9018" rx=".52917" ry=".52917" stroke-width=".26458"/>
+   <circle cx="14.071" cy="13.877" r="4.9381" stroke-width=".27895"/>
   </g>
+  <path d="m18.727 18.698 2.9885 2.9885" stroke-width=".26458px"/>
+ </g>
 </svg>
