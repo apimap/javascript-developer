@@ -1,6 +1,6 @@
 {
   "name": "apimap-developer",
-  "version": "1.1.2",
+  "version": "0.0.0-semantically-released",
   "private": true,
   "scripts": {
     "build": "vue-cli-service build --mode production",
@@ -30,5 +30,13 @@
   "devDependencies": {
     "vue-svg-loader": "0.16.0",
     "vm-browserify": "1.1.2"
+  },
+  "release": {
+    "branches": ["main"],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github"
+    ]
   }
 }
