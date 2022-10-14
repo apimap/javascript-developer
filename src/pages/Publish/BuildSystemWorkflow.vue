@@ -9,7 +9,7 @@ part of any git-ops environment since it automatically uploads and manages the A
         <StepNavigationContainer>
           <StepNavigationElement
               title="Metadata and Taxonomy"
-              description="Your .apimap files created using our wizards"
+              description="Create metadata and taxonomy files using the wizards"
               :target="scrollToComponent"
               reference="step1" />
           <StepNavigationElement
@@ -19,12 +19,12 @@ part of any git-ops environment since it automatically uploads and manages the A
               reference="step2" />
           <StepNavigationElement
               title="Build System"
-              description="Detects your files and publishes your API"
+              description="Detects required files and publishes the API"
               :target="scrollToComponent"
               reference="step3" />
           <StepNavigationElement
-              title="Searchable"
-              description="Your information is indexed and ready"
+              title="Catalog"
+              description="The information is indexed and ready"
               :target="scrollToComponent"
               reference="step4" />
         </StepNavigationContainer>
@@ -32,26 +32,22 @@ part of any git-ops environment since it automatically uploads and manages the A
       </VerticalStackLayout>
     </Content>
     <Content>
-      <Guide title="Step by Step">
+      <Guide>
         <GuideStep number="1" title="Metadata And Taxonomy"  ref="step1">
-          Create your metadata and taxonomy files using our,
-          <router-link to="/metadata/wizard">Metadata Wizard</router-link>
+          Create metadata and taxonomy files using the <router-link to="/metadata/wizard">Metadata Wizard</router-link>
           and <router-link to="/taxonomy/wizard">Taxonomy Wizard</router-link>. By default, the files should be stored in your source code root
-          directory under a folder named "apimap". If you are working with mono repositories, your build step
-          must include the path to the component root folder. This should be
-          done in your Jenkinsfile
-          <img :src="fileLocationIllustration" alt="File locations" class="step-by-step-image">
+          directory under a folder named "apimap". Alongside this information the Apimap integrations also uploads the README.md file and the CHANGELOG.md file.
         </GuideStep>
         <GuideStep number="2" title="Version Control"  ref="step2">
           Add your Metadata and Taxonomy files to your source code repository
           and push the changes to trigger your build system
         </GuideStep>
         <GuideStep number="3" title="Build System"  ref="step3">
-          If your build system is set up with our integration the "Apimap" step should be visible after the build
-          has been completed. Read more about using the <router-link to="/workflow/build-system/jenkins-pipeline">Jenkins
+          If your build system is integrated with "Apimap" the publish step should be visible after the build
+          has been completed. Read more about using <router-link to="/tools/jenkins">Jenkins
           Pipeline</router-link>
         </GuideStep>
-        <GuideStep number="4" title="Apimap"  ref="step4">
+        <GuideStep number="4" title="Catalog"  ref="step4">
           Your all done and your information is now available in the catalog. Updating the data is as simple as changing
           the file content and triggering a new build.
         </GuideStep>
@@ -72,7 +68,6 @@ import { Content, ContentHeader, VerticalStackLayout, CenterLayout } from "@apim
 import StepNavigationContainer from "@/components/Navigation/StepNavigationContainer";
 import StepNavigationElement from "@/components/Navigation/StepNavigationElement";
 import buildSystemWorkflow from "@/assets/illustrations/buildsystem-workflow-illustration.svg";
-import fileLocationIllustration from "@/assets/illustrations/file-location-illustration.svg";
 import { scrollToComponentWithoutHistory } from "@/utils/window-management.js";
 
 export default {
@@ -99,7 +94,6 @@ export default {
   data: function() {
     return {
       buildSystemWorkflow,
-      fileLocationIllustration,
       scrollToComponentWithoutHistory
     };
   },
@@ -107,15 +101,5 @@ export default {
 </script>
 
 <style scoped>
-
-.step-by-step-image{
-  padding-top: 2em;
-  padding-bottom: 1em;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: var(--image-background-color);
-  width: 100%;
-}
 
 </style>

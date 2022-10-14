@@ -1,6 +1,8 @@
 <template>
-  <div class="step-navigation-container" v-bind:class="{ sticky:isSticky }">
-    <slot/>
+  <div class="step-navigation-container">
+    <div v-bind:class="{ sticky:isSticky }">
+      <slot/>
+    </div>
   </div>
 </template>
 
@@ -12,3 +14,18 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+
+.step-navigation-container{
+  position: relative;
+}
+
+.sticky{
+  position: sticky;
+  top: 2em;
+  left: 0;
+}
+
+</style>
+

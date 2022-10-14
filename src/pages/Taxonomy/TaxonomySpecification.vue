@@ -27,7 +27,7 @@
             The objective of this document is to describe the taxonomy used
             alongside the API Metadata Standard to enable API discoverability.
           </p>
-          <h5>Key Definitions</h5>
+          <h2>Key Definitions</h2>
           <ul>
             <li>
               Application programming interface (API): Point of functional
@@ -54,7 +54,7 @@
               that underlie such classification
             </li>
           </ul>
-          <h5>Conventions</h5>
+          <h2>Conventions</h2>
           <p>
             The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”,
             “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this
@@ -62,11 +62,6 @@
           </p>
         </ContentSection>
         <ContentSection ref="apimap" title="II. Apimap">
-          <p>
-            It has been built to be independent of the technology used
-            to access it. All tools and solutions uses the same swagger documented API to
-            perform all actions needed.
-          </p>
           <h5>Focus on API and not API Instances</h5>
           <p>The Apimap is a part of the source code and not
             the instances of the API.</p>
@@ -84,9 +79,9 @@
         <ContentSection ref="taxonomydocument" title="III. Taxonomy Document">
           <h4 ref="namingconventions">Naming Conventions</h4>
           <p>
-            It is recommened to name your taxonomy file taxonomy.apimap . This will ensure automatic recognition from current and future tools.
+            It is recommended to name your taxonomy file taxonomy.apimap . This will ensure automatic recognition from current and future tools.
           </p>
-          <Note text="Recommended filename: taxonomy.apimap"></Note>
+          <Recommendation recommendation="Recommended filename: taxonomy.apimap"></Recommendation>
           <h4 ref="levels">Levels</h4>
           <h5>Level 1 (Required)</h5>
           <p>Gives little value to the consumer, and SHALL be seen as guidance to the governance team when seeking help.</p>
@@ -142,12 +137,10 @@
             already existing pipelines and there is no predefined
             file paths to the taxonomy file.
           </p>
-          <Note text="Although not a requirement it is recommended to create individual folders for each API and keep the metadata and taxonomy files together."/>
+          <Recommendation recommendation="Although not a requirement it is recommended to create individual folders for each API and keep the metadata and taxonomy files together."/>
         </ContentSection>
         <ContentSection ref="structure" title="IV. Taxonomy Document Structure">
-          <Note
-            text="A key concept of the taxonomy.apimap file is that there will never be a requirement to update the content unless your API changes."
-          />
+          <Recommendation recommendation="A key concept of the taxonomy.apimap file is that there will never be a requirement to update the content unless your API changes."/>
           <h3 ref="rootsection">Root Section</h3>
           <SpecificationDefinition
             v-for="option in rootObject"
@@ -174,7 +167,7 @@
         <ContentSection ref="changemanagement" title="V. Change Management">
           <p>
             The Apimap.io project governs the content of this document and the Taxonomy Specification herein. Any organization that
-            needs other attributes and changes is encouraged to fork the project and/or contant us to get the official specification
+            needs other attributes and changes is encouraged to fork the project and/or contact us to get the official specification
             updated.
           </p>
           <h5>Change Management Rules</h5>
@@ -196,7 +189,6 @@
             </li>
           </ul>
         </ContentSection>
-        </ContentTable>
       </HorizontalStackLayout>
       <SideTableOfContents isSticky>
         <SideTableOfContents>
@@ -216,14 +208,14 @@
 <script>
 import Footer from "@/components/Elements/Footer";
 import SpecificationDefinition from "@/components/Elements/SpecificationDefintion";
-import Note from "@apimap/output-note";
 
-import { Content, ContentHeader, HorizontalStackLayout, ContentTable, ContentSection, HorizontalLargeSmallStackLayout } from "@apimap/layout-core";
+import { Content, ContentHeader, HorizontalStackLayout, ContentSection, HorizontalLargeSmallStackLayout } from "@apimap/layout-core";
 
 import TableOfContents from "@/components/Navigation/TableOfContents";
 import TableOfContentsItem from "@/components/Navigation/TableOfContentsItem";
 import SideTableOfContentsItem from "@/components/Navigation/SideTableOfContentsItem";
 import SideTableOfContents from "@/components/Navigation/SideTableOfContents";
+import Recommendation from "@/components/Elements/Recommendation";
 
 import { definition } from "@/data/TaxonomyDefinition";
 
@@ -237,9 +229,8 @@ export default {
     TableOfContentsItem,
     SideTableOfContentsItem,
     HorizontalLargeSmallStackLayout,
+    Recommendation,
     SideTableOfContents,
-    Note,
-    ContentTable,
     ContentSection,
     SpecificationDefinition,
     HorizontalStackLayout,

@@ -21,7 +21,7 @@ export default {
   padding-top: 1em;
   padding-bottom: 1em;
   background-color: #5c5470;
-  text-align: center;
+  font-weight: bold;
 }
 
 .recommendation{
@@ -30,6 +30,8 @@ export default {
   font-weight: lighter;
   line-height: 1.4em;
   height: 1.4em;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 </style>

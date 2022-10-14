@@ -28,7 +28,7 @@ export default {
 .content {
   color: #DBD8E3;
   font-size: 1em;
-  font-weight: lighter;
+  font-weight: bold;
   line-height: 1.4em;
 }
 

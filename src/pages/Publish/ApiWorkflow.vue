@@ -1,14 +1,14 @@
 <template>
   <div class="api-workflow">
     <ContentHeader
-        title="API Workflow"
+        title="API (REST) Workflow"
         introduction="The API workflow targets advanced system-to-system integrations that is not already supported by a Apimap component. This is most commonly used to add support to automation tools."/>
     <Content>
       <VerticalStackLayout class="content workflow-intro">
         <StepNavigationContainer>
           <StepNavigationElement
               title="Metadata and Taxonomy"
-              description="Your .apimap files created using our wizards"
+              description="Create metadata and taxonomy files using the wizards"
               :target="scrollToComponent"
               reference="step1" />
           <StepNavigationElement
@@ -36,7 +36,7 @@
       </VerticalStackLayout>
     </Content>
     <Content>
-      <Guide title="Step by Step">
+      <Guide>
         <GuideStep number="1" title="Metadata And Taxonomy"  ref="step1">
           Create your metadata and taxonomy files using our,
           <router-link to="/metadata/wizard">Metadata Wizard</router-link>
@@ -46,28 +46,28 @@
           The Apimap API documentation is a part of the java-api project and available at <a href="https://github.com/apimap/java-api/blob/master/DEVELOPER.md">DEVELOPER.md</a>
           <CommandLine
               title="CURL (Create API)"
-              command="curl -d '{&#34;data&#34;:{&#34;type&#34;:&#34;api:element&#34;,&#34;attributes&#34;:{&#34;name&#34;:&#34;Apimap Example API&#34;,&#34;codeRepository&#34;:&#34;https://github.com/apimap/java-api&#34;}}}' -H &#34;Content-Type: application/json&#34; -X POST http://localhost:8080/api" />
+              :command="createApi()" />
           <GuideRecommandation recommendation="The JSON returned contains a API_TOKEN that must be used in every request." />
           <CommandLine
             title="CURL (Create API Version)"
-            command="curl -d '{&#34;data&#34;:{&#34;type&#34;:&#34;version:element&#34;,&#34;attributes&#34;:{&#34;version&#34;:&#34;1.0.0&#34;,&#34;created&#34;:null}}}' -H &#34;Content-Type: application/json&#34; -H &#34;Authorization: Bearer <API_TOKEN>&#34; -X POST http://localhost:8080/api/Apimap+Example+API/version" />
+            :command="createVersion()" />
           <CommandLine
             title="CURL (Upload Metadata)"
-            command="curl -d '{&#34;data&#34;:{&#34;type&#34;:&#34;metadata:element&#34;,&#34;attributes&#34;:{&#34;name&#34;:&#34;Apimap Example API&#34;,&#34;visibility&#34;:&#34;Public&#34;,&#34;description&#34;:&#34;Apimap Example API&#34;,&#34;api version&#34;:&#34;1.0.0&#34;,&#34;release status&#34;:&#34;Design&#34;,&#34;system identifier&#34;:&#34;Apimap.io&#34;,&#34;documentation&#34;:[&#34;https://github.com/apimap/java-api&#34;],&#34;interface specification&#34;:&#34;JSON:API v1.1&#34;,&#34;interface description language&#34;:&#34;OpenAPI Specification&#34;,&#34;architecture layer&#34;:&#34;Backend&#34;,&#34;business unit&#34;:&#34;Apimap.io&#34;},&#34;id&#34;:&#34;Apimap Example API#1.0.0&#34;}}' -H &#34;Content-Type: application/json&#34; -H &#34;Authorization: Bearer <API_TOKEN>&#34; -X POST http://localhost:8080/api/Apimap+Example+API/version/1.0.0/metadata" />
+            :command="createMetadata()" />
           <CommandLine
             title="CURL (Upload Taxonomy)"
-            command="curl -d '{&#34;data&#34;:[{&#34;type&#34;:&#34;classification:element&#34;,&#34;attributes&#34;:{&#34;urn&#34;:&#34;urn:apimap:1&#34;,&#34;taxonomyVersion&#34;:&#34;1&#34;},&#34;id&#34;:&#34;urn:apimap:1#1&#34;}]}' -H &#34;Content-Type: application/json&#34; -H &#34;Authorization: Bearer <API_TOKEN>&#34; -X POST http://localhost:8080/api/Apimap+Example+API/version/1.0.0/classification" />
+            :command="createTaxonomy()" />
           <GuideRecommandation recommendation="The URLs to be used must be fetched from the server and not written in the code." />
         </GuideStep>
         <GuideStep number="3" title="Backup Your Files"  ref="step3">
           Keep your metadata and taxonomy files somewhere safe and secure. Future updates may require them in the same location.
         </GuideStep>
         <GuideStep number="4" title="Catalog" ref="step4">
-          Your information is now available in the catalog. To update the information create a PUT to the desired collection / resource and include the token returned from the initial API POST request.
+          Your information is now available in the catalog. To update the information use a API PUT request to the desired collection / resource and include the token returned from the initial API POST request.
         </GuideStep>
         <GuideStep number="5" title="Backup Your Token" ref="step5">
           Upon creating a new API a unique token is assigned and returned. It is not possible to recreate this token and it is required in all future updates of your API.
-          <GuideRecommandation recommendation="Keep the token safe and secure." />
+          <GuideRecommandation recommendation="Keep the token safe and secure. It is used to deny accidental destruction of data." />
         </GuideStep>
       </Guide>
     </Content>
@@ -106,6 +106,79 @@ export default {
   methods: {
     scrollToComponent: function(refName) {
       scrollToComponentWithoutHistory(this, refName);
+    },
+    createApi: function() {
+      return 'curl -d \n' +
+          '\'{ \n' +
+          '  "data": { \n' +
+          '    "type": "api:element",\n' +
+          '    "attributes": { \n' +
+          '      "name":"Apimap Example API",\n' +
+          '      "codeRepository":"https://github.com/apimap/java-api"\n' +
+          '    }\n' +
+          '  }\n' +
+          '}\'\n' +
+          '-H "Content-Type: application/json" \n' +
+          '-X POST\n' +
+          'http://localhost:8080/api';
+    },
+    createVersion: function() {
+      return 'curl -d \n' +
+          '\'{ \n' +
+          '  "data":{\n' +
+          '    "type":"version:element",\n' +
+          '    "attributes": {\n' +
+          '      "version":"1.0.0"\n' +
+          '    }\n' +
+          '  }\n' +
+          '}\'\n' +
+          '-H "Content-Type: application/json" \n' +
+          '-H "Authorization: Bearer <API_TOKEN>" \n' +
+          '-X POST \n' +
+          'http://localhost:8080/api/Apimap+Example+API/version';
+    },
+    createMetadata: function() {
+      return 'curl -d \n' +
+          '\'{\n' +
+          '  "data":{\n' +
+          '    "type":"metadata:element",\n' +
+          '    "attributes": {\n' +
+          '      "name":"Apimap Example API",\n' +
+          '      "visibility":"Public",\n' +
+          '      "description":"Apimap Example API",\n' +
+          '      "api version":"1.0.0",\n' +
+          '      "release status":"Design",\n' +
+          '      "system identifier":"Apimap.io",\n' +
+          '      "documentation":["https://github.com/apimap/java-api"],\n' +
+          '      "interface specification":"JSON:API v1.1",\n' +
+          '      "interface description language":"OpenAPI Specification",\n' +
+          '      "architecture layer":"Backend",\n' +
+          '      "business unit":"Apimap.io"\n' +
+          '    }\n' +
+          '  }\n' +
+          '}\' \n' +
+          '-H "Content-Type: application/json" \n' +
+          '-H "Authorization: Bearer <API_TOKEN>" \n' +
+          '-X POST \n' +
+          'http://localhost:8080/api/Apimap+Example+API/version/1.0.0/metadata';
+    },
+    createTaxonomy: function() {
+      return 'curl -d \n' +
+          '\'{\n' +
+          '  "data":[\n' +
+          '    {\n' +
+          '      "type":"classification:element",\n' +
+          '      "attributes":{\n' +
+          '        "urn":"urn:apimap:1",\n' +
+          '        "taxonomyVersion":"1"\n' +
+          '      }\n' +
+          '    }\n' +
+          '  ]\n' +
+          '}\' \n' +
+          '-H "Content-Type: application/json" \n' +
+          '-H "Authorization: Bearer <API_TOKEN>" \n' +
+          '-X POST \n' +
+          'http://localhost:8080/api/Apimap+Example+API/version/1.0.0/classification';
     },
   },
   computed: {},

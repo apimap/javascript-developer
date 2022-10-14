@@ -8,31 +8,26 @@
         <template v-slot:Windows>
           <Tab>
             <ul>
-              <li><a v-bind:href="paths.windows['1.1.0']" class="latest">Download version 1.1.0</a></li>
-              <li><a v-bind:href="paths.windows['1.0.0']" class="deprecated">Download version 1.0.0</a></li>
+              <li><a v-bind:href="paths.windows['1.2.0']">Download Version 1.2.0 (Windows amd64)</a></li>
             </ul>
           </Tab>
           </template>
         <template v-slot:Mac>
           <Tab>
             <ul>
-              <li><a v-bind:href="paths.macos['1.1.0']" class="latest">Download version 1.1.0</a></li>
-              <li><a v-bind:href="paths.macos['1.0.0']" class="deprecated">Download version 1.0.0</a></li>
+              <li><a v-bind:href="paths.macos['1.2.0']">Download Version 1.2.0 (MacOS amd64)</a></li>
             </ul>
           </Tab>
         </template>
         <template v-slot:Linux>
           <Tab>
             <ul>
-              <li><a v-bind:href="paths.linux['1.1.0']" class="latest">Download version 1.1.0</a></li>
-              <li><a v-bind:href="paths.linux['1.0.0']" class="deprecated">Download version 1.0.0</a></li>
+              <li><a v-bind:href="paths.linux['1.2.0']">Download Version 1.2.0 (Linux amd64)</a></li>
             </ul>
           </Tab>
          </template>
        </TabContainer>
     </Content>
-    <ContentHeader
-        title="Quickstart Guide" />
     <Content>
       <h2>Configuration</h2>
       <CommandLine
@@ -42,14 +37,23 @@
         <p>The API is open for all to use, although only the one creating an API gets the token to update or delete it afterwards. This token is automatically returned from the API upon creation and <strong>must be retained (Take backup)</strong>. Without this token you will never be able to update or delete any related information.</p>
       </CommandLine>
       <CommandLine
+          title="Configuration Management"
+          :available="['1.2.*']"
+          command='apimap config'>
+        <p>View CLI configuration</p>
+      </CommandLine>
+      <CommandLine
           title="Endpoint Management"
-          :available="['1.1.*']"
+          :available="['1.2.*']"
           command='apimap config endpoint --url=<>'>
         <p>While working towards a single Apimap instance the endpoint URL specified here is used across all commands.</p>
-        <h3>Required parameters</h3>
-        <ul class="parameters">
-          <li class="parameter">--url: Define the Apimap instance url. E.g. http://localhost:8080</li>
-        </ul>
+        <ParameterGroup
+            heading="Required parameters">
+          <Parameter
+              name="--url"
+              description="Define the Apimap instance url. E.g. http://localhost:8080."
+              default-value=""/>
+        </ParameterGroup>
       </CommandLine>
     </Content>
     <Content>
@@ -57,62 +61,151 @@
       <CommandLine
         title="Publish Your API"
         :available="['1.*.*']"
-        command='apimap publish --metadata=<> --taxonomy=<> --endpoint-url=<> --token=<> --code-repository-url=<>'>
+        command='apimap publish --metadata=<> --taxonomy=<> --endpoint=<> --token=<> --code-repository-url=<>'>
         <p>Publish your metadata and taxonomy to the designated Apimap instance. This command creates your API if it is missing and manages your access tokens automatically. </p>
-        <h3>Required parameters</h3>
-        <ul class="parameters">
-          <li class="parameter">--metadata: File path to the metadata file to be published. E.g my-api/metadata.apimap</li>
-          <li class="parameter">--taxonomy: File path to the taxonomy file to be published. E.g my-api/taxonomy.apimap</li>
-          <li class="parameter">--code-repository-url: URL to the source code repository of this API. If the source code is not available this argument should be skipped</li>
-        </ul>
-        <h3>Optional parameters</h3>
-        <ul class="parameters">
-          <li class="parameter">--endpoint-url: If a endpoint is pre-configured this is optional.</li>
-          <li class="parameter">--token:  If a token is pre-configured this is optional.</li>
-        </ul>
+        <ParameterGroup
+            heading="Required parameters">
+          <Parameter
+              name="--metadata"
+              description="File path to the metadata file to be published. E.g my-api/metadata.apimap."
+              default-value=""/>
+          <Parameter
+              name="--taxonomy"
+              description="File path to the taxonomy file to be published. E.g my-api/taxonomy.apimap."
+              default-value=""/>
+          <Parameter
+              name="--code-repository-url"
+              description="URL to the source code repository of this API. If the source code is not available this argument should be skipped."
+              default-value=""/>
+        </ParameterGroup>
+        <ParameterGroup
+            heading="Optional parameters">
+          <Parameter
+              name="--endpoint"
+              description="If a endpoint is pre-configured this is optional."
+              default-value=""/>
+          <Parameter
+              name="--token"
+              description="If a token is pre-configured this is optional."
+              default-value=""/>
+        </ParameterGroup>
       </CommandLine>
       <CommandLine
         title="Validate Your Content"
         :available="['1.*.*']"
         command='apimap validate --metadata=<> --taxonomy=<>'>
         <p>Validate the file format and content requirements in your files locally.</p>
-        <h3>Required parameters</h3>
-        <ul class="parameters">
-          <li class="parameter">--metadata: File path to the metadata file to be published. E.g my-api/metadata.apimap</li>
-          <li class="parameter">--taxonomy: File path to the taxonomy file to be published. E.g my-api/taxonomy.apimap</li>
-        </ul>
+        <ParameterGroup
+            heading="Required parameters">
+          <Parameter
+              name="--metadata"
+              description="File path to the metadata file to be published. E.g my-api/metadata.apimap."
+              default-value=""/>
+          <Parameter
+              name="--taxonomy"
+              description="File path to the taxonomy file to be published. E.g my-api/taxonomy.apimap."
+              default-value=""/>
+        </ParameterGroup>
       </CommandLine>
       <CommandLine
         title="Rename API"
-        :available="['1.*.*']"
-        command='apimap rename --from=<> --to=<> --endpoint-url=<>'>
-        <p>If your API changes name the change itself is not part of the automatic metadata upload since the change could have changes outside of the catalog</p>
-        <h3>Required parameters</h3>
-        <ul class="parameters">
-          <li class="parameter">--from: The current API name</li>
-          <li class="parameter">--to: The new API name</li>
-        </ul>
-        <h3>Optional parameters</h3>
-        <ul class="parameters">
-          <li class="parameter">--endpoint-url: If a endpoint is pre-configured this is optional.</li>
-          <li class="parameter">--token:  If a token is pre-configured this is optional.</li>
-        </ul>
+        :available="['1.2.*']"
+        command='apimap rename --from=<> --to=<> --endpoint=<>'>
+        <p>Please note that this changes the name in associated with the API and not the name specified in the metadata file. It is important to also update and upload a new metadata file.</p>
+        <ParameterGroup
+            heading="Required parameters">
+          <Parameter
+              name="--from"
+              description="The current API name."
+              default-value=""/>
+          <Parameter
+              name="--to"
+              description="The new API name."
+              default-value=""/>
+        </ParameterGroup>
+        <ParameterGroup
+            heading="Optional parameters">
+          <Parameter
+              name="--endpoint"
+              description="If a endpoint is pre-configured this is optional."
+              default-value=""/>
+          <Parameter
+              name="--token"
+              description="If a token is pre-configured this is optional."
+              default-value=""/>
+        </ParameterGroup>
       </CommandLine>
       <CommandLine
           title="Delete API"
-          :available="['1.*.*']"
-          command='apimap delete --metadata=<> --recursive=<> --endpoint-url=<> --token=<>'>
-        <p>If your API changes name the change itself is not part of the automatic metadata upload since the change could have changes outside of the catalog</p>
-        <h3>Required parameters</h3>
-        <ul class="parameters">
-          <li class="parameter">--metadata: File path to the metadata file to be published. E.g my-api/metadata.apimap</li>
-          <li class="parameter">--recursive: Delete single version or all versions</li>
-        </ul>
-        <h3>Optional parameters</h3>
-        <ul class="parameters">
-          <li class="parameter">--endpoint-url: If a endpoint is pre-configured this is optional.</li>
-          <li class="parameter">--token:  If a token is pre-configured this is optional.</li>
-        </ul>
+          :available="['1.2.*']"
+          command='apimap delete --api=<> --version=<> --recursive=<> --endpoint=<> --token=<> --confirmation=<>'>
+        <p>Delete a API version or complete API from the catalog.</p>
+        <ParameterGroup
+            heading="Required parameters">
+          <Parameter
+              name="--api"
+              description="Name of the API to be deleted."
+              default-value=""/>
+          <Parameter
+              name="--version"
+              description="Name of the API version to be deleted."
+              default-value=""/>
+          <Parameter
+              name="--recursive"
+              description="Delete single version or all versions."
+              default-value=""/>
+          <Parameter
+              name="--confirmation"
+              description="Yes/No to confirm that the command is intentionally."
+              default-value=""/>
+        </ParameterGroup>
+        <ParameterGroup
+            heading="Optional parameters">
+          <Parameter
+              name="--endpoint"
+              description="If a endpoint is pre-configured this is optional."
+              default-value=""/>
+          <Parameter
+              name="--token"
+              description="If a token is pre-configured this is optional."
+              default-value=""/>
+        </ParameterGroup>
+      </CommandLine>
+      <CommandLine
+          title="API Documentation Management"
+          :available="['1.2.*']"
+          command='apimap document --api=<> --changelog=<> --readme=<> --token=<> --version=<> --endpoint=<>'>
+        <p>Manage the README.md and CHANGELOG.md files associated with the API.</p>
+        <ParameterGroup
+            heading="Required parameters">
+          <Parameter
+              name="--api"
+              description="Name of the API to be updated"
+              default-value=""/>
+          <Parameter
+              name="--version"
+              description="Name of the API version to be updated"
+              default-value=""/>
+          <Parameter
+              name="--changelog"
+              description="File path to the CHANGELOG.md file to be published. E.g my-api/CHANGELOG.md"
+              default-value=""/>
+          <Parameter
+              name="--readme"
+              description="File path to the README.md file to be published. E.g my-api/README.md"
+              default-value=""/>
+        </ParameterGroup>
+        <ParameterGroup
+            heading="Optional parameters">
+          <Parameter
+              name="--endpoint"
+              description="If a endpoint is pre-configured this is optional."
+              default-value=""/>
+          <Parameter
+              name="--token"
+              description="If a token is pre-configured this is optional."
+              default-value=""/>
+        </ParameterGroup>
       </CommandLine>
       <CommandLine
         title="More Commands"
@@ -132,10 +225,16 @@ import Tab from "@/components/Elements/Tab";
 import CommandLine from "@apimap/command-line";
 import { Content, ContentHeader, CenterLayout } from "@apimap/layout-core";
 import { Downloads } from "@/router/paths";
+import Parameter from "@/components/Elements/Parameter";
+import ParameterGroup from "@/components/Elements/ParameterGroup";
+import MediumButton from "@/components/Navigation/MediumButton";
 
 export default {
   name: "CliTool",
   components: {
+    ParameterGroup,
+    MediumButton,
+    Parameter,
     CenterLayout,
     Content,
     ContentHeader,
@@ -154,17 +253,6 @@ export default {
 
 <style scoped>
 
-.parameter {
-  display: inherit;
-  width: auto;
-}
-
-.parameters {
-  list-style-type: circle;
-  padding: 0;
-  margin: 0;
-}
-
 ul {
   list-style-type: none;
   padding: 0;
@@ -174,16 +262,6 @@ ul {
 li {
   padding-top: 1em;
   padding-bottom: 1em;
-}
-
-.latest{
-  font-size: 1.2em;
-}
-
-.deprecated{
-  font-size: 1em;
-  background-color: white;
-  color: #5c5470;
 }
 
 a {

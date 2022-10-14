@@ -2,7 +2,7 @@
   <div class="api-producer-metadata-wizard">
     <ContentHeader
         title="Metadata Wizard"
-        introduction="Your API has some technical preferences and architectural decisions that needs to be convaied in order to enable other developer to reuse the functionality." />
+        introduction="Your API has some technical preferences and architectural decisions that needs to be communicated in order to enable other developer to reuse the functionality." />
     <Content>
       <VerticalStackLayout class="content">
         <StepNavigationContainer isSticky>
@@ -152,6 +152,7 @@ export default {
 
 .content > div:first-child{
   margin-right: 4em;
+  position: relative;
 }
 
 .all-done-container {

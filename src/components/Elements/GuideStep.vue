@@ -33,7 +33,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  align-items: center;
+  align-items: start;
   margin-bottom: 1em;
 }
 

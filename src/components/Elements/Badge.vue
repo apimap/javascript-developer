@@ -23,6 +23,7 @@ export default {
   line-height: 2em;
   border-radius: 1em;
   font-weight: bold;
+  margin-top: 0.2em;
 }
 
 </style>

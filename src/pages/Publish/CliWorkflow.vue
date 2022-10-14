@@ -8,7 +8,7 @@
         <StepNavigationContainer>
           <StepNavigationElement
               title="Metadata and Taxonomy"
-              description="Your .apimap files created using our wizards"
+              description="Create metadata and taxonomy files using the wizards"
               :target="scrollToComponent"
               reference="step1" />
           <StepNavigationElement
@@ -36,21 +36,14 @@
       </VerticalStackLayout>
     </Content>
     <Content>
-      <Guide title="Step by Step">
+      <Guide>
         <GuideStep number="1" title="Metadata And Taxonomy"  ref="step1">
-          Create your metadata and taxonomy files using our,
+          Create your metadata and taxonomy files using the
           <router-link to="/metadata/wizard">Metadata Wizard</router-link>
           and <router-link to="/taxonomy/wizard">Taxonomy Wizard</router-link>.
         </GuideStep>
         <GuideStep number="2" title="CLI"  ref="step2">
-          <router-link to="/tools/cli">Download our CLI</router-link>
-          and run the publish command to create or update your API information.
-          <CommandLine
-              title="Publish Your API"
-              :available="['1.*.*']"
-              command='apimap publish --metadata="metadata filename" --taxonomy="taxonomy filename" --endpoint-url=https://api.apimap.io --code-repository-url=&lt;git repo url&gt;"'>
-            <p>Publish your metadata and taxonomy to the designated Apimap instance. This command creates your API if it is missing and manages your access tokens automatically.</p>
-          </CommandLine>
+          <router-link to="/tools/cli">Download the CLI</router-link> and run the publish command to create or update your API information.
         </GuideStep>
         <GuideStep number="3" title="Backup Your Files"  ref="step3">
           Keep your metadata and taxonomy files somewhere safe and secure. Future updates may require them in the same location.
@@ -60,11 +53,11 @@
         </GuideStep>
         <GuideStep number="5" title="Backup Your Token" ref="step5">
           Upon creating a new API a unique token is assigned and returned. It is not possible to recreate this token and it is required in all future updates of your API.
-          <GuideRecommandation recommendation="Keep the token safe and secure." />
+          <GuideRecommandation recommendation="Keep the token safe and secure. It is used to deny accidental destruction of data." />
         </GuideStep>
       </Guide>
     </Content>
-    <Footer />
+    <Footer/>
   </div>
 </template>
 
@@ -79,13 +72,11 @@ import cliWorkflow from "@/assets/illustrations/cli-workflow-illustration.svg";
 import { scrollToComponentWithoutHistory } from "@/utils/window-management.js";
 import StepNavigationContainer from "@/components/Navigation/StepNavigationContainer";
 import StepNavigationElement from "@/components/Navigation/StepNavigationElement";
-import CommandLine from "@apimap/command-line";
 
 export default {
   name: "WorkflowCli",
   components: {
     WorkflowStep,
-    CommandLine,
     StepNavigationContainer,
     StepNavigationElement,
     Footer,
