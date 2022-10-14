@@ -3,7 +3,7 @@
     <ContentHeader
         title="Frequently asked questions (FAQ)"
         introduction="More questions?
-Please contact us on https://github.com/apimap"/>
+Please contact us @ https://github.com/apimap"/>
     <Content>
       <Question
         question="What if my application provides multiple services/APIs?"
@@ -17,8 +17,12 @@ Please contact us on https://github.com/apimap"/>
           question="We already have the information in our source code, do we have to create the metadata and taxonomy files?"
           answer="No. The files are just a part of transforming and keeping a backup of the content. It is recommended to use the Apimap API directly if your workflow uses custom script and/or requires customization."
       />
+      <Question
+          question="I can't find the correct options when using the metadata wizard"
+          answer="Please use the 'none of the above' option and specify your new option"
+      />
     </Content>
-    <Footer />
+    <Footer/>
   </div>
 </template>
 

@@ -29,7 +29,11 @@ export const Paths = {
 	},
 	'cli-tool': {
 		url:  "/tools/cli",
-		name: "Command-line interface (CLI) Tool"
+		name: "CLI"
+	},
+	'jenkins-tool': {
+		url:  "/tools/jenkins",
+		name: "Jenkins Plugin"
 	},
 	'metadata': {
 		url:  "/metadata",
@@ -77,26 +81,20 @@ export const Paths = {
 	},
 	'workflow-api': {
 		url:  "/workflow/api",
-		name: "API"
+		name: "API (REST)"
 	}
 }
 
 export const Downloads = {
-	jenkinsPlugin: {
-		v1: "/downloads/plugin/jenkins/v1/apimap.hpi"
-	},
 	cli: {
 		linux: {
-            "1.1.0": "/downloads/cli/1.1.0/apimap.zip",
-            "1.0.0": "/downloads/cli/1.0.0/apimap.zip"
+			"1.2.0": "/downloads/cli/1.2.0/apimap-linux-amd64.zip"
 		},
 		windows: {
-            "1.1.0": "/downloads/cli/1.1.0/apimap.exe.zip",
-            "1.0.0": "/downloads/cli/1.0.0/apimap.exe.zip"
+			"1.2.0": "/downloads/cli/1.2.0/apimap-windows-amd64.zip"
 		},
         macos: {
-            "1.1.0": "/downloads/cli/1.1.0/apimap.app.zip",
-            "1.0.0": "/downloads/cli/1.0.0/apimap.app.zip"
+			"1.2.0": "/downloads/cli/1.2.0/apimap-macos-amd64.zip"
         }
 	}
 }

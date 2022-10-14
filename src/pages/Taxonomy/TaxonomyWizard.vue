@@ -34,7 +34,7 @@
               description="Download a new taxonomy.apimap with your current selections"
               :target="scrollToComponent"
               reference="completed"
-              :disabled="!this.selectedLevels.taxonomy"/>
+              :disabled="!shouldDisplayDownloadButton"/>
         </StepNavigationContainer>
         <div>
           <div class="forms-container">
@@ -43,24 +43,18 @@
               <Separator size="normal" />
               <MediumButton title="Continue to Level 1" :target="setTaxonomy" v-if="shouldDisplayLevel1" />
             </div>
-            <div ref="level1">
-              <div v-if="selectedLevels.taxonomy">
-                <Level1 :items="level1" :form="form" />
-                <Separator size="normal" />
-                <MediumButton title="Continue to Level 2" :target="setLevel1" v-if="shouldDisplayLevel2" />
-              </div>
+            <div ref="level1" v-if="selectedLevels.taxonomy">
+              <Level1 :items="level1" :form="form" />
+              <Separator size="normal" />
+              <MediumButton title="Continue to Level 2" :target="setLevel1" v-if="shouldDisplayLevel2" />
             </div>
-            <div ref="level2">
-              <div v-if="selectedLevels.level1">
-                <Level2 :items="level2" :form="form" />
-                <Separator size="normal" />
-                <MediumButton title="Continue to Level 3" :target="setLevel2" v-if="shouldDisplayLevel3" />
-              </div>
+            <div ref="level2" v-if="selectedLevels.level1">
+              <Level2 :items="level2" :form="form" />
+              <Separator size="normal" />
+              <MediumButton title="Continue to Level 3" :target="setLevel2" v-if="shouldDisplayLevel3" />
             </div>
-            <div ref="level3">
-              <div v-if="selectedLevels.level2">
-                <Level3 :items="level3" :form="form" />
-              </div>
+            <div ref="level3" v-if="selectedLevels.level2">
+              <Level3 :items="level3" :form="form" />
             </div>
           </div>
           <Separator size="large" />

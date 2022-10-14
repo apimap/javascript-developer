@@ -32,12 +32,11 @@
             v-model="form['system identifier']"
             description="Many APIs are developed in context of a system. This identifier is used to define this affiliation."
         />
-        <Input
-            label="Documentation"
-            size="large"
-            element="documentation"
+        <InputGroup
+            label="Documentation Locations"
+            description="Add URLs to the API documentation. This might be OpenAPI Specifications, wiki, confluence pages etc."
+            action-label="Add Additional URL"
             v-model="form['documentation']"
-            description="URL to the primary API documentation location. E.g swagger doc if used or README.md."
         />
       </div>
     </div>
@@ -47,10 +46,12 @@
 <script>
 
 import { RadioGroup, Input, MultiLineInput } from "@apimap/input-core";
+import InputGroup from "@/components/Elements/InputGroup";
 
 export default {
   name: "ApiName",
   components: {
+    InputGroup,
     Input,
     RadioGroup,
     MultiLineInput

@@ -11,6 +11,7 @@ const CreateFolder = () => import("@/pages/Folder/Folder");
 
 // Tools
 const CliTool = () => import("@/pages/Tools/CliTool");
+const JenkinsPlugin = () => import("@/pages/Tools/JenkinsPlugin");
 
 // Help
 const Faq = () => import("@/pages/Help/Faq");
@@ -89,6 +90,18 @@ export default new Router({
           { name: Paths.root.name, link: Paths.root.url },
           { name: Paths.tools.name },
           { name: Paths["cli-tool"].name },
+        ],
+      },
+    },
+    {
+      path: Paths["jenkins-tool"].url,
+      name: Paths["jenkins-tool"].name,
+      component: JenkinsPlugin,
+      meta: {
+        breadcrumb: [
+          { name: Paths.root.name, link: Paths.root.url },
+          { name: Paths.tools.name },
+          { name: Paths["jenkins-tool"].name },
         ],
       },
     },

@@ -7,6 +7,7 @@ export const NavigationBar = {
             sidebar: true,
             options: [
                 { url: Paths["cli-tool"].url, title: Paths["cli-tool"].name , sidebar: true},
+                { url: Paths["jenkins-tool"].url, title: Paths["jenkins-tool"].name , sidebar: true}
             ]
         },
         {

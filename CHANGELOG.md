@@ -1,6 +1,14 @@
 Changelog
 ===
 
+### 14.10.2022
+- Added new Metadata options selections
+- Updated howto and text
+- Added jenkins description
+- Removed old cli versions
+- Simplified descriptions
+- Fixed minor bugs
+
 ### 25.04.2022
 - New CLI version, new CLI description
 - Optimized SVG files
@@ -15,4 +23,3 @@ Changelog
 
 ### 19.01.2022
 - First public release
-                                                                                       |

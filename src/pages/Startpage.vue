@@ -1,7 +1,7 @@
 <template>
   <div class="startpage">
     <ContentHeader
-        title="Share functionality to enable better and more innovative products."
+        title="Discovery functionallity"
         introduction="APIs are much more than just code, they deliver reusable functionality to the organization." />
     <Content>
       <router-link to="steps"><div class="center"><img :src="workflowOverview" class="workflowOverview"/></div></router-link>
@@ -10,13 +10,13 @@
       <CallForActionButton target="steps" title="Click here to get started!" />
     </Content>
     <ContentHeader
-        title="Main Goal"
+        title="Share and Discover"
         introduction="Share and Discover APIs across the organisation.
 
 Application programming interface (API): Point of functional integration between two or more systems connected through commonly known standards. APIs are everything connecting functionality across computers, not just REST." />
     <Content/>
     <ContentHeader
-        title="Getting started with publishing your API to the catalog?"
+        title="Publishing your API"
         introduction="Share and make functionality available to the organization with the following 4 steps." />
     <Content>
       <Steps>

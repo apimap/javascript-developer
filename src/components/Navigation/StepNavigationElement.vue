@@ -1,5 +1,5 @@
 <template>
-  <div class="step-navigation-element button" @click="target(reference)" v-bind:class="{ disabled: disabled }">
+  <div class="step-navigation-element button" @click="triggerCallback(reference)" v-bind:class="{ disabled: disabled }">
     <h3>{{ title }}</h3>
     <p>{{ description }}</p>
   </div>
@@ -16,6 +16,11 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    }
+  },
+  methods: {
+    triggerCallback: function (reference) {
+      if(!this.disabled) this.target(reference)
     }
   }
 };
@@ -34,3 +39,5 @@ export default {
 }
 
 </style>
+
+

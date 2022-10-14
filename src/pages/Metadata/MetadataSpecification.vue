@@ -2,7 +2,7 @@
   <div class="api-producer-metadata-specification">
     <ContentHeader
         title="Metadata Specification"
-        introduction="This specification contains all options and values available to describe the technical preferences and architectural decisions that needs to be convaied in order to enable other developer to reuse the functionality." />
+        introduction="This specification contains all options and values available to describe the technical preferences and architectural decisions that needs to be communicated in order to enable other developer to reuse the functionality." />
     <Content>
       <HorizontalLargeSmallStackLayout>
         <HorizontalStackLayout>
@@ -61,13 +61,13 @@
           <ContentSection ref="apimap" title="II. Apimap">
             <h5>Focus on API and not API Instances</h5>
             <p>
-              The Apimap files is a part of the source code and not the instances of the API becoming a integrated part of any git-ops workflow.
+              Apimap is a part of the source code and not the instances of the API thereby becoming a integrated part of any git workflow and not operations.
             </p>
             <p>
               Please note the important difference between an API and the
               instances of that API. Regarding metadata, this implies that all
               attributes included in the definition must be equal across all
-              possible instances.
+              possible instances where the code is running.
             </p>
             <p>
               It is thereby not possible to add attributes that describes i.e.
@@ -94,23 +94,20 @@
               your repository.
             </p>
             <p>
-              Keeping your metadata and taxonomy files in the same folder will enable the build system to automatically detect and
-              upload the information. If the location is not appropriate you must specify
-              the custom location in the Jenkins "publish build step".
+              Keeping your metadata and taxonomy files in the same folder will enable easy usage of the tools provided by
+              Apimap. If the location is not appropriate you must specify
+              the custom location when using the provided tools and implementation.
             </p>
             <h5>Mono-repo</h5>
             <p>
-              Keeping multiple APIs in the same repository is a more complex but
-              frequently adopted approach. This approach requires a custom jenkins
-              pipeline and triggering the publish and validate plugins from code
-              yourself. Calling the steps individually enables the use inside
-              already existing pipelines and there is no predefined
-              file paths to the metadata file.
+              Keeping multiple APIs in the same repository is a more complex but a
+              frequently adopted approach. This approach requires the use of input arguments and configuration
+              when using the tools provided by Apimap and is not supported by default.
             </p>
             <Recommendation recommendation="Although not a requirement it is recommended to create individual folders for each API and use the default metadata and taxonomy filenames."/>
           </ContentSection>
           <ContentSection ref="structure" title="IV. Metadata Document Structure">
-            <Recommendation recommendation="A key concept of the metadata.apimap file is that there will never be a requirement to updated the content unless your API changes." />
+            <Recommendation recommendation="A key concept of the metadata.apimap file is that there will never be a requirement to updated the content unless your API features changes." />
             <h3 ref="rootsection">Root Section</h3>
             <SpecificationDefinition
               v-for="option in rootObject"
@@ -137,7 +134,7 @@
           <ContentSection ref="changemanagement" title="V. Change Management">
             <p>
               The Apimap.io project governs the content of this document and the Metadata Specification herein. Any organization that
-              needs other attributes and changes is encouraged to fork the project and/or contant us to get the official specification
+              needs other attributes and changes is encouraged to fork the project and/or contact us to get the official specification
               updated.
             </p>
             <Recommendation recommendation="All future updates will be backwards compatible, if not possible the version identifier will be changes to ensure no breaking changes." />

@@ -8,12 +8,14 @@
           <li><a href="https://github.com/apimap" target="_blank">Report a bug</a></li>
         </ul>
         <p class="small"><a href="http://www.apache.org/licenses/" target="_blank">Apache License, Version 2.0</a></p>
+        <p class="version">Version {{ version }} created {{ created }}</p>
       </div>
       <div class="right">
         <h3>HELP AND SUPPORT</h3>
         <p>{{ support }}</p>
+        <h3>API CONSUMER</h3>
+        <p>Find APIs using the portal <a :href="portalUrl">{{ portalUrl }}</a> </p>
         <MediumButton :target="toTop" title="Scroll Back To Top" />
-        <p class="version">Version {{ version }} created {{ created }}</p>
       </div>
     </VerticalStackLayout>
   </div>
@@ -39,6 +41,9 @@ export default {
     },
     support() {
       return APIMAP_SUPPORT;
+    },
+    portalUrl() {
+      return APIMAP_PORTAL_URL;
     }
   },
   methods: {
@@ -60,7 +65,8 @@ ul {
 }
 
 .version{
-  padding-top: 3em;
+  padding-top: 1em;
+  font-size: 0.7em;
 }
 
 .small{
@@ -69,9 +75,7 @@ ul {
 
 .left {
   width: 10em;
-  font-size: 1.4em;
   text-align: left;
-  color: #5c5470;
   padding-right: 1em;
 }
 
@@ -79,11 +83,9 @@ ul {
   text-align: left;
   padding-left: 1em;
   width: 50em;
-  color: #5c5470;
 }
 
 .footer{
-  font-size: 1em;
   margin-bottom: 4em;
   margin-top: 4em;
 }

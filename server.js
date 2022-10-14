@@ -49,7 +49,11 @@ app.get('/*', function(req, res) {
     }
 )
 
+
 const server = http.createServer(app)
 
-server.listen(8080, "0.0.0.0");
-console.log(`Running on http://0.0.0.0:8080`)
+const hostname = "0.0.0.0"
+const port = 8080
+
+server.listen(port, hostname);
+console.log('Running on ' + hostname + ":" + port)

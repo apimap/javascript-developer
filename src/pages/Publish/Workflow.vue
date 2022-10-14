@@ -2,29 +2,25 @@
   <div class="workflow">
     <ContentHeader
         title="Publish Changes"
-        introduction="After creating the metadat"/>
-    <Content>
-      <p>Apimap consists of different components (API, Portal, Developer Portal, SDKs, Plugins) and any of these components can be customized and changes with other components that better fits your organizations needs.</p>
-      <p>We currently offer 3 different types of workflows to publish information.</p>
-    </Content>
+        introduction="Upload your changes using a supported CI/CD pipeline, our CLI tool or directly using the Apimap API."/>
     <ContentHeader
         title="Continuous Build System (CI/CD) Workflow"
         introduction="The build system workflow targets users that uses a CI/CD pipeline alongside a code repository. It becomes a integrated
-part of any git-ops environment since it automatically uploads and manages the API information." />
+part of any git-ops environment and automatically manages the API information." />
     <Content>
-      <MediumButton title="Go to workflow" route="/workflow/build-system"/>
+      <MediumButton title="Read more about the CI/CD Workflow" route="/workflow/build-system"/>
     </Content>
     <ContentHeader
         title="Command-line interface (CLI) Workflow"
-        introduction="The CLI workflow targets users that does not usa a CI/CD pipeline, or a CI/CD pipeline that is not supported by Apimap. The CLI supports all major operating systems." />
+        introduction="The CLI workflow targets users that does not use CI/CD pipelines, or a CI/CD pipeline that is not supported by Apimap." />
     <Content>
-      <MediumButton title="Go to workflow" route="/workflow/cli"/>
+      <MediumButton title="Read more about the CLI Workflow" route="/workflow/cli"/>
     </Content>
     <ContentHeader
         title="API Workflow"
-        introduction="The API workflow targets advanced system-to-system integrations that is not already supported by a Apimap component. This is most commonly used to add support to automation tools."/>
+        introduction="The API workflow targets advanced system-to-system integrations that is not already supported by a Apimap component."/>
     <Content>
-      <MediumButton title="Go to workflow" route="/workflow/api"/>
+      <MediumButton title="Read more about the API Workflow" route="/workflow/api"/>
     </Content>
     <Footer />
   </div>

@@ -6,7 +6,7 @@ export const definition = {
                 title: "Data",
                 required: true,
                 dataType: "Metadata Data Object",
-                description: "Part of the Metadata Root Object. Contains the Data Object holds all elements used to describe how the API has been implemented and other information regarding use of the API."
+                description: "Part of the Metadata Root Object. Contains the Data Object that holds all attributes used to describe how the API has been implemented and other information regarding use."
             },
             {
                 valuesKey: "version",
@@ -14,7 +14,7 @@ export const definition = {
                 required: true,
                 example: "1",
                 dataType: "String",
-                description: "Part of the Metadata Root Object. Used to describe the file format version and thereby the parser wanted to validate the content specified in the Data Object."
+                description: "Part of the Metadata Root Object. Used to describe the file format version and thereby the parser used to validate the Data Object."
             }
         ]
     },
@@ -27,6 +27,13 @@ export const definition = {
                 dataType: "String",
                 required: true,
                 example: "My First API"
+            },
+            {
+                title: "Description",
+                description: "Part of the Metadata Data Object. A short and descriptive description of the functionality the API provides.",
+                dataType: "String",
+                required: true,
+                example: "This hello world API contains functionality to make the number 42"
             },
             {
                 title: "API version",
@@ -44,7 +51,7 @@ export const definition = {
             },
             {
                 title: "Visibility",
-                description: "Part of the Metadata Data Object. Describes the visibility of the API, if it is designed to be publicly available or has restrictions atteched.",
+                description: "Part of the Metadata Data Object. Describes the visibility of the API, if it is designed to be publicly available or has restrictions attached.",
                 dataType: "String",
                 required: true,
                 valuesKey: "visibilityOptions"
@@ -86,9 +93,9 @@ export const definition = {
             },
             {
                 title: "Documentation",
-                description: "Part of the Metadata Data Object. Defines a array of urls or other definitions of how to find documentation. If your documentation is in the code repository please use the filename (e.g README.md)",
+                description: "Part of the Metadata Data Object. Defines a array of urls or other definitions of how to find documentation. If your documentation is in the code repository please use the filename (e.g MYFILE.md)",
                 dataType: "Array<String>",
-                example: "[\"<url>\",\"README.md\"]",
+                example: "[\"<url>\",\"<url>\"]",
                 required: false
             }
         ]
