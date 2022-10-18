@@ -18,6 +18,13 @@ body {
 .button {
     background-color: var(--button-background-color);
     color: var(--button-text-color);
+    line-height: 1em;
+    margin-bottom: 0.6em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+    border-radius: 0.2em;
 }
 
 .button.active {
@@ -57,6 +64,26 @@ body {
 }
 
 .button:hover > h5 {
+    color: var(--hover-button-text-color);
+}
+
+.button.active > h1 {
+    color: var(--hover-button-text-color);
+}
+
+.button.active > h2 {
+    color: var(--hover-button-text-color);
+}
+
+.button.active > h3 {
+    color: var(--hover-button-text-color);
+}
+
+.button.active > h4 {
+    color: var(--hover-button-text-color);
+}
+
+.button.active > h5 {
     color: var(--hover-button-text-color);
 }
 

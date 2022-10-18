@@ -23,32 +23,38 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="2.6666667"
-     inkscape:cx="59.4375"
-     inkscape:cy="60"
+     inkscape:zoom="3.7712362"
+     inkscape:cx="59.396969"
+     inkscape:cy="59.927299"
      inkscape:window-width="1312"
      inkscape:window-height="790"
-     inkscape:window-x="2194"
-     inkscape:window-y="459"
+     inkscape:window-x="1949"
+     inkscape:window-y="429"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg5004" />
   <text
-     x="68.735435"
-     y="-39.344406"
+     x="89.001427"
+     y="-55.105045"
      font-family="Helvetica-Light"
-     font-size="5.475px"
-     stroke-width=".25664"
+     font-size="7.29999px"
+     stroke-width="0.342185"
      style="line-height:1.25"
      xml:space="preserve"
      id="text4988"><tspan
-       x="68.735435"
-       y="-39.344406"
+       x="89.001427"
+       y="-55.105045"
        font-family="Helvetica"
-       font-size="5.475px"
-       stroke-width=".25664"
+       font-size="7.29999px"
+       stroke-width="0.342185"
        id="tspan4986" /></text>
   <path
      id="rect1143"
-     style="fill:none;fill-opacity:1;stroke:#5c5470;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
-     d="m 15.875418,10.993206 -2.556829,2.257457 -2.557667,2.257456 h 1.448227 v 4.853699 c 0,0.338514 0.25101,0.394972 0.589521,0.394972 h 6.11073 c 0.338512,0 0.63229,-0.05645 0.63229,-0.394972 v -4.853699 h 1.447388 l -2.556829,-2.257456 v -1.217618 h -0.819294 v 0.493923 z" />
+     style="fill:none;fill-opacity:1;stroke:#5c5470;stroke-width:0.26458333;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+     d="m 15.875395,11.259153 -2.41754,2.134478 -2.418332,2.134475 h 1.369331 v 4.589282 c 0,0.320073 0.237336,0.373455 0.557406,0.373455 h 5.777834 c 0.32007,0 0.597844,-0.05337 0.597844,-0.373455 v -4.589282 h 1.368539 l -2.41754,-2.134475 v -1.151287 h -0.774661 v 0.467016 z" />
+  <circle
+     style="fill:none;stroke:#5c5470;stroke-width:0.26458333;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+     id="path302"
+     cx="15.875"
+     cy="15.875"
+     r="10.46411" />
 </svg>

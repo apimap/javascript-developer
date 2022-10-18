@@ -4,10 +4,14 @@
         title="Discovery functionallity"
         introduction="APIs are much more than just code, they deliver reusable functionality to the organization." />
     <Content>
-      <router-link to="steps"><div class="center"><img :src="workflowOverview" class="workflowOverview"/></div></router-link>
-    </Content>
-    <Content>
-      <CallForActionButton target="steps" title="Click here to get started!" />
+      <div class="columns">
+        <div>
+          <router-link to="steps"><div class="center"><img :src="workflowOverview" class="workflowOverview"/></div></router-link>
+        </div>
+        <div>
+          <CallForActionButton target="steps" title="Click here to get started!" />
+        </div>
+      </div>
     </Content>
     <ContentHeader
         title="Share and Discover"
@@ -123,6 +127,12 @@ export default {
 .center {
   text-align: center;
   width: 100%;
+}
+
+.columns {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 </style>

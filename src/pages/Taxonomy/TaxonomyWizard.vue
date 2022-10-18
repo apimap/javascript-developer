@@ -95,7 +95,6 @@ import { Content, ContentHeader, Separator, VerticalStackLayout } from "@apimap/
 
 import { saveToFile } from "@/utils/file-management.js";
 import { scrollToComponentWithoutHistory, scrollToPageTop } from "@/utils/window-management.js";
-import { mapActions, mapGetters } from "vuex";
 import { RESET_TAXONOMY_FORM, RESET_TAXONOMY_FORM_SELECTIONS, SET_TAXONOMY_FORM_SELECTIONS } from "@/store/forms/store";
 
 export default {

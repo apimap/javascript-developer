@@ -4,26 +4,36 @@
         title="Available Taxonomies"
         introduction="The following taxonomies are available for use in this system." />
     <Content>
-      <p>Select a taxonomy to view the complete list of categorization options.</p>
-      <div v-for="taxonomy in getTaxonomies" :key="taxonomy.nid" v-on:click="selectTaxonomy(taxonomy)" v-bind:class="(taxonomy.nid === selectedTaxonomyId) ? 'taxonomySelected' : 'taxonomyNotSelected'">
-        <h5>{{taxonomy.name}}</h5>
+      <div v-for="taxonomy in getTaxonomies" :key="taxonomy.nid"  class="button" v-on:click="selectTaxonomy(taxonomy)" v-bind:class="{active: (taxonomy.nid === selectedTaxonomyId) }">
+        <h3>{{taxonomy.name}}</h3>
         <p>{{taxonomy.description}}</p>
       </div>
     </Content>
     <Content>
-      <LoadingIndicator :visible="this.loadingTaxonomy"/>
-      <div class="list" id="print-content" v-show="!this.loadingTaxonomy">
-        <h2 v-show="this.selectedTaxonomyId">{{ this.selectedTaxonomyName }}</h2>
-        <div v-for="l0 in getTaxonomy" :key="l0.id" class="tree">
-          <div class="level0-heading"><div class="level-indicator">Level 1</div>{{l0.title}}</div>
-          <pre class="description" v-show="l0.description">{{l0.description}}</pre>
-          <div v-for="l1 in l0.entities" :key="l1.id" class="level1">
-            <div class="level1-heading"><div class="level-indicator">Level 2</div>{{l1.attributes.title}}</div>
-            <pre class="description" v-show="l1.attributes.description">{{l1.attributes.description}}</pre>
-            <div v-for="l2 in l1.entities" :key="l2.id">
-              <h4>{{l2.attributes.title}}</h4>
-              <pre class="description">{{l2.attributes.description}}</pre>
+      <div class="list" id="print-content" v-if="!this.loadingTaxonomy">
+        <div class="level0">
+          <div class="table" v-if="this.selectedTaxonomyName !== ''">
+            <div class="level-indicator">Taxonomy</div>
+            <h3>{{ this.selectedTaxonomyName }}</h3>
+          </div>
+          <div v-for="l0 in getTaxonomy" :key="l0.id">
+            <div class="button" @click.stop="selectLevel0(l0)" v-bind:class="{ active: isSelected(l0) }">{{l0.title}} ({{ l0.entities.length }})</div>
+          </div>
+        </div>
+        <div v-if="this.selectedLevel0 !== undefined" class="level1">
+          <div class="toplevel">
+            <div class="table ">
+              <div class="level-indicator">Level 1</div>
+              <h3>{{ this.selectedLevel0.title }}</h3>
             </div>
+            <p class="description">{{ this.selectedLevel0.description }}</p>
+          </div>
+          <div v-for="l1 in this.selectedLevel0.entities" :key="l1.id" class="level1">
+            <div class="table">
+              <div class="level-indicator">Level 2</div>
+              <h3>{{l1.attributes.title}}</h3>
+            </div>
+            <p class="description">{{l1.attributes.description}}</p>
           </div>
         </div>
       </div>
@@ -33,15 +43,10 @@
 </template>
 
 <script>
+
 import Footer from "@/components/Elements/Footer";
-
 import LoadingIndicator from "@/components/Elements/LoadingIndicator";
-
 import { Content, ContentHeader, VerticalStackLayout } from "@apimap/layout-core";
-
-import { mapActions, mapGetters } from "vuex";
-
-import { utils } from "jsonapi-vuex";
 
 export default {
   name: "TaxonomyOverview",
@@ -58,6 +63,13 @@ export default {
     this.$store.dispatch('jv/get', "taxonomy").then((data) => {})
   },
   methods: {
+    isSelected: function(level){
+      if(this.selectedLevel0 === undefined) return false;
+      return level.urn === this.selectedLevel0.urn;
+    },
+    selectLevel0: function(level){
+      this.selectedLevel0 = level;
+    },
     selectTaxonomy: async function(object) {
       if(this.selectedTaxonomyId === object.id){
         this.selectedTaxonomyName = undefined;
@@ -78,9 +90,14 @@ export default {
   data: function() {
     return {
       taxonomyTree: {},
-      selectedTaxonomyId: String,
+      selectedTaxonomyId: {
+        type: String,
+        default: undefined
+      },
       selectedTaxonomyName: '',
-      loadingTaxonomy: false
+      loadingTaxonomy: false,
+      selectedLevel0: undefined,
+      selectedLevel1: undefined
     };
   },
   computed: {
@@ -94,18 +111,12 @@ export default {
 };
 </script>
 
-<style scoped>
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-
-.fade-leave-active {
-  opacity: 0;
-}
-
+<style>
 @media print {
   body * {
+    visibility: hidden;
+  }
+  .the-side-bar * {
     visibility: hidden;
   }
   #print-content * {
@@ -116,6 +127,53 @@ export default {
     left: 0;
     top: 40px;
   }
+}
+</style>
+
+<style scoped>
+
+.toplevel {
+  margin-bottom: 2em;
+  padding-bottom: 1em;
+  border-bottom: 1px dashed lightgrey;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-leave-active {
+  opacity: 0;
+}
+
+.level0{
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 20em;
+}
+
+.level1{
+  flex-grow: 1;
+}
+
+.description{
+  margin : 0 0 1em 0;
+  padding: 1em;
+  border: 1px solid lightgrey;
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom:1em;
+  gap: 1em;
+}
+
+.table {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .level-indicator{
@@ -131,24 +189,6 @@ export default {
   display: inline-block;
 }
 
-.tree{
-  margin-bottom: 3em;
-  margin-top: 2em;
-}
-
-.level0-heading{
-  line-height: 1em;
-  font-size: 2em;
-  margin-bottom: 0.6em;
-}
-
-.level1-heading{
-  line-height: 1em;
-  font-size: 1.4em;
-  font-weight: bold;
-  margin-bottom: 0.2em;
-}
-
 pre.description {
   padding: .6em;
   border-radius: .2em;
@@ -160,40 +200,6 @@ pre.description {
   word-wrap: break-word;
   font-family: inherit;
   line-height: 1.2em;
-}
-
-.taxonomySelected {
-  cursor: pointer;
-  padding-top: 0.2em;
-  padding-bottom: 0.2em;
-  margin-bottom: 1em;
-  color: #5c5470;
-  border-color: #5c5470;
-  border-style: solid;
-  border-width: 0.1em;
-  border-radius: 0.2em;
-  padding-left: 0.8em;
-  padding-right: 0.8em;
-  line-height: 1.2em;
-}
-
-.taxonomyNotSelected {
-  cursor: pointer;
-  background-color: #DBD8E3;
-  padding-top: 0.2em;
-  padding-bottom: 0.2em;
-  margin-bottom: 1em;
-  color: #5c5470;
-  border-radius: 0.2em;
-  padding-left: 0.8em;
-  padding-right: 0.8em;
-  line-height: 1.2em;
-}
-
-.taxonomyNotSelected:hover {
-  color: #DBD8E3;
-  background-color: #5c5470;
-  cursor: pointer;
 }
 
 </style>

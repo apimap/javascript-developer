@@ -1,6 +1,10 @@
 Changelog
 ===
 
+### 18.10.2022
+- Updated startpage gui
+- Updated taxonomy browser
+
 ### 14.10.2022
 - Added new Metadata options selections
 - Updated howto and text
