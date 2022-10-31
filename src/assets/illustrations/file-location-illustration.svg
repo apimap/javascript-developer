@@ -32,11 +32,11 @@
  </g>
  <g transform="translate(.85123)" fill="none" stroke="#5c5470" stroke-width=".88215">
   <g transform="matrix(-.58186 0 0 .58186 196.71 -94.495)">
-   <path d="m105.16 192.94 3.8558 3.2396-1.9279 1.6198-1.9279 1.6198" stroke-linecap="round"/>
+   <path d="m105.16 192.94 3.8558 3.2396-3.8558 3.2396" stroke-linecap="round"/>
    <path d="m109.01 196.18h-22.823"/>
   </g>
   <g transform="matrix(.58186 0 0 .58186 13.252 -94.495)">
-   <path d="m105.16 192.94 3.8558 3.2396-1.9279 1.6198-1.9279 1.6198" stroke-linecap="round"/>
+   <path d="m105.16 192.94 3.8558 3.2396-3.8558 3.2396" stroke-linecap="round"/>
    <path d="m109.01 196.18h-22.823"/>
   </g>
  </g>

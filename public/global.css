@@ -59,6 +59,10 @@ body {
     color: var(--hover-button-text-color);
 }
 
+.button:hover > svg {
+    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+
 .button:hover > h4 {
     color: var(--hover-button-text-color);
 }
@@ -163,4 +167,8 @@ thead {
     background-color: var(--table-header-background-color);
     color: var(--table-header-text-color);
     font-size: 0.8em;
+}
+
+.copy {
+    cursor: copy;
 }

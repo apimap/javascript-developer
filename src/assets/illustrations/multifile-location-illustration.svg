@@ -33,7 +33,7 @@
   </g>
  </g>
  <g transform="matrix(-.58186 0 0 .58186 197.56 -88.662)" fill="none" stroke="#5c5470" stroke-width=".88215">
-  <path d="m105.16 192.94 3.8558 3.2396-1.9279 1.6198-1.9279 1.6198" stroke-linecap="round"/>
+  <path d="m105.16 192.94 3.8558 3.2396-3.8558 3.2396" stroke-linecap="round"/>
   <path d="m109.01 196.18h-22.823v82.801h-8.2632"/>
   <path d="m109.01 196.18h-22.823v82.801h-8.2632"/>
  </g>
@@ -66,16 +66,16 @@
  <text x="105.84668" y="90.486061" fill="#5c5470" font-family="Helvetica-Light" font-size="5.4681px" stroke-width=".26458" style="line-height:1.25" xml:space="preserve"><tspan x="105.84668" y="90.486061" fill="#5c5470" font-family="Helvetica" font-size="5.4681px" stroke-width=".26458" text-align="center" text-anchor="middle">...</tspan></text>
  <g fill="none" stroke="#5c5470" stroke-width=".88215">
   <g transform="matrix(-.58186 0 0 .58186 197.56 -93.491)">
-   <path d="m105.16 192.94 3.8558 3.2396-1.9279 1.6198-1.9279 1.6198" stroke-linecap="round"/>
+   <path d="m105.16 192.94 3.8558 3.2396-3.8558 3.2396" stroke-linecap="round"/>
    <path d="m109.01 196.18h-22.823"/>
   </g>
   <g transform="matrix(-.58186 0 0 .58186 127.3 -88.662)">
-   <path d="m105.16 192.94 3.8558 3.2396-1.9279 1.6198-1.9279 1.6198" stroke-linecap="round"/>
+   <path d="m105.16 192.94 3.8558 3.2396-3.8558 3.2396" stroke-linecap="round"/>
    <path d="m109.01 196.18h-22.823v82.801h-8.2632"/>
    <path d="m109.01 196.18h-22.823v82.801h-8.2632"/>
   </g>
   <g transform="matrix(-.58186 0 0 .58186 127.3 -93.491)">
-   <path d="m105.16 192.94 3.8558 3.2396-1.9279 1.6198-1.9279 1.6198" stroke-linecap="round"/>
+   <path d="m105.16 192.94 3.8558 3.2396-3.8558 3.2396" stroke-linecap="round"/>
    <path d="m109.01 196.18h-22.823"/>
   </g>
  </g>

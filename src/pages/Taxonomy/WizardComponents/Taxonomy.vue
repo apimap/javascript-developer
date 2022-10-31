@@ -36,7 +36,7 @@ export default {
   computed: {
     taxonomyOptions() {
       return Object.keys(this.taxonomy).map((key) => {
-        return { label: this.taxonomy[key].name, value: this.taxonomy[key].nid, description: this.taxonomy[key].description };
+        return { label: this.taxonomy[key].name + " (Identifier: " + this.taxonomy[key].nid + ")", value: this.taxonomy[key].nid, description: this.taxonomy[key].description };
       });
     },
   },

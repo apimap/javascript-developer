@@ -49,7 +49,6 @@ app.get('/*', function(req, res) {
     }
 )
 
-
 const server = http.createServer(app)
 
 const hostname = "0.0.0.0"

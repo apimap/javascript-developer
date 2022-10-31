@@ -4,9 +4,14 @@
         title="Available Taxonomies"
         introduction="The following taxonomies are available for use in this system." />
     <Content>
-      <div v-for="taxonomy in getTaxonomies" :key="taxonomy.nid"  class="button" v-on:click="selectTaxonomy(taxonomy)" v-bind:class="{active: (taxonomy.nid === selectedTaxonomyId) }">
-        <h3>{{taxonomy.name}}</h3>
-        <p>{{taxonomy.description}}</p>
+      <div v-for="taxonomy in getTaxonomies" :key="taxonomy.nid" class="taxonomyOption">
+        <div class="button" v-on:click="selectTaxonomy(taxonomy)" v-bind:class="{active: (taxonomy.nid === selectedTaxonomyId) }">
+          <h3>{{taxonomy.name}} (Identifier: {{ taxonomy.nid }})</h3>
+          <p>{{taxonomy.description}}</p>
+        </div>
+        <div>
+          <img :src="copyIcon" alt="Copy Identifier" title="Copy Identifier" class="copy" @click="copyToClipboard(taxonomy.nid)"/>
+        </div>
       </div>
     </Content>
     <Content>
@@ -21,19 +26,31 @@
           </div>
         </div>
         <div v-if="this.selectedLevel0 !== undefined" class="level1">
-          <div class="toplevel">
-            <div class="table ">
-              <div class="level-indicator">Level 1</div>
-              <h3>{{ this.selectedLevel0.title }}</h3>
+          <div class="toplevel taxonomyOption">
+            <div class="flex">
+              <div class="table">
+                <div class="level-indicator">Level 1</div>
+                <h3>{{ this.selectedLevel0.title }} <span class="urn">({{ this.selectedLevel0.urn }})</span></h3>
+              </div>
+              <p class="description">{{ this.selectedLevel0.description }}</p>
             </div>
-            <p class="description">{{ this.selectedLevel0.description }}</p>
+            <div>
+              <img :src="copyIcon" alt="Copy Identifier" title="Copy Identifier" class="copy" @click="copyToClipboard(selectedLevel0.urn)"/>
+            </div>
           </div>
           <div v-for="l1 in this.selectedLevel0.entities" :key="l1.id" class="level1">
-            <div class="table">
-              <div class="level-indicator">Level 2</div>
-              <h3>{{l1.attributes.title}}</h3>
+            <div class="taxonomyOption">
+              <div class="flex">
+                <div class="table">
+                  <div class="level-indicator">Level 2</div>
+                  <h3>{{l1.attributes.title}} <span class="urn">({{ l1.attributes.urn }})</span></h3>
+                </div>
+                <p class="description">{{l1.attributes.description}}</p>
+              </div>
+              <div>
+                <img :src="copyIcon" alt="Copy Identifier" title="Copy Identifier" class="copy" @click="copyToClipboard(l1.attributes.urn)"/>
+              </div>
             </div>
-            <p class="description">{{l1.attributes.description}}</p>
           </div>
         </div>
       </div>
@@ -47,6 +64,7 @@
 import Footer from "@/components/Elements/Footer";
 import LoadingIndicator from "@/components/Elements/LoadingIndicator";
 import { Content, ContentHeader, VerticalStackLayout } from "@apimap/layout-core";
+import copyIcon from "@/assets/elements/copy-to-clipboard-element.svg";
 
 export default {
   name: "TaxonomyOverview",
@@ -63,6 +81,10 @@ export default {
     this.$store.dispatch('jv/get', "taxonomy").then((data) => {})
   },
   methods: {
+    copyToClipboard(text){
+      console.log(text);
+      navigator.clipboard.writeText(text);
+    },
     isSelected: function(level){
       if(this.selectedLevel0 === undefined) return false;
       return level.urn === this.selectedLevel0.urn;
@@ -97,7 +119,8 @@ export default {
       selectedTaxonomyName: '',
       loadingTaxonomy: false,
       selectedLevel0: undefined,
-      selectedLevel1: undefined
+      selectedLevel1: undefined,
+      copyIcon
     };
   },
   computed: {
@@ -132,6 +155,14 @@ export default {
 
 <style scoped>
 
+.urn{
+  opacity: 0.3;
+}
+
+.flex{
+  flex: 1;
+}
+
 .toplevel {
   margin-bottom: 2em;
   padding-bottom: 1em;
@@ -144,6 +175,13 @@ export default {
 
 .fade-leave-active {
   opacity: 0;
+}
+
+.taxonomyOption{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
 }
 
 .level0{

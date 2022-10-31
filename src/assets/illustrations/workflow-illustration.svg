@@ -1,16 +1,16 @@
 <svg width="600" height="460" version="1.1" viewBox="0 0 158.75 121.71" xmlns="http://www.w3.org/2000/svg">
  <g transform="translate(-.71394 -1.9898)" fill="none" stroke="#5c5470">
   <g transform="matrix(-.49956 -.29832 .29832 -.49956 95.529 151.39)" stroke-width=".88215">
-   <path d="m105.16 192.94 3.8558 3.2396-1.9279 1.6198-1.9279 1.6198" fill="none" stroke="#5c5470" stroke-linecap="round" stroke-width=".88215"/>
+   <path d="m105.16 192.94 3.8558 3.2396-3.8558 3.2396" fill="none" stroke="#5c5470" stroke-linecap="round" stroke-width=".88215"/>
   </g>
   <path d="m99.593 20.866a40.739 40.739 0 0 1 14.912 14.912" stroke-linecap="round" stroke-linejoin="round" stroke-width=".52917"/>
  </g>
  <g transform="matrix(.58186 0 0 .58186 -125.29 2.4251)" fill="none" stroke="#333" stroke-width=".88215">
-  <path d="m105.16 192.94 3.8558 3.2396-1.9279 1.6198-1.9279 1.6198" stroke-linecap="round"/>
+  <path d="m105.16 192.94 3.8558 3.2396-3.8558 3.2396" stroke-linecap="round"/>
   <path d="m109.01 196.18h-10.266"/>
  </g>
  <g fill="#5c5470" stroke-width=".25664">
-  <text x="72.972443" y="77.519264" font-family="Helvetica-Light" font-size="3.8806px" style="line-height:1.25" xml:space="preserve"><tspan x="72.972443" y="77.519264" fill="#5c5470" font-family="Helvetica" font-size="3.8806px" stroke-width=".25664">Publish</tspan></text>
+  <text x="64.18119" y="77.519264" font-family="Helvetica-Light" font-size="3.8806px" style="line-height:1.25" xml:space="preserve"><tspan x="64.18119" y="77.519264" fill="#5c5470" font-family="Helvetica" font-size="3.8806px" stroke-width=".25664">Commit and push</tspan></text>
   <text x="79.26413" y="38.161453" font-family="Helvetica-Light" text-align="center" text-anchor="middle" style="line-height:1.25" xml:space="preserve"><tspan x="79.26413" y="38.161453" font-family="Helvetica" font-size="3.8806px" text-align="center">Develop</tspan><tspan x="79.26413" y="45.005215" font-size="5.475px" text-align="center"/></text>
   <text x="64.562759" y="53.359592" font-family="Helvetica" font-size="3.8806px" text-align="center" text-anchor="middle" style="line-height:1.25" xml:space="preserve"><tspan x="64.562759" y="53.359592" text-align="center">Metadata</tspan><tspan x="64.562759" y="58.350235" text-align="center">Taxonomy</tspan></text>
  </g>
@@ -48,33 +48,31 @@
   <path d="m78.396 92.349a2.4694 2.4694 0 0 0-2.4637 2.3231 2.4596 2.4596 0 0 0-2.1859 2.4328 2.4596 2.4596 0 0 0 2.4598 2.4598 2.4596 2.4596 0 0 0 0.15938-6e-3c0.0283 4e-3 0.0569 6e-3 0.0862 6e-3h6.4568c0.023 0 0.0458-1e-3 0.0683-4e-3a1.9293 1.9293 0 0 0 6.3e-4 0 1.9293 1.9293 0 0 0 0.0963 4e-3 1.9293 1.9293 0 0 0 1.9292-1.9296 1.9293 1.9293 0 0 0-1.9084-1.927 1.6796 1.6796 0 0 0-1.6238-1.2504 1.6796 1.6796 0 0 0-0.61641 0.12686 2.4694 2.4694 0 0 0-2.4585-2.2356z" stroke-linejoin="bevel" stroke-width=".26458"/>
   <g transform="rotate(-90 78.446 54.665)">
    <g transform="matrix(-.49956 -.29832 .29832 -.49956 95.529 151.39)" stroke-width=".88215">
-    <path d="m105.16 192.94 3.8558 3.2396-1.9279 1.6198-1.9279 1.6198" fill="none" stroke="#5c5470" stroke-linecap="round" stroke-width=".88215"/>
+    <path d="m105.16 192.94 3.8558 3.2396-3.8558 3.2396" fill="none" stroke="#5c5470" stroke-linecap="round" stroke-width=".88215"/>
    </g>
    <path d="m99.593 20.866a40.739 40.739 0 0 1 14.912 14.912" stroke-linecap="round" stroke-linejoin="round" stroke-width=".52917"/>
   </g>
   <g transform="rotate(180 79.441 54.275)">
    <g transform="matrix(-.49956 -.29832 .29832 -.49956 95.529 151.39)" stroke-width=".88215">
-    <path d="m105.16 192.94 3.8558 3.2396-1.9279 1.6198-1.9279 1.6198" fill="none" stroke="#5c5470" stroke-linecap="round" stroke-width=".88215"/>
+    <path d="m105.16 192.94 3.8558 3.2396-3.8558 3.2396" fill="none" stroke="#5c5470" stroke-linecap="round" stroke-width=".88215"/>
    </g>
    <path d="m99.593 20.866a40.739 40.739 0 0 1 14.912 14.912" stroke-linecap="round" stroke-linejoin="round" stroke-width=".52917"/>
   </g>
   <g transform="rotate(90 80.469 53.918)">
    <g transform="matrix(-.49956 -.29832 .29832 -.49956 95.529 151.39)" stroke-width=".88215">
-    <path d="m105.16 192.94 3.8558 3.2396-1.9279 1.6198-1.9279 1.6198" fill="none" stroke="#5c5470" stroke-linecap="round" stroke-width=".88215"/>
+    <path d="m105.16 192.94 3.8558 3.2396-3.8558 3.2396" fill="none" stroke="#5c5470" stroke-linecap="round" stroke-width=".88215"/>
    </g>
    <path d="m99.593 20.866a40.739 40.739 0 0 1 14.912 14.912" stroke-linecap="round" stroke-linejoin="round" stroke-width=".52917"/>
   </g>
- </g>
- <g fill="none" stroke="#5c5470" stroke-linecap="round">
-  <path d="m80.107 21.767v0.9018m-1.464 0v-0.90118" stroke-width=".26458"/>
-  <g>
+  <g stroke-linecap="round">
+   <path d="m80.107 21.767v0.9018m-1.464 0v-0.90118" stroke-width=".26458"/>
    <rect x="76.836" y="22.717" width="5.0778" height=".70788" rx=".03075" ry=".056326" stroke-width=".22017"/>
    <rect x="72.422" y="12.378" width="13.907" height="9.377" rx=".26418" ry=".26881" stroke-width=".28043"/>
    <rect x="73.067" y="13.069" width="12.616" height="7.9946" rx=".064649" ry=".064649" stroke-width=".26458"/>
   </g>
- </g>
- <g transform="translate(72.618 12.157)" fill="none" stroke="#5c5470" stroke-linecap="round">
-  <path d="m1.6218 2.0377 1.1342 1.0461-1.1342 1.0461" stroke-width=".46233"/>
-  <path d="m3.7997 4.1762h1.2955" stroke-width=".36987"/>
+  <g transform="translate(72.618 12.157)" stroke-linecap="round">
+   <path d="m1.6218 2.0377 1.1342 1.0461-1.1342 1.0461" stroke-width=".46233"/>
+   <path d="m3.7997 4.1762h1.2955" stroke-width=".36987"/>
+  </g>
  </g>
 </svg>
