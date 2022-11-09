@@ -4,7 +4,7 @@
     <div v-if="description" class="description">{{ description }}</div>
     <ul class="options" v-show="visible" >
       <li class="option" v-for="option in options" :style="getStyle(option)" v-bind:class="{active: isSelected(option)}" @click.stop="selectOption(option)">
-        <img :src="getIcon(option)" /> {{ option.label }}
+        <img :src="getIcon(option)"  alt="Option"/> {{ option.label }}
       </li>
     </ul>
     <div @click.stop="toggleOptions" class="view-options button" v-show="enableToggle">
@@ -44,12 +44,17 @@ export default {
       typeSoapIcon
     };
   },
+  computed: {
+    data: function(){
+      return this.value
+    }
+  },
   methods: {
     toggleOptions: function(){
       this.visible = !this.visible;
     },
     isSelected: function(option){
-      return option.value === this.value;
+      return option.value === this.data;
     },
     selectOption: function(option){
       this.setValue(option.value);

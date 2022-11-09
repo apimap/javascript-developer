@@ -3,14 +3,14 @@
     <h3>{{ heading }}</h3>
     <div v-if="description" class="description">{{ description }}</div>
     <div class="options">
-      <slot :value="value" :setValue="setValue"></slot>
+      <slot :value="data[name]" :setValue="setValue"></slot>
       <h3 v-if="allowCustom">or</h3>
       <div v-if="allowCustom" class="custom">
         <Input
             label="None of the above"
             size="large"
             element="systemIdentifier"
-            v-model="form[name]"
+            v-model="data[name]"
             description="None of the above options matches, please add a custom entry."
         />
       </div>
@@ -35,6 +35,11 @@ export default {
     setValue: function(value){
       this.value = value;
       this.form[this.name]= value;
+    }
+  },
+  computed: {
+    data: function(){
+      return this.form
     }
   },
   components: {

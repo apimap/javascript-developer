@@ -25,4 +25,15 @@
 
  --box-border-color: #dbd8e3;
  --box-text-color: #5c5470;
+
+ --drop-field-text-color: #5c5470;
+ --drop-field-background-color: #dbd8e3;
+ --drop-field-border-color: #5c5470;
+ --drop-field-hover-text-color:  #dbd8e3;
+ --drop-field-hover-background-color: #5c5470;
+ --drop-field-hover-border-color: #dbd8e3;
+
+ --dangerous-button-border-color: #ff4646;
+ --dangerous-button-text-color: #ff4646;
+ --dangerous-button-hover-text-color: white;
 }

@@ -4,10 +4,10 @@
     <div class="form-body">
       <div class="form-container">
         <OptionCloud
-            :form="form"
+            :form="data"
             heading="Interface Specification"
             name="interface specification"
-            allow-custom=true
+            :allow-custom=true
             description="Describe how your API resources are designed and implemented. If your API is code native and is to be implemented into other code, select one of the options in the 'implementation' section. If your API is to be used over a network please select one of the 'specification' options. Example: If your REST API is designed in accordance with JSON:API select 'JSON:API'"
         >
           <template v-slot="{value, setValue}">
@@ -30,8 +30,8 @@
           <h3>or</h3>
         </OptionCloud>
         <OptionCloud
-            :form="form"
-            allow-custom=true
+            :form="data"
+            :allow-custom=true
             heading="Interface Description Language"
             name="interface description language"
             description="Describes how the functionality in your API is communicated to the users. If your API is code native and is to be implemented into other code, select 'SDK'. Example: Your JSON API is documented and defined using Open API (Swaggerdoc) and you select 'OpenApi Specification' as the interface description language."
@@ -72,6 +72,9 @@ export default {
     },
     interfaceDescriptionLanguageOptions: function () {
       return this.$store.getters.metadataOptions['implementationDetailsOptions'] ? this.$store.getters.metadataOptions['implementationDetailsOptions']['interfaceDescriptionLanguageOptions'] : [];
+    },
+    data: function(){
+      return this.form
     }
   }
 };

@@ -1,5 +1,5 @@
 export const SET_METADATA_FORM_SELECTIONS = 'SET_METADATA_FORM_SELECTIONS';
-export const RESET_METADATA_FORM_SELECTIONS = 'RESET_METADATA_FORM_SELECTIONS';
+export const RESET_METADATA_FORM = 'RESET_METADATA_FORM';
 export const SET_TAXONOMY_FORM_SELECTIONS = 'SET_TAXONOMY_FORM_SELECTIONS';
 export const RESET_TAXONOMY_FORM_SELECTIONS = 'RESET_TAXONOMY_FORM_SELECTIONS';
 export const RESET_TAXONOMY_FORM = 'RESET_TAXONOMY_FORM';
@@ -36,7 +36,7 @@ export default {
         },
         taxonomy: state => {
             return state.taxonomy;
-        },
+        }
     },
     state: {
         metadata: { ...defaultMetadata.data },
@@ -49,14 +49,14 @@ export default {
         [SET_TAXONOMY_FORM_SELECTIONS](state, payload) {
             state.taxonomy = payload
         },
-        [RESET_METADATA_FORM_SELECTIONS](state) {
-            state.metadata = {...defaultMetadata.data}
-        },
         [RESET_TAXONOMY_FORM_SELECTIONS](state) {
             state.taxonomy.classifications = []
         },
         [RESET_TAXONOMY_FORM](state) {
             state.taxonomy = {...defaultTaxonomy.data}
+        },
+        [RESET_METADATA_FORM](state) {
+            state.metadata = {...defaultMetadata.data}
         }
     },
     actions: {
@@ -66,14 +66,14 @@ export default {
         SET_TAXONOMY_FORM_SELECTIONS({commit}, payload){
             commit(SET_TAXONOMY_FORM_SELECTIONS, payload)
         },
-        RESET_METADATA_FORM_SELECTIONS({commit}){
-            commit(RESET_METADATA_FORM_SELECTIONS)
-        },
         RESET_TAXONOMY_FORM_SELECTIONS({commit}){
             commit(RESET_TAXONOMY_FORM_SELECTIONS)
         },
         RESET_TAXONOMY_FORM({commit}){
             commit(RESET_TAXONOMY_FORM)
-        }
+        },
+        RESET_METADATA_FORM({commit}){
+            commit(RESET_METADATA_FORM)
+        },
     }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div className="create-folder">
+  <div class="create-folder">
     <CenterLayout/>
     <ContentHeader
         title="Create a Folder"
@@ -21,6 +21,14 @@
     <Content>
       <img :src="multifileLocationIllustration" alt="File locations" class="step-by-step-image">
     </Content>
+    <Content>
+      <div class="next">
+        <div class="next-content">
+          <router-link to="/metadata/wizard"><img :src="navigationNextElement" height="40px" alt="Add Metadata"/></router-link>
+          <router-link to="/metadata/wizard">Add Metadata</router-link>
+        </div>
+      </div>
+    </Content>
     <Footer/>
   </div>
 </template>
@@ -29,6 +37,7 @@
 
 import Footer from "@/components/Elements/Footer";
 import Recommendation from "@/components/Elements/Recommendation";
+import navigationNextElement from "@/assets/elements/navigation-next-element.svg";
 import fileLocationIllustration from "@/assets/illustrations/file-location-illustration.svg";
 import multifileLocationIllustration from "@/assets/illustrations/multifile-location-illustration.svg";
 import {Content, CenterLayout, ContentHeader} from "@apimap/layout-core"
@@ -45,12 +54,30 @@ export default {
   data: function () {
     return {
       fileLocationIllustration,
-      multifileLocationIllustration
+      multifileLocationIllustration,
+      navigationNextElement
     }
   }
 };
 </script>
 
 <style scoped>
+
+.next-content{
+  width: 10em;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  line-height: 1.2em;
+}
+
+.next{
+  border-top: 1px dashed #dbd8e3;
+  padding-top: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.2em;
+}
 
 </style>

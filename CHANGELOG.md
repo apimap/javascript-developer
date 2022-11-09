@@ -1,6 +1,10 @@
 Changelog
 ===
 
+### 8.11.2022
+- Added quick navigation between steps
+- Added the option to import existing metadata or taxonomy files
+
 ### 18.10.2022
 - Updated start page gui
 - Updated taxonomy browser

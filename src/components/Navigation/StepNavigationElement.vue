@@ -29,7 +29,6 @@ export default {
 <style scoped>
 
 .step-navigation-element{
-  max-width: 16em;
   padding-top: 0.1em;
   padding-bottom: 0.1em;
   margin-bottom: 1em;

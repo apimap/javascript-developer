@@ -1,13 +1,14 @@
 <template>
   <div class="input-group">
     <h3 v-show="label">{{ label }}</h3>
-    <div v-for="(value, index) in values" class="inputs">
+    <div v-for="(val, index) in data" class="inputs">
       <input
           type="text"
           :key="index"
-          v-model="value.value"
+          :value="val"
+          @input="updatedValue(index)"
       />
-      <div @click.stop="removeInputField(index)" class="remove button">Remove URL</div>
+      <div @click.stop="removeInputField(index)" class="dangerous-button">Remove URL</div>
     </div>
     <div @click.stop="addInputField" class="add-input button" >
       {{ actionLabel }}
@@ -24,27 +25,27 @@ export default {
     label: String,
     description: String,
     actionLabel: String,
-    value: Array
+    value: {
+      type: Array,
+      default: []
+    }
+  },
+  computed: {
+    data: function(){
+      return (this.value !== undefined) ? this.value : [];
+    }
   },
   methods: {
+    updatedValue: function(index){
+      this.value[index] = event.target.value
+      this.$emit('input', this.value.filter((e) => e !== undefined));
+    },
     addInputField: function () {
-      this.values.push({ value: '' })
+      this.value.push('');
+      this.$emit('input', this.value.filter((e) => e !== undefined));
     },
     removeInputField: function (index) {
-      this.values = this.values.filter((_, idx) => idx != index);
-    }
-  },
-  data: function() {
-    return {
-      values: (this.value === undefined || this.value.length < 1) ? [{ value: '' }] : this.value
-    }
-  },
-  watch:{
-    'values': {
-      handler(newValue, oldValue) {
-        this.$emit('input', newValue.filter((e, idx) => e !== undefined && e.value !== undefined && e.value !== "").map(e=>e.value))
-      },
-      deep: true
+      this.$emit('input', this.value.filter((_, idx) => idx !== index).filter((e) => e !== undefined))
     }
   }
 };
@@ -56,10 +57,10 @@ export default {
 .inputs {
   display: flex;
   flex-direction: row;
-  text-align: left;
   justify-content: center;
   gap: 1em;
   margin-bottom: 1em;
+  align-content: center;
 }
 
 .description{
@@ -68,13 +69,6 @@ export default {
   margin-top: 0.1em;
   border: 1px solid #dbd8e3;
   color: #5c5470;
-}
-
-.remove{
-  padding: 0.4em;
-  border-radius: 0.2em;
-  text-align: center;
-  font-size: 0.8em;
 }
 
 .add-input{

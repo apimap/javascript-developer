@@ -34,7 +34,9 @@ body {
 
 .button.disabled {
     color: var(--disabled-button-text-color) !important;
-    background-color: var(--disabled-button-background-color) !important;
+    border-color: var(--disabled-button-background-color) !important;
+    border: 1px dotted !important;
+    background-color: unset !important;
 }
 
 .button.disabled > h3 {
@@ -45,6 +47,7 @@ body {
     color: var(--hover-button-text-color);
     background-color: var(--hover-button-background-color);
     cursor: pointer;
+    box-shadow: 0 4px var(--disabled-button-text-color);
 }
 
 .button:hover > h1 {
@@ -93,6 +96,27 @@ body {
 
 .the-side-bar {
     border-right-color: #DBD8E3;
+}
+
+.inverted-button {
+    border-color: var(--button-background-color);
+    color: var(--button-text-color);
+    line-height: 1em;
+    margin-bottom: 0.6em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+    border-radius: 0.2em;
+    border: 1px solid;
+}
+
+.inverted-button:hover {
+    color: var(--hover-button-text-color);
+    background-color: var(--hover-button-background-color);
+    border-color: var(--hover-button-background-color);
+    cursor: pointer;
+    box-shadow: 0 4px var(--disabled-button-text-color);
 }
 
 h1 {
@@ -171,4 +195,37 @@ thead {
 
 .copy {
     cursor: copy;
+}
+
+.dangerous-button{
+    border-color: var(--dangerous-button-border-color);
+    color: var(--dangerous-button-text-color);
+    line-height: 1em;
+    margin-bottom: 0.6em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+    border-radius: 0.2em;
+    border: 1px dashed;
+    font-size: 0.8em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 2em;
+}
+
+.dangerous-button:hover{
+    border-color: var(--dangerous-button-border-color);
+    background-color: var(--dangerous-button-text-color);
+    color:var(--dangerous-button-hover-text-color);
+    line-height: 1em;
+    margin-bottom: 0.6em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+    border-radius: 0.2em;
+    font-size: 0.8em;
+    cursor: pointer;
+    border: 1px solid;
 }

@@ -22,6 +22,18 @@ part of any git-ops environment and automatically manages the API information." 
     <Content>
       <MediumButton title="Read more about the API Workflow" route="/workflow/api"/>
     </Content>
+    <Content>
+      <div class="next">
+        <div class="next-content">
+          <router-link to="/taxonomy/wizard"><img :src="navigationPreviousElement" height="40px" alt="Add Taxonomy"/></router-link>
+          <router-link to="/taxonomy/wizard">Add Taxonomy</router-link>
+        </div>
+        <div class="next-content">
+          <a :href="portalUrl"><img :src="navigationNextElement" height="40px" alt="Add Taxonomy"/></a>
+          <a :href="portalUrl">Discover your API</a>
+        </div>
+      </div>
+    </Content>
     <Footer />
   </div>
 </template>
@@ -30,6 +42,8 @@ part of any git-ops environment and automatically manages the API information." 
 import Footer from "@/components/Elements/Footer";
 import MediumButton from "@/components/Navigation/MediumButton";
 import { Content, ContentHeader } from "@apimap/layout-core"
+import navigationPreviousElement from "@/assets/elements/navigation-previous-element.svg";
+import navigationNextElement from "@/assets/elements/navigation-next-element.svg";
 
 export default {
   name: "Workflow",
@@ -38,9 +52,41 @@ export default {
     ContentHeader,
     Footer,
     MediumButton
-  }
+  },
+  data: function(){
+    return {
+      navigationPreviousElement,
+      navigationNextElement
+    }
+  },
+  computed: {
+    portalUrl() {
+      return APIMAP_PORTAL_URL;
+    }
+  },
 };
 </script>
 
 <style scoped>
+
+.next-content{
+  width: 10em;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  line-height: 1.2em;
+}
+
+.next{
+  border-top: 1px dashed #dbd8e3;
+  padding-top: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.2em;
+  justify-content: center;
+  gap: 1em;
+  margin: 0;
+}
+
 </style>

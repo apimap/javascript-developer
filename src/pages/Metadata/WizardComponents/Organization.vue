@@ -7,7 +7,7 @@
           label="Architecture Layer"
           name="architecture-layer"
           :options="architectureLayerOptions"
-          v-model="form['architecture layer']"
+          v-model="data['architecture layer']"
           :allowCustom="true"
           customPlaceholder="Architecture layer"
         ></RadioGroup>
@@ -15,7 +15,7 @@
           label="Business Unit"
           name="business-unit"
           :options="businessUnitOptions"
-          v-model="form['business unit']"
+          v-model="data['business unit']"
           :allowCustom="true"
           customPlaceholder="Business Unit"
         ></RadioGroup>
@@ -42,6 +42,9 @@ export default {
     },
     businessUnitOptions: function () {
       return this.$store.getters.metadataOptions['organizationOptions'] ? this.$store.getters.metadataOptions['organizationOptions']['businessUnitOptions'] : [];
+    },
+    data: function(){
+      return this.form
     }
   }
 };

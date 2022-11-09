@@ -1,7 +1,9 @@
 <template>
   <div id="app">
       <TheSideBar :width="16" class="sidebar">
-        <SideBarAction target="/" :image="home"></SideBarAction>
+        <SideBarSection title="">
+          <a :href="portalUrl" class="inverted-button portal">Discover available APIs</a>
+        </SideBarSection>
         <SideBarSection title="Step 1: Create Folder">
           <SideBarSectionAction title="Create Folder" target="/folder" />
         </SideBarSection>
@@ -49,6 +51,11 @@ export default {
       window.location.href = APIMAP_PORTAL_URL
     }
   },
+  computed: {
+    portalUrl() {
+      return APIMAP_PORTAL_URL;
+    }
+  },
   data: function(){
     return {
       home,
@@ -70,11 +77,14 @@ export default {
   text-align: center;
   padding: 0;
   height: inherit;
-  color: var(--primary-color);
 }
 
 </style>
 
 <style scoped>
+
+.portal{
+  width: 100%;
+}
 
 </style>

@@ -1,15 +1,16 @@
 <template>
   <div class="startpage">
     <ContentHeader
-        title="Discovery functionallity"
+        title="Discovery functionality"
         introduction="APIs are much more than just code, they deliver reusable functionality to the organization." />
     <Content>
       <div class="columns">
         <div>
-          <router-link to="steps"><div class="center"><img :src="workflowOverview" class="workflowOverview"/></div></router-link>
+          <router-link to="steps"><div class="center"><img :src="workflowOverview" class="workflowOverview" alt="Workflow Overview"/></div></router-link>
         </div>
-        <div>
-          <CallForActionButton target="steps" title="Click here to get started!" />
+        <div class="buttons">
+          <router-link to="/folder" class="button large-button">Add a New API</router-link>
+          <a class="inverted-button small-button" :href="portalUrl">Discover available APIs</a>
         </div>
       </div>
     </Content>
@@ -114,6 +115,11 @@ export default {
       metadataExample: MetadataExamples.one,
     };
   },
+  computed: {
+    portalUrl() {
+      return APIMAP_PORTAL_URL;
+    }
+  },
 };
 </script>
 
@@ -133,6 +139,20 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.large-button{
+  font-size: 2em;
+}
+
+.small-button{
+  font-size: 1.2em;
 }
 
 </style>

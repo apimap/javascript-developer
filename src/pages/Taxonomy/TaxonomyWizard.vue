@@ -6,69 +6,87 @@
     <Content>
       <VerticalStackLayout class="content">
         <StepNavigationContainer isSticky>
+          <ImportField @file="fileDropped"
+                       text="Drag your existing taxonomy.apimap to this drop zone"
+                       hover-text="Drop to import" />
           <StepNavigationElement
               title="Taxonomy"
               description="Select the preferred taxonomy"
               :target="scrollToComponent"
               reference="taxonomy" />
           <StepNavigationElement
-              title="Level 1"
+              title="Level 1 categories"
               description="Select required level 1 categories"
               :target="scrollToComponent"
               reference="level1"
-              :disabled="!this.selectedLevels.taxonomy"/>
+              :disabled="!displayLevel1"/>
           <StepNavigationElement
-              title="Level 2"
+              title="Level 2 categories"
               description="Select required level 2 categories"
               :target="scrollToComponent"
               reference="level2"
-              :disabled="!this.selectedLevels.level1"/>
+              :disabled="!displayLevel2"/>
           <StepNavigationElement
-              title="Level 3"
+              title="Level 3 categories"
               description="Select optional level 3 categories"
               :target="scrollToComponent"
               reference="level3"
-              :disabled="!this.selectedLevels.level2"/>
+              :disabled="!displayLevel3"/>
           <StepNavigationElement
-              title="Download file"
-              description="Download a new taxonomy.apimap with your current selections"
+              title="Generate file"
+              description="Create new content file"
               :target="scrollToComponent"
               reference="completed"
-              :disabled="!shouldDisplayDownloadButton"/>
+              :disabled="!displayDownloadOptions"/>
         </StepNavigationContainer>
         <div>
           <div class="forms-container">
             <div ref="taxonomy">
-              <Taxonomy v-if="getTaxonomies" :taxonomy="getTaxonomies" :form="form" />
+              <Taxonomy v-if="displayTaxonomies" :taxonomy="availableTaxonomies" :form="form" />
               <Separator size="normal" />
-              <MediumButton title="Continue to Level 1" :target="setTaxonomy" v-if="shouldDisplayLevel1" />
+              <MediumButton title="Download taxonomy" :target="setTaxonomy" v-if="displayDownload"/>
             </div>
-            <div ref="level1" v-if="selectedLevels.taxonomy">
-              <Level1 :items="level1" :form="form" />
+            <div ref="level1" v-show="displayLevel1">
+              <Level1 :items="availableLevel1" :form="form" />
               <Separator size="normal" />
-              <MediumButton title="Continue to Level 2" :target="setLevel1" v-if="shouldDisplayLevel2" />
+              <MediumButton title="Continue to Level 2" :target="setLevel1" v-if="displayLevel2" />
             </div>
-            <div ref="level2" v-if="selectedLevels.level1">
-              <Level2 :items="level2" :form="form" />
+            <div ref="level2" v-if="displayLevel2">
+              <Level2 :items="availableLevel2" :form="form" />
               <Separator size="normal" />
-              <MediumButton title="Continue to Level 3" :target="setLevel2" v-if="shouldDisplayLevel3" />
+              <MediumButton title="Continue to Level 3" :target="setLevel2" v-if="displayLevel3" />
             </div>
-            <div ref="level3" v-if="selectedLevels.level2">
-              <Level3 :items="level3" :form="form" />
+            <div ref="level3" v-if="displayLevel3">
+              <Level3 :items="availableLevel3" :form="form" />
             </div>
           </div>
-          <Separator size="large" />
-          <div ref="completed" class="footer" v-if="shouldDisplayDownloadButton">
+          <div ref="completed" class="footer" v-if="displayDownloadOptions">
             <div class="footer-container">
               <div class="all-done-container">
                 <img :src="allDoneIllustration" alt="Taxonomy Wizard Completed" />
-                <h2>Taxonomy.apimap</h2>
+                <h2>taxonomy.apimap</h2>
               </div>
-              <LargeButton title="Download and save a new taxonomy.apimap file to your folder " :target="saveFile" />
+              <div class="download-options">
+                <div class="inverted-button" @click.stop="saveFile">Download</div>
+                <div class="inverted-button" @click.stop="copyToClipboard">Copy to clipboard</div>
+                <div class="dangerous-button" @click.stop="clearAll">Clear all</div>
+              </div>
             </div>
           </div>
         </div>
       </VerticalStackLayout>
+    </Content>
+    <Content>
+      <div class="next">
+        <div class="next-content">
+          <router-link to="/metadata/wizard"><img :src="navigationPreviousElement" height="40px" alt="Add Metadata"/></router-link>
+          <router-link to="/metadata/wizard">Add Metadata</router-link>
+        </div>
+        <div class="next-content">
+          <router-link to="/workflow"><img :src="navigationNextElement" height="40px" alt="Publish Changes"/></router-link>
+          <router-link to="/workflow">Publish Changes</router-link>
+        </div>
+      </div>
     </Content>
     <Footer />
   </div>
@@ -90,16 +108,20 @@ import StepNavigationElement from "@/components/Navigation/StepNavigationElement
 
 // Assets
 import allDoneIllustration from "@/assets/illustrations/all-done-illustration.svg";
+import navigationNextElement from "@/assets/elements/navigation-next-element.svg";
+import navigationPreviousElement from "@/assets/elements/navigation-previous-element.svg";
 
 import { Content, ContentHeader, Separator, VerticalStackLayout } from "@apimap/layout-core";
 
 import { saveToFile } from "@/utils/file-management.js";
-import { scrollToComponentWithoutHistory, scrollToPageTop } from "@/utils/window-management.js";
-import { RESET_TAXONOMY_FORM, RESET_TAXONOMY_FORM_SELECTIONS, SET_TAXONOMY_FORM_SELECTIONS } from "@/store/forms/store";
+import { scrollToComponentWithoutHistory } from "@/utils/window-management.js";
+import { RESET_TAXONOMY_FORM, SET_TAXONOMY_FORM_SELECTIONS } from "@/store/forms/store";
+import ImportField from "@/components/Elements/ImportField";
 
 export default {
   name: "TaxonomyWizard",
   components: {
+    ImportField,
     StepNavigationElement,
     Content,
     LargeButton,
@@ -116,156 +138,216 @@ export default {
   },
   mounted() {
     this.$store.dispatch(RESET_TAXONOMY_FORM);
+
     this.$store.commit('jv/clearRecords', { _jv: { type: 'urn:element' } })
+
     // TODO: Make this dynamic from returned urls
-    this.$store.dispatch('jv/get', "taxonomy").then((data) => {})
+    this.$store.dispatch('jv/get', "taxonomy").then(() => {
+      this.clearFlowControl();
+    });
   },
   data: function() {
     return {
-      levels: {
+      flowControl:{
+        displayTaxonomies: true,
+        displayDownload: false,
+        displayLevel1: false,
+        displayLevel2: false,
+        displayLevel3: false
+      },
+      content:{
         taxonomy: undefined,
-        level1: new Array(),
-        level2: new Array(),
-      },
-      selectedLevels: {
-        taxonomy: false,
-        level1: false,
-        level2: false,
-      },
-      availableLevels: {
-        taxonomy: false,
-        level1: false,
-        level2: false,
+        level1: [],
+        level2: [],
+        level3: []
       },
       allDoneIllustration,
+      navigationPreviousElement,
+      navigationNextElement
     };
   },
   methods: {
-    setTaxonomy: async function() {
-      this.$store.commit('jv/clearRecords', { _jv: { type: 'urn:element' } });
+    clearFlowControl: function(){
+      this.flowControl.displayTaxonomies = true;
+      this.flowControl.displayDownload = false;
+      this.flowControl.displayLevel1 = false;
+      this.flowControl.displayLevel2 = false;
+      this.flowControl.displayLevel3 = false;
+
+      this.content.taxonomy = undefined;
+      this.content.level1 = [];
+      this.content.level2 = [];
+      this.content.level3 = [];
+    },
+    fileDropped: async function(value){
+      if(value === undefined
+          || value['data'] === undefined
+          || value['data']['taxonomy'] === undefined
+          || value['data']['classifications'] === undefined
+      ) return;
+
+      const fileTaxonomy = value['data']['taxonomy'];
+      const fileClassifications = value['data']['classifications'];
+
+      await this.$store.commit('jv/clearRecords', { _jv: { type: 'urn:element' } });
+      await this.$store.dispatch(RESET_TAXONOMY_FORM);
 
       // TODO: Make this dynamic from returned urls
-      await this.$store.dispatch('jv/get', "taxonomy/" + this.form.taxonomy + '/version/latest/urn').then((data) => {
-        this.levels.level1 = Object.keys(data).map((key) => { return data[key] });
-        this.levels.taxonomy = this.form.taxonomy;
-        this.selectedLevels.taxonomy = true;
-      });
+      await this.$store.dispatch('jv/get', "taxonomy/" +  fileTaxonomy + '/version/latest/urn').then((data) => {
+        const classifications = Object.keys(data).map((key) => { return data[key] });
+        this.content.level1 = classifications;
+        this.content.taxonomy = fileTaxonomy;
+        this.form.taxonomy = fileTaxonomy;
+        this.flowControl.displayTaxonomies = true;
+        this.flowControl.displayDownload = true;
+        return classifications;
+      }).then((classifications) => {
+        const matches = classifications.flatMap(l1 => {
+          const urns = [];
 
-      scrollToComponentWithoutHistory(this, "level1");
+          if (fileClassifications.findIndex(e => e === l1.urn) > -1) {
+            urns.push(l1.urn);
+            this.flowControl.displayLevel1 = true;
+          }
+
+          l1.entities.forEach(l2 => {
+            if (fileClassifications.findIndex(e => e === l2.attributes.urn) > -1) {
+              urns.push(l1.urn, l2.attributes.urn);
+              this.flowControl.displayLevel1 = true;
+              this.flowControl.displayLevel2 = true;
+            }
+
+            l2.attributes.entities.forEach(l3 => {
+              if (fileClassifications.findIndex(e => e === l3.urn) > -1) {
+                urns.push(l1.urn, l2.attributes.urn, l3.urn);
+                this.flowControl.displayLevel1 = true;
+                this.flowControl.displayLevel2 = true;
+                this.flowControl.displayLevel3 = true;
+              }
+            })
+          })
+
+          return urns;
+        });
+
+        const data = {
+          'taxonomy': fileTaxonomy,
+          'classifications': matches,
+        }
+
+        this.$store.dispatch(SET_TAXONOMY_FORM_SELECTIONS, data);
+      });
+    },
+    setTaxonomy: async function() {
+      await this.$store.commit('jv/clearRecords', { _jv: { type: 'urn:element' } });
+
+      const taxonomy = this.form.taxonomy;
+      // TODO: Make this dynamic from returned urls
+      this.$store.dispatch('jv/get', "taxonomy/" + taxonomy + '/version/latest/urn').then((data) => {
+        this.$store.dispatch(RESET_TAXONOMY_FORM)
+        .then(() => {
+          this.content.level1 = Object.keys(data).map((key) => { return data[key] });
+          this.content.taxonomy = taxonomy;
+          this.form.taxonomy = taxonomy;
+          this.flowControl.displayTaxonomies = true;
+          this.flowControl.displayLevel1 = true;
+        }).then(
+          scrollToComponentWithoutHistory(this, "level1")
+        );
+      });
     },
     setLevel1: function() {
-      if (this.levels.level2.some((el) => el.entities.length > 0)) {
-        this.selectedLevels.level1 = true;
+      if (this.content.level2.some((el) => el.entities.length > 0)) {
+        this.flowControl.displayLevel2 = true;
         scrollToComponentWithoutHistory(this, "level2");
       } else {
-        this.selectedLevels.level1 = false;
+        this.flowControl.displayLevel2 = false;
         scrollToComponentWithoutHistory(this, "completed");
       }
     },
     setLevel2: function() {
-      if (this.levels.level3.filter((object) => object.attributes.entities.some( (el) => el.attributes )).length > 0) {
-        this.selectedLevels.level2 = true;
+      if (this.content.level3.filter((object) => object.attributes.entities.some( (el) => el.attributes )).length > 0) {
+        this.flowControl.displayLevel3 = true;
         scrollToComponentWithoutHistory(this, "level3");
       } else {
-        this.selectedLevels.level2 = false;
+        this.flowControl.displayLevel3 = false;
         scrollToComponentWithoutHistory(this, "completed");
-      }
-    },
-    removeParentUrns() {
-      for (let i = 0; i < this.levels.level1.length; i++) {
-        if (
-          this.form.classifications.includes(
-            this.levels.level1[i].urn
-          )
-        ) {
-          for (
-            let j = 0;
-            j < this.levels.level1[i].entities.length;
-            j++
-          ) {
-            if (
-              this.form.classifications.includes(
-                this.levels.level1[i].entities[j].attributes.urn
-              )
-            ) {
-              this.form.classifications.splice(
-                this.form.classifications.indexOf(
-                  this.levels.level1[i].urn
-                ),
-                1
-              );
-              for (
-                let k = 0;
-                k <
-                this.levels.level1[i].entities[j].attributes
-                  .entities.length;
-                k++
-              ) {
-                if (
-                  this.form.classifications.includes(
-                    this.levels.level1[i].entities[j].attributes
-                      .entities[k].attributes.urn
-                  )
-                ) {
-                  this.form.classifications.splice(
-                    this.form.classifications.indexOf(
-                      this.levels.level1[i].entities[j].attributes
-                        .urn
-                    ),
-                    1
-                  );
-                }
-              }
-            }
-          }
-        }
       }
     },
     scrollToComponent: function(refName) {
       scrollToComponentWithoutHistory(this, refName);
     },
-    scrollToPageTop,
+    clearAll: function(){
+      this.clearFlowControl();
+      this.$store.dispatch(RESET_TAXONOMY_FORM);
+      window.scroll({ top: 0, left: 0, behavior: "smooth" });
+    },
     saveFile: function() {
-      this.removeParentUrns();
       const dataobj = {
-        data: this.form,
+        data: {
+          classifications: this.compressURNs(this.form.classifications),
+          taxonomy: this.content.taxonomy
+        }
       };
       saveToFile(dataobj, "taxonomy.apimap");
-      this.$store.dispatch(RESET_TAXONOMY_FORM);
     },
+    copyToClipboard: function() {
+      const dataobj = {
+        data: {
+          classifications: this.compressURNs(this.form.classifications),
+          taxonomy: this.content.taxonomy
+        },
+        "api catalog version": "1"
+      };
+      navigator.clipboard.writeText(JSON.stringify(dataobj,null,2));
+    },
+    compressURNs(classifications){
+      return this.content.level1.flatMap(l1 => {
+        const matches1 = l1.entities.flatMap(l2 => {
+          const matches = l2.attributes.entities.flatMap(l3 => {
+            if (classifications.findIndex(e => e === l3.urn) > -1) return l3.urn;
+          })
+          .filter(e => e !== undefined);
+          if (matches.length > 0) return matches;
+          if (classifications.findIndex(e => e === l2.attributes.urn) > -1) return l2.attributes.urn;
+        })
+        .filter(e => e !== undefined);
+        if (matches1.length > 0) return matches1;
+        if (classifications.findIndex(e => e === l1.urn) > -1) return l1.urn;
+      })
+      .filter(e => e !== undefined);
+    }
   },
   computed: {
-    level1: function() {
-      if(!this.availableLevels.taxonomy) {
-        this.levels.level1 = [];
-      }
-      return this.levels.level1;
+    displayTaxonomies: function(){
+      return this.flowControl.displayTaxonomies;
     },
-    level2: function() {
-      if(!this.availableLevels.level1){
-        this.levels.level2 = [];
-      }
-      return this.levels.level2;
+    displayDownload: function(){
+      return this.flowControl.displayDownload;
     },
-    level3: function() {
-      if(!this.availableLevels.level2){
-        this.levels.level3 = [];
-      }
-      return this.levels.level3;
+    displayLevel1: function(){
+      return this.flowControl.displayLevel1;
     },
-    getTaxonomies: function(){
+    displayLevel2: function(){
+      return this.flowControl.displayLevel2;
+    },
+    displayLevel3: function(){
+      return this.flowControl.displayLevel3;
+    },
+    availableTaxonomies: function(){
       return this.$store.getters['jv/get']('taxonomy:element');
     },
-    shouldDisplayLevel1(){
-      return this.availableLevels.taxonomy;
+    availableLevel1: function(){
+      return this.content.level1;
     },
-    shouldDisplayLevel2(){
-      return this.availableLevels.level1;
+    availableLevel2: function(){
+      return this.content.level2;
     },
-    shouldDisplayLevel3(){
-      return this.availableLevels.level2;
+    availableLevel3: function(){
+      return this.content.level3;
     },
-    shouldDisplayDownloadButton(){
+    displayDownloadOptions(){
+      if(this.form === undefined || this.form.classifications === undefined) return false;
       return this.form.classifications.length > 0;
     },
     form() {
@@ -274,45 +356,21 @@ export default {
   },
   watch: {
     'form.taxonomy': {
-      handler(newValue, oldValue) {
-        // Reset selections when taxonomy changes
-        if(newValue !== oldValue){
-          this.levels = {
-            taxonomy: newValue,
-            level1: new Array(),
-            level2: new Array(),
-          };
-
-          this.selectedLevels = {
-            taxonomy: false,
-            level1: false,
-            level2: false,
-          };
-
-          this.availableLevels = {
-            taxonomy: newValue !== undefined,
-            level1: false,
-            level2: false,
-          };
-
-          this.$store.dispatch(RESET_TAXONOMY_FORM_SELECTIONS);
-        }
+      handler(newValue){
+        this.content.taxonomy = newValue;
+        this.flowControl.displayDownload = true;
       }
     },
     'form.classifications': {
-      handler(newValue, oldValue){
-        this.levels.level2 = this.levels.level1.filter(option => newValue.includes(option.urn));
-        this.selectedLevels.level1 = this.levels.level2.length > 0;
-
-        this.levels.level3 = this.levels.level2
+      handler(newValue){
+        this.content.level2 = this.content.level1.filter(option => newValue.includes(option.urn));
+        this.content.level3 = this.content.level2
             .filter(option => newValue.includes(option.urn))
             .flatMap((object) => object.entities.filter((el) => newValue.includes(el.attributes.urn)))
             .filter(object => object.attributes.entities.length > 0);
 
-        this.selectedLevels.level2 = this.levels.level3.length > 0;
-
-        this.availableLevels.level1 = this.levels.level1.some(lv => newValue.includes(lv.urn) && lv.entities.length > 0);
-        this.availableLevels.level2 = this.levels.level2.some(lv => lv.entities.some(lv2 => newValue.includes(lv2.attributes.urn) && lv2.attributes.entities.length > 0));
+        this.flowControl.displayLevel2 = this.content.level2.length > 0;
+        this.flowControl.displayLevel3 = this.content.level3.length > 0;
       }
     },
     'form': {
@@ -326,8 +384,24 @@ export default {
 
 <style scoped>
 
-.content > div:first-child{
-  margin-right: 4em;
+.next-content{
+  width: 10em;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  line-height: 1.2em;
+}
+
+.next{
+  border-top: 1px dashed #dbd8e3;
+  padding-top: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.2em;
+  justify-content: center;
+  gap: 1em;
+  margin: 0;
 }
 
 .all-done-container {
@@ -348,15 +422,15 @@ export default {
 }
 
 .all-done-container p {
-  margin: 0px;
+  margin: 0;
 }
 
-.level2 {
-  overflow: scroll;
-}
-
-.level3 {
-  overflow: scroll;
+.download-options{
+  margin-left: 4em;
+  margin-right: 4em;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2em;
 }
 
 </style>

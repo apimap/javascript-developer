@@ -12,8 +12,8 @@
   "dependencies": {
     "@apimap/code-display": "2.0.3",
     "@apimap/command-line": "2.0.3",
-    "@apimap/input-core": "2.0.3",
-    "@apimap/layout-core": "2.0.6",
+    "@apimap/input-core": "2.0.4",
+    "@apimap/layout-core": "2.0.7",
     "@apimap/output-note": "2.0.3",
     "@apimap/the-breadcrumbs": "2.0.4",
     "@vue/cli-service": "5.0.8",

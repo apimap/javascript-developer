@@ -78,11 +78,10 @@ export default {
   mounted() {
     this.$store.commit('jv/clearRecords', { _jv: { type: 'urn:element' } })
     // TODO: Make this dynamic from returned urls
-    this.$store.dispatch('jv/get', "taxonomy").then((data) => {})
+    this.$store.dispatch('jv/get', "taxonomy").then(() => {})
   },
   methods: {
     copyToClipboard(text){
-      console.log(text);
       navigator.clipboard.writeText(text);
     },
     isSelected: function(level){
@@ -103,7 +102,7 @@ export default {
         this.loadingTaxonomy = true;
         this.$store.commit('jv/clearRecords', { _jv: { type: 'urn:element' } })
         // TODO: Make this dynamic from returned urls
-        this.$store.dispatch('jv/get', "taxonomy/" + object.nid + '/version/latest/urn').then((data) => {
+        this.$store.dispatch('jv/get', "taxonomy/" + object.nid + '/version/latest/urn').then(() => {
           this.loadingTaxonomy = false;
         })
       }
@@ -167,14 +166,6 @@ export default {
   margin-bottom: 2em;
   padding-bottom: 1em;
   border-bottom: 1px dashed lightgrey;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-
-.fade-leave-active {
-  opacity: 0;
 }
 
 .taxonomyOption{

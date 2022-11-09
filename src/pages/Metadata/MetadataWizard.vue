@@ -6,6 +6,9 @@
     <Content>
       <VerticalStackLayout class="content">
         <StepNavigationContainer isSticky>
+          <ImportField @file="fileDropped"
+                       text="Drag your existing metadata.apimap to this drop zone"
+                       hover-text="Drop to import" />
           <StepNavigationElement
               title="API"
               description="Generic API information"
@@ -27,8 +30,8 @@
               :target="scrollToComponent"
               reference="organization"/>
           <StepNavigationElement
-              title="Download file"
-              description="Download a new metadata.apimap with your current selections"
+              title="Generate file"
+              description="Create new content file"
               :target="scrollToComponent"
               reference="completed"/>
         </StepNavigationContainer>
@@ -61,19 +64,37 @@
             <div class="footer-container">
               <div class="all-done-container">
                 <img :src="allDoneIllustration" alt="Metadata Wizard Completed"/>
-                <h2>Metadata.apimap</h2>
+                <h2>metadata.apimap</h2>
               </div>
-              <LargeButton title="Download and save a new metadata.apimap file to your folder" :target="saveFile" />
+              <div class="download-options">
+                <div class="inverted-button" @click.stop="saveFile">Download</div>
+                <div class="inverted-button" @click.stop="copyToClipboard">Copy to clipboard</div>
+                <div class="dangerous-button" @click.stop="clearAll">Clear all</div>
+              </div>
             </div>
           </div>
         </div>
       </VerticalStackLayout>
+    </Content>
+    <Content>
+      <div class="next">
+        <div class="next-content">
+          <router-link to="/folder"><img :src="navigationPreviousElement" height="40px" alt="Create folder"/></router-link>
+          <router-link to="/folder">Create folder</router-link>
+        </div>
+        <div class="next-content">
+          <router-link to="/taxonomy/wizard"><img :src="navigationNextElement" height="40px" alt="Add taxonomy"/></router-link>
+          <router-link to="/taxonomy/wizard">Add Taxonomy</router-link>
+        </div>
+      </div>
     </Content>
     <Footer />
   </div>
 </template>
 
 <script>
+import navigationNextElement from "@/assets/elements/navigation-next-element.svg";
+import navigationPreviousElement from "@/assets/elements/navigation-previous-element.svg";
 import allDoneIllustration from "@/assets/illustrations/all-done-illustration.svg";
 import Footer from "@/components/Elements/Footer";
 import Api from "@/pages/Metadata/WizardComponents/Api";
@@ -85,17 +106,18 @@ import MediumButton from "@/components/Navigation/MediumButton";
 import StepNavigationContainer from "@/components/Navigation/StepNavigationContainer"
 import StepNavigationElement from "@/components/Navigation/StepNavigationElement"
 import { Content, ContentHeader, Separator, VerticalStackLayout } from "@apimap/layout-core"
-import { mapActions, mapGetters } from "vuex";
 import { saveToFile } from "@/utils/file-management.js";
 import { scrollToComponentWithoutHistory } from "@/utils/window-management.js";
-import {SET_METADATA_FORM_SELECTIONS} from "@/store/forms/store";
+import {RESET_METADATA_FORM, SET_METADATA_FORM_SELECTIONS} from "@/store/forms/store";
 import {LOAD_METADATA_OPTIONS} from "@/store/content/store";
+import ImportField from "@/components/Elements/ImportField";
 
 export default {
   name: "MetadataWizard",
   components: {
     StepNavigationElement,
     Content,
+    ImportField,
     ContentHeader,
     VerticalStackLayout,
     StepNavigationContainer,
@@ -109,9 +131,35 @@ export default {
     MediumButton
   },
   data: function() {
-    return { allDoneIllustration };
+    return {
+      allDoneIllustration,
+      navigationPreviousElement,
+      navigationNextElement
+    };
   },
   methods: {
+    fileDropped: function(value){
+      if(value === undefined || value['data'] === undefined) return;
+
+      const data = {
+        'api version': value['data']['api version'],
+        'architecture layer': value['data']['architecture layer'],
+        'business unit': value['data']['business unit'],
+        'description': value['data']['description'],
+        'documentation': value['data']['documentation'],
+        'interface description language': value['data']['interface description language'],
+        'interface specification': value['data']['interface specification'],
+        'name': value['data']['name'],
+        'release status': value['data']['release status'],
+        'system identifier': value['data']['system identifier'],
+        'visibility': value['data']['visibility']
+      }
+
+      this.$store.dispatch(SET_METADATA_FORM_SELECTIONS, data);
+    },
+    clearAll: function(){
+      this.$store.dispatch(RESET_METADATA_FORM);
+    },
     scrollToVersion: function(){
       this.scrollToComponent('version');
     },
@@ -128,8 +176,14 @@ export default {
       const dataobj = { data: { ...this.form } };
       saveToFile(dataobj, "metadata.apimap");
     },
+    copyToClipboard: function() {
+      const dataobj = { data: { ...this.form } };
+      dataobj["api catalog version"] = "1";
+      navigator.clipboard.writeText(JSON.stringify(dataobj,null,2));
+    }
   },
   mounted() {
+    this.$store.dispatch(RESET_METADATA_FORM);
     this.$store.dispatch(LOAD_METADATA_OPTIONS);
   },
   computed: {
@@ -150,13 +204,38 @@ export default {
 
 <style scoped>
 
-.content > div:first-child{
-  margin-right: 4em;
-  position: relative;
+.next-content{
+  width: 10em;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  line-height: 1.2em;
+}
+
+.next{
+  border-top: 1px dashed #dbd8e3;
+  padding-top: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.2em;
+  justify-content: center;
+  gap: 1em;
+  margin: 0;
 }
 
 .all-done-container {
   text-align: center;
+}
+
+.download-options{
+  margin-top: 2em;
+  margin-bottom: 2em;
+  margin-left: 4em;
+  margin-right: 4em;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2em;
 }
 
 .forms-container {
@@ -172,6 +251,6 @@ export default {
 }
 
 .all-done-container p {
-  margin: 0px;
+  margin: 0;
 }
 </style>

@@ -137,7 +137,7 @@
               needs other attributes and changes is encouraged to fork the project and/or contact us to get the official specification
               updated.
             </p>
-            <Recommendation recommendation="All future updates will be backwards compatible, if not possible the version identifier will be changes to ensure no breaking changes." />
+            <Recommendation recommendation="All future updates will be backwards compatible, if not possible the version identifier will be changed to ensure no breaking changes in existing data." />
           </ContentSection>
         </HorizontalStackLayout>
         <SideTableOfContents isSticky>
@@ -159,7 +159,6 @@
 import Footer from "@/components/Elements/Footer";
 import SpecificationDefinition from "@/components/Elements/SpecificationDefintion";
 
-import { mapActions, mapGetters } from "vuex";
 import {LOAD_METADATA_OPTIONS} from "@/store/content/store";
 
 import { Content, ContentHeader, HorizontalStackLayout, ContentTable, ContentSection, HorizontalLargeSmallStackLayout } from "@apimap/layout-core";
@@ -175,7 +174,6 @@ import Recommendation from "@/components/Elements/Recommendation";
 export default {
   name: "MetadataSpecification",
   components: {
-    Recommendation,
     Footer,
     TableOfContentsItem,
     Recommendation,

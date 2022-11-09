@@ -19,6 +19,7 @@ export default {
 
 .step-navigation-container{
   position: relative;
+  margin-right: 4em;
 }
 
 .sticky{
