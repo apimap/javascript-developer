@@ -4,6 +4,13 @@
   </div>
 </template>
 <script>
+// Assets
+
+// Components
+
+// Libs
+
+// Data
 
 export default {
   name: "GuideRecommendation",
@@ -14,7 +21,7 @@ export default {
 </script>
 <style scoped>
 
-.guide-recommendation{
+.guide-recommendation {
   width: 100%;
   margin-top: 1em;
   margin-bottom: 1em;
@@ -24,7 +31,7 @@ export default {
   font-weight: bold;
 }
 
-.recommendation{
+.recommendation {
   color: #DBD8E3;
   font-size: 1em;
   font-weight: lighter;

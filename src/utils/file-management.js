@@ -1,11 +1,11 @@
 export function saveToFile(dataobj, filename) {
     dataobj["api catalog version"] = "1";
-    if(!Array.isArray(dataobj.data.documentation) && dataobj.data.classifications === undefined){
+    if (!Array.isArray(dataobj.data.documentation) && dataobj.data.classifications === undefined) {
         dataobj.data.documentation = [dataobj.data.documentation];
     }
 
     const data = JSON.stringify(dataobj, null, 2);
-    const blob = new Blob([data], { type: "text/plain" });
+    const blob = new Blob([data], {type: "text/plain"});
     const e = document.createEvent("MouseEvents");
     const a = document.createElement("a");
     a.download = filename;

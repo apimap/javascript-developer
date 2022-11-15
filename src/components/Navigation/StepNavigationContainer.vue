@@ -7,6 +7,14 @@
 </template>
 
 <script>
+// Assets
+
+// Components
+
+// Libs
+
+// Data
+
 export default {
   name: "StepNavigationContainer",
   props: {
@@ -17,12 +25,12 @@ export default {
 
 <style scoped>
 
-.step-navigation-container{
+.step-navigation-container {
   position: relative;
   margin-right: 4em;
 }
 
-.sticky{
+.sticky {
   position: sticky;
   top: 2em;
   left: 0;

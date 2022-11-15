@@ -5,13 +5,20 @@
 </template>
 
 <script>
+// Assets
+
+// Components
+
+// Libs
+
+// Data
 
 export default {
   name: "SideTableOfContents",
   props: {
     isSticky: Boolean
   },
-  data: function() {
+  data: function () {
     return {};
   }
 };
@@ -28,7 +35,7 @@ export default {
   padding-bottom: 0.6em;
 }
 
-.sticky{
+.sticky {
   position: -webkit-sticky;
   position: sticky;
   top: 0;

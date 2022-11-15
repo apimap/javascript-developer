@@ -140,7 +140,7 @@ Each record should be described with the following variables:
 | description | A short description of this option and when it should be used                                                                                                                                                                       |
 | filter      | The filter key, possible values are: [metadata][visibility], [metadata][release status], [metadata][architecture layer], [metadata][business unit], [metadata][interface specification], [metadata][interface description language] |
 
-Resulting in a object like this:
+Resulting in an object like this:
 ````json
 { 
   "label": "Programming language : Java 6", 
@@ -152,14 +152,14 @@ Resulting in a object like this:
 
 #### Filter Key Values
 
-| Key | Description                               |
-|--------|-------------------------------------------|
-| [metadata][visibility] | Visibility options                        |
-| [metadata][release status] | Release Status options                    |
-| [metadata][architecture layer] | Architecture Layer options                |
-| [metadata][business unit] | Business Unit options                     |
-| [metadata][interface specification] | Interface Specification options           |
-| [metadata][interface description language] | Interface Description Language options    |
+| Key                                        | Description                            |
+|--------------------------------------------|----------------------------------------|
+| [metadata][visibility]                     | Visibility options                     |
+| [metadata][release status]                 | Release Status options                 |
+| [metadata][architecture layer]             | Architecture Layer options             |
+| [metadata][business unit]                  | Business Unit options                  |
+| [metadata][interface specification]        | Interface Specification options        |
+| [metadata][interface description language] | Interface Description Language options |
 
 #### File Version Option (Special option)
 
@@ -167,11 +167,14 @@ The following part of the metadata-options.json should be copied and not altered
 Any changes here will just affect the specification overview presented to the user.
 
 ```json
+{ 
   "fileOptions": {
     "version": [
-      { "label": "1", "value": "1", "description": "Currently used version" }
+        { "label": "1", "value": "1", "description": "Currently used version" }
     ]
-  },
+  }
+}
+
 ```
 
 ## Other Resources

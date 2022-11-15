@@ -1,28 +1,32 @@
 <template>
   <div class="api-producer-taxonomy-overview">
     <ContentHeader
-        title="Available Taxonomies"
-        introduction="The following taxonomies are available for use in this system." />
+        introduction="The following taxonomies are available for use in this system."
+        title="Available Taxonomies"/>
     <Content>
       <div v-for="taxonomy in getTaxonomies" :key="taxonomy.nid" class="taxonomyOption">
-        <div class="button" v-on:click="selectTaxonomy(taxonomy)" v-bind:class="{active: (taxonomy.nid === selectedTaxonomyId) }">
-          <h3>{{taxonomy.name}} (Identifier: {{ taxonomy.nid }})</h3>
-          <p>{{taxonomy.description}}</p>
+        <div class="button" v-bind:class="{active: (taxonomy.nid === selectedTaxonomyId) }"
+             v-on:click="selectTaxonomy(taxonomy)">
+          <h3>{{ taxonomy.name }} (Identifier: {{ taxonomy.nid }})</h3>
+          <p>{{ taxonomy.description }}</p>
         </div>
         <div>
-          <img :src="copyIcon" alt="Copy Identifier" title="Copy Identifier" class="copy" @click="copyToClipboard(taxonomy.nid)"/>
+          <img :src="copyIcon" alt="Copy Identifier" class="copy" title="Copy Identifier"
+               @click="copyToClipboard(taxonomy.nid)"/>
         </div>
       </div>
     </Content>
     <Content>
-      <div class="list" id="print-content" v-if="!this.loadingTaxonomy">
+      <div v-if="!this.loadingTaxonomy" id="print-content" class="list">
         <div class="level0">
-          <div class="table" v-if="this.selectedTaxonomyName !== ''">
+          <div v-if="this.selectedTaxonomyName !== ''" class="table">
             <div class="level-indicator">Taxonomy</div>
             <h3>{{ this.selectedTaxonomyName }}</h3>
           </div>
           <div v-for="l0 in getTaxonomy" :key="l0.id">
-            <div class="button" @click.stop="selectLevel0(l0)" v-bind:class="{ active: isSelected(l0) }">{{l0.title}} ({{ l0.entities.length }})</div>
+            <div class="button" v-bind:class="{ active: isSelected(l0) }" @click.stop="selectLevel0(l0)">{{ l0.title }}
+              ({{ l0.entities.length }})
+            </div>
           </div>
         </div>
         <div v-if="this.selectedLevel0 !== undefined" class="level1">
@@ -35,7 +39,8 @@
               <p class="description">{{ this.selectedLevel0.description }}</p>
             </div>
             <div>
-              <img :src="copyIcon" alt="Copy Identifier" title="Copy Identifier" class="copy" @click="copyToClipboard(selectedLevel0.urn)"/>
+              <img :src="copyIcon" alt="Copy Identifier" class="copy" title="Copy Identifier"
+                   @click="copyToClipboard(selectedLevel0.urn)"/>
             </div>
           </div>
           <div v-for="l1 in this.selectedLevel0.entities" :key="l1.id" class="level1">
@@ -43,12 +48,13 @@
               <div class="flex">
                 <div class="table">
                   <div class="level-indicator">Level 2</div>
-                  <h3>{{l1.attributes.title}} <span class="urn">({{ l1.attributes.urn }})</span></h3>
+                  <h3>{{ l1.attributes.title }} <span class="urn">({{ l1.attributes.urn }})</span></h3>
                 </div>
-                <p class="description">{{l1.attributes.description}}</p>
+                <p class="description">{{ l1.attributes.description }}</p>
               </div>
               <div>
-                <img :src="copyIcon" alt="Copy Identifier" title="Copy Identifier" class="copy" @click="copyToClipboard(l1.attributes.urn)"/>
+                <img :src="copyIcon" alt="Copy Identifier" class="copy" title="Copy Identifier"
+                     @click="copyToClipboard(l1.attributes.urn)"/>
               </div>
             </div>
           </div>
@@ -60,39 +66,46 @@
 </template>
 
 <script>
+// Assets
+import copyIcon from "@/assets/elements/copy-to-clipboard-element.svg";
 
+// Components
 import Footer from "@/components/Elements/Footer";
 import LoadingIndicator from "@/components/Elements/LoadingIndicator";
-import { Content, ContentHeader, VerticalStackLayout } from "@apimap/layout-core";
-import copyIcon from "@/assets/elements/copy-to-clipboard-element.svg";
+
+// Libs
+// noinspection ES6CheckImport
+import {Content, ContentHeader} from "@apimap/layout-core";
+
+// Data
 
 export default {
   name: "TaxonomyOverview",
   components: {
-    VerticalStackLayout,
     Footer,
     LoadingIndicator,
     Content,
     ContentHeader
   },
   mounted() {
-    this.$store.commit('jv/clearRecords', { _jv: { type: 'urn:element' } })
+    this.$store.commit('jv/clearRecords', {_jv: {type: 'urn:element'}})
     // TODO: Make this dynamic from returned urls
-    this.$store.dispatch('jv/get', "taxonomy").then(() => {})
+    this.$store.dispatch('jv/get', "taxonomy").then(() => {
+    })
   },
   methods: {
-    copyToClipboard(text){
+    copyToClipboard(text) {
       navigator.clipboard.writeText(text);
     },
-    isSelected: function(level){
-      if(this.selectedLevel0 === undefined) return false;
+    isSelected: function (level) {
+      if (this.selectedLevel0 === undefined) return false;
       return level.urn === this.selectedLevel0.urn;
     },
-    selectLevel0: function(level){
+    selectLevel0: function (level) {
       this.selectedLevel0 = level;
     },
-    selectTaxonomy: async function(object) {
-      if(this.selectedTaxonomyId === object.id){
+    selectTaxonomy: async function (object) {
+      if (this.selectedTaxonomyId === object.id) {
         this.selectedTaxonomyName = undefined;
         this.selectedTaxonomyId = undefined;
         this.taxonomyTree = undefined;
@@ -100,7 +113,7 @@ export default {
         this.selectedTaxonomyName = object.name;
         this.selectedTaxonomyId = object.nid;
         this.loadingTaxonomy = true;
-        this.$store.commit('jv/clearRecords', { _jv: { type: 'urn:element' } })
+        this.$store.commit('jv/clearRecords', {_jv: {type: 'urn:element'}})
         // TODO: Make this dynamic from returned urls
         this.$store.dispatch('jv/get', "taxonomy/" + object.nid + '/version/latest/urn').then(() => {
           this.loadingTaxonomy = false;
@@ -108,7 +121,7 @@ export default {
       }
     },
   },
-  data: function() {
+  data: function () {
     return {
       taxonomyTree: {},
       selectedTaxonomyId: {
@@ -123,10 +136,10 @@ export default {
     };
   },
   computed: {
-    getTaxonomies: function(){
+    getTaxonomies: function () {
       return this.$store.getters['jv/get']('taxonomy:element');
     },
-    getTaxonomy: function(){
+    getTaxonomy: function () {
       return this.$store.getters['jv/get']('urn:element');
     }
   },
@@ -138,12 +151,15 @@ export default {
   body * {
     visibility: hidden;
   }
+
   .the-side-bar * {
     visibility: hidden;
   }
+
   #print-content * {
     visibility: visible;
   }
+
   #print-content {
     position: absolute;
     left: 0;
@@ -154,11 +170,11 @@ export default {
 
 <style scoped>
 
-.urn{
+.urn {
   opacity: 0.3;
 }
 
-.flex{
+.flex {
   flex: 1;
 }
 
@@ -168,25 +184,25 @@ export default {
   border-bottom: 1px dashed lightgrey;
 }
 
-.taxonomyOption{
+.taxonomyOption {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 1em;
 }
 
-.level0{
+.level0 {
   flex-grow: 0;
   flex-shrink: 0;
   flex-basis: 20em;
 }
 
-.level1{
+.level1 {
   flex-grow: 1;
 }
 
-.description{
-  margin : 0 0 1em 0;
+.description {
+  margin: 0 0 1em 0;
   padding: 1em;
   border: 1px solid lightgrey;
 }
@@ -195,7 +211,7 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  margin-bottom:1em;
+  margin-bottom: 1em;
   gap: 1em;
 }
 
@@ -205,7 +221,7 @@ export default {
   align-items: center;
 }
 
-.level-indicator{
+.level-indicator {
   padding-left: 0.4em;
   padding-right: 0.4em;
   background-color: #5c5470;

@@ -1,66 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="40"
-   height="40"
-   viewBox="0 0 10.583333 10.583334"
-   version="1.1"
-   id="svg8"
-   inkscape:version="1.0 (b51213c273, 2020-08-10)"
-   sodipodi:docname="favicon.svg">
-  <defs
-     id="defs2" />
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="15.930423"
-     inkscape:cx="25.262701"
-     inkscape:cy="28.124635"
-     inkscape:document-units="px"
-     inkscape:current-layer="layer1"
-     inkscape:document-rotation="0"
-     showgrid="false"
-     units="px"
-     inkscape:window-width="1781"
-     inkscape:window-height="1243"
-     inkscape:window-x="1220"
-     inkscape:window-y="793"
-     inkscape:window-maximized="0" />
-  <metadata
-     id="metadata5">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1">
-    <path
-       id="path9813-13"
-       style="fill:none;fill-opacity:1;stroke:#01acfb;stroke-width:0.976987;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
-       inkscape:transform-center-x="-0.39946528"
-       d="M 1.7593623,2.7934257 2.9577579,3.8987458 4.1561523,5.0040702 2.9577579,6.1093924 1.7593623,7.2147167"
-       sodipodi:nodetypes="ccccc" />
-    <path
-       style="fill:none;fill-opacity:1;stroke:#01acfb;stroke-width:0.781592;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 6.3616617,7.312413 H 9.0993829"
-       id="path9816-2" />
-  </g>
+<svg width="40" height="40" version="1.1" viewBox="0 0 10.583 10.583" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#4d4d4d" stroke-linecap="round" stroke-width=".23098">
+        <path d="m9.3835 3.5378h-3.347c-0.41559 0-0.75017 0.33458-0.75017 0.75017v1.1578c0 0.41559 0.33458 0.75017 0.75017 0.75017h3.347c0.41559 0 0.5355-0.39431 0.75017-0.75017l0.37508-0.62176-0.37508-0.53601c-0.23827-0.34051-0.33457-0.75017-0.75017-0.75017z"
+              fill="#f2f2f2"/>
+        <path d="m4.4736 8.5287v-6.6043c0-0.41559 0.33458-0.75017 0.75017-0.75017 0.41559 0 0.75017 0.33458 0.75017 0.75017v6.6043"
+              fill="#fff"/>
+        <path d="m1.2045 2.2997h3.347c0.41559 0 0.75017 0.33458 0.75017 0.75017v1.1578c0 0.41559-0.33458 0.75017-0.75017 0.75017h-3.347c-0.41559 0-0.5355-0.39431-0.75017-0.75017l-0.37509-0.62176 0.37509-0.53601c0.23827-0.3405 0.33458-0.75017 0.75017-0.75017z"
+              fill="#f9f9f9"/>
+        <path d="m5.6548 1.9121v7.5042" fill="#2c5aa0"/>
+    </g>
 </svg>

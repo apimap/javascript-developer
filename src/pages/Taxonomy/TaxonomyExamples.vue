@@ -1,25 +1,33 @@
 <template>
   <div class="taxonomy-examples">
     <ContentHeader
-        title="Taxonomy Examples"
-        introduction="Taxonomy (general) is the practice and science of classification of things or concepts, including the principles that underlie such classification (wikipedia.org)" />
+        introduction="Taxonomy (general) is the practice and science of classification of things or concepts, including the principles that underlie such classification (wikipedia.org)"
+        title="Taxonomy Examples"/>
     <Content>
       <CommandLine
-          title="Default Apimap Taxonomy"
-          :command="exampleOne()" />
+          :command="exampleOne()"
+          title="Default Apimap Taxonomy"/>
       <CommandLine
-          title="Custom MyCompany Taxonomy"
-          :command="exampleTwo()" />
+          :command="exampleTwo()"
+          title="Custom MyCompany Taxonomy"/>
     </Content>
-    <Footer />
+    <Footer/>
   </div>
 </template>
 
 <script>
+// Assets
+
+// Components
 import Footer from "@/components/Elements/Footer";
+
+// Libs
 import CommandLine from "@apimap/command-line";
-import { Content, ContentHeader } from "@apimap/layout-core"
-import { TaxonomyExamples } from "@/data/TaxonomyExamples";
+// noinspection ES6CheckImport
+import {Content, ContentHeader} from "@apimap/layout-core";
+
+// Data
+import {TaxonomyExamples} from "@/data/TaxonomyExamples";
 
 export default {
   name: "TaxonomyUseCases",
@@ -31,7 +39,7 @@ export default {
   },
   methods: {
     exampleOne: function () {
-      var returnValue = JSON.stringify(TaxonomyExamples.one, null, 2);
+      let returnValue = JSON.stringify(TaxonomyExamples.one, null, 2);
       returnValue = returnValue
           .replace(/&/g, "&amp;")
           .replace(/</g, "&lt;")
@@ -39,7 +47,7 @@ export default {
       return returnValue.toString();
     },
     exampleTwo: function () {
-      var returnValue = JSON.stringify(TaxonomyExamples.two, null, 2);
+      let returnValue = JSON.stringify(TaxonomyExamples.two, null, 2);
       returnValue = returnValue
           .replace(/&/g, "&amp;")
           .replace(/</g, "&lt;")

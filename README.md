@@ -80,11 +80,11 @@ Read [howto contribute](CONTRIBUTING.md) to this project.
 ## Screenshots
 ___
 
-### Taxonomy Wizard
+### Publish and Discovery APIs
 ![TaxonomyWizard](doc/screenshot1.png)
 
-### Git focus
+### Simple to use wizards
 ![GitFocus](doc/screenshot2.png)
 
-### Light / Dark mode
+### 4 easy steps
 ![DarkMode](doc/screenshot3.png)

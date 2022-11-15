@@ -3,15 +3,15 @@
     <h3>{{ heading }}</h3>
     <div v-if="description" class="description">{{ description }}</div>
     <div class="options">
-      <slot :value="data[name]" :setValue="setValue"></slot>
+      <slot :setValue="setValue" :value="data[name]"></slot>
       <h3 v-if="allowCustom">or</h3>
       <div v-if="allowCustom" class="custom">
         <Input
-            label="None of the above"
-            size="large"
-            element="systemIdentifier"
             v-model="data[name]"
             description="None of the above options matches, please add a custom entry."
+            element="systemIdentifier"
+            label="None of the above"
+            size="large"
         />
       </div>
     </div>
@@ -19,8 +19,15 @@
 </template>
 
 <script>
+// Assets
 
+// Components
+
+// Libs
+// noinspection ES6CheckImport
 import {Input} from "@apimap/input-core";
+
+// Data
 
 export default {
   name: "OptionCloud",
@@ -32,20 +39,20 @@ export default {
     allowCustom: Boolean
   },
   methods: {
-    setValue: function(value){
+    setValue: function (value) {
       this.value = value;
-      this.form[this.name]= value;
+      this.form[this.name] = value;
     }
   },
   computed: {
-    data: function(){
+    data: function () {
       return this.form
     }
   },
   components: {
     Input
   },
-  data: function() {
+  data: function () {
     return {
       value: undefined
     };
@@ -56,21 +63,21 @@ export default {
 
 <style scoped>
 
-.options > h3{
+.options > h3 {
   text-align: center;
 }
 
-.custom{
+.custom {
   border: 1px solid var(--box-border-color);
   color: var(--box-text-color);
   padding: 1em;
 }
 
-.description{
+.description {
   margin-bottom: 2em;
 }
 
-.option-cloud{
+.option-cloud {
   margin-bottom: 2em;
   margin-top: 2em;
   padding-top: 2em;

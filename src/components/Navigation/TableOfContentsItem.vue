@@ -1,7 +1,7 @@
 <template>
   <div class="content-list-item">
     <div class="item" v-on:click="scroll">
-      <div class="link" v-if="section">{{ section }} {{ title }}</div>
+      <div v-if="section" class="link">{{ section }} {{ title }}</div>
       <div v-else><img :src="icon" alt="content list"/> {{ title }}</div>
     </div>
     <div class="sub-items">
@@ -9,8 +9,16 @@
     </div>
   </div>
 </template>
+
 <script>
+// Assets
 import icon from "@/assets/icons/content-list-icon.svg";
+
+// Components
+
+// Libs
+
+// Data
 
 export default {
   name: "TableOfContentsItem",

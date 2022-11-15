@@ -1,13 +1,23 @@
 <template>
   <div class="workflow-step">
     <div class="header">
-      <div class="number">{{ number }}</div><div class="title">{{ title }}</div>
+      <div class="number">{{ number }}</div>
+      <div class="title">{{ title }}</div>
     </div>
-    <div class="workflow-step-description"><slot/></div>
+    <div class="workflow-step-description">
+      <slot/>
+    </div>
   </div>
 </template>
 
 <script>
+// Assets
+
+// Components
+
+// Libs
+
+// Data
 
 export default {
   name: "WorkflowStep",
@@ -26,18 +36,16 @@ export default {
   flex-wrap: wrap;
   flex-direction: row;
   align-items: flex-start;
-  margin-bottom:1em;
+  margin-bottom: 1em;
 }
 
 .header > .number {
   font-size: 1em;
-  color: var(--primary-color);
   padding-right: 0.4em;
 }
 
 .header > .title {
   font-size: 2em;
-  color: var(--tertiary-color);
 }
 
 .workflow-step-description {

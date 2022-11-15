@@ -6,7 +6,7 @@ a, .link {
 
 a:hover, .link:hover {
     text-decoration: underline;
-    text-decoration-color:  var(--hover-link-color);
+    text-decoration-color: var(--hover-link-color);
     text-decoration-thickness: 0.2em;
 }
 
@@ -20,10 +20,7 @@ body {
     color: var(--button-text-color);
     line-height: 1em;
     margin-bottom: 0.6em;
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-top: 0.4em;
-    padding-bottom: 0.4em;
+    padding: 0.4em 1em;
     border-radius: 0.2em;
 }
 
@@ -94,19 +91,12 @@ body {
     color: var(--hover-button-text-color);
 }
 
-.the-side-bar {
-    border-right-color: #DBD8E3;
-}
-
 .inverted-button {
     border-color: var(--button-background-color);
     color: var(--button-text-color);
     line-height: 1em;
     margin-bottom: 0.6em;
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-top: 0.4em;
-    padding-bottom: 0.4em;
+    padding: 0.4em 1em;
     border-radius: 0.2em;
     border: 1px solid;
 }
@@ -142,7 +132,7 @@ h3 {
     color: var(--header-color);
 }
 
-h4{
+h4 {
     text-transform: uppercase;
     font-size: 0.8em;
     line-height: 1.2em;
@@ -172,7 +162,7 @@ th {
     color: var(--table-header-text-color);
 }
 
-tr:nth-child(even){
+tr:nth-child(even) {
     background-color: var(--hover-table-row-background-color);
 }
 
@@ -181,7 +171,7 @@ tr:hover {
     background-color: var(--hover-table-row-background-color);
 }
 
-td,th {
+td, th {
     line-height: 1.6em;
     padding: 0.2em;
     border: 1px solid var(--table-header-background-color);
@@ -197,15 +187,12 @@ thead {
     cursor: copy;
 }
 
-.dangerous-button{
+.dangerous-button {
     border-color: var(--dangerous-button-border-color);
     color: var(--dangerous-button-text-color);
     line-height: 1em;
     margin-bottom: 0.6em;
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-top: 0.4em;
-    padding-bottom: 0.4em;
+    padding: 0.4em 1em;
     border-radius: 0.2em;
     border: 1px dashed;
     font-size: 0.8em;
@@ -214,16 +201,13 @@ thead {
     margin-top: 2em;
 }
 
-.dangerous-button:hover{
+.dangerous-button:hover {
     border-color: var(--dangerous-button-border-color);
     background-color: var(--dangerous-button-text-color);
-    color:var(--dangerous-button-hover-text-color);
+    color: var(--dangerous-button-hover-text-color);
     line-height: 1em;
     margin-bottom: 0.6em;
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-top: 0.4em;
-    padding-bottom: 0.4em;
+    padding: 0.4em 1em;
     border-radius: 0.2em;
     font-size: 0.8em;
     cursor: pointer;

@@ -13,6 +13,13 @@
 </template>
 
 <script>
+// Assets
+
+// Components
+
+// Libs
+
+// Data
 
 export default {
   name: "ParameterGroup",
@@ -25,7 +32,7 @@ export default {
 
 <style scoped>
 
-.parameter-group{
+.parameter-group {
   margin-top: 2em;
 }
 

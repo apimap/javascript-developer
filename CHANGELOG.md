@@ -1,6 +1,11 @@
 Changelog
 ===
 
+### 14.11.2022
+- Code cleanup
+- Added new graphics
+- Updated cli version
+
 ### 8.11.2022
 - Added quick navigation between steps
 - Added the option to import existing metadata or taxonomy files

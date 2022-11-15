@@ -3,7 +3,15 @@
     <div class="content">{{ recommendation }}</div>
   </div>
 </template>
+
 <script>
+// Assets
+
+// Components
+
+// Libs
+
+// Data
 
 export default {
   name: "Recommendation",
@@ -12,15 +20,13 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 
 .recommendation {
   margin-top: 1em;
   margin-bottom: 1em;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  padding-left: 2em;
-  padding-right: 2em;
+  padding: 1em 2em;
   background-color: #5c5470;
   text-align: center;
 }

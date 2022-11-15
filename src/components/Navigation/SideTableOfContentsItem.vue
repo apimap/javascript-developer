@@ -5,7 +5,14 @@
 </template>
 
 <script>
+// Assets
 import icon from "@/assets/icons/menu-bar-icon.svg";
+
+// Components
+
+// Libs
+
+// Data
 
 export default {
   name: "SideTableOfContentsItem",

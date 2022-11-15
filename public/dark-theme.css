@@ -1,39 +1,39 @@
 :root {
- --link-color: #dbd8e3;
- --hover-link-color: #5c5470;
+    --link-color: #dbd8e3;
+    --hover-link-color: #5c5470;
 
- --background-color: #2a2438;
- --text-color: #dbd8e3;
- --header-color: #dbd8e3;
+    --background-color: #2a2438;
+    --text-color: #dbd8e3;
+    --header-color: #dbd8e3;
 
- --button-background-color: #5c5470;
- --button-text-color: #dbd8e3;
- --disabled-button-background-color: #dbd8e3;
- --disabled-button-text-color: #b1acb6;
- --hover-button-background-color: #dbd8e3;
- --hover-button-text-color: #5c5470;
+    --button-background-color: #5c5470;
+    --button-text-color: #dbd8e3;
+    --disabled-button-background-color: #dbd8e3;
+    --disabled-button-text-color: #b1acb6;
+    --hover-button-background-color: #dbd8e3;
+    --hover-button-text-color: #5c5470;
 
- --badge-background-color: #5c5470;
- --badge-text-color: #dbd8e3;
+    --badge-background-color: #5c5470;
+    --badge-text-color: #dbd8e3;
 
- --table-header-background-color: #5c5470;
- --table-header-text-color: #dbd8e3;
- --table-row-background-color: white;
- --table-row-text-color: #5c5470;
- --hover-table-row-background-color: #5c5470;
- --hover-table-row-text-color: white;
+    --table-header-background-color: #5c5470;
+    --table-header-text-color: #dbd8e3;
+    --table-row-background-color: white;
+    --table-row-text-color: #5c5470;
+    --hover-table-row-background-color: #5c5470;
+    --hover-table-row-text-color: white;
 
- --box-border-color: #dbd8e3;
- --box-text-color: white;
+    --box-border-color: #dbd8e3;
+    --box-text-color: white;
 
- --drop-field-text-color: #5c5470;
- --drop-field-background-color: #dbd8e3;
- --drop-field-border-color: #5c5470;
- --drop-field-hover-text-color:  #dbd8e3;
- --drop-field-hover-background-color: #5c5470;
- --drop-field-hover-border-color: #dbd8e3;
+    --drop-field-text-color: #5c5470;
+    --drop-field-background-color: #dbd8e3;
+    --drop-field-border-color: #5c5470;
+    --drop-field-hover-text-color: #dbd8e3;
+    --drop-field-hover-background-color: #5c5470;
+    --drop-field-hover-border-color: #dbd8e3;
 
- --dangerous-button-border-color: #ff4646;
- --dangerous-button-text-color: #ff4646;
- --dangerous-button-hover-text-color: white;
+    --dangerous-button-border-color: #ff4646;
+    --dangerous-button-text-color: #ff4646;
+    --dangerous-button-hover-text-color: white;
 }

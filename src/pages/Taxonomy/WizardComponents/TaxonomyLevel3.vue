@@ -1,7 +1,8 @@
 <template>
   <div class="form-section">
     <h2>Level 3</h2>
-    <p>Choose one or multiple classifications within your chosen <b>"Level 2"</b> classification that best fits your application.</p>
+    <p>Choose one or multiple classifications within your chosen <b>"Level 2"</b> classification that best fits your
+      application.</p>
     <div class="level-container">
       <CheckboxGroup
           v-for="parent in taxonomyOptions"
@@ -13,23 +14,31 @@
         <Checkbox
             v-for="option in parent.entities"
             :key="option.name"
+            v-model="form.classifications"
+            :description="option.description"
             :label="option.label"
             :option="option.name"
-            :description="option.description"
-            v-model="form.classifications"
         />
       </CheckboxGroup>
     </div>
   </div>
 </template>
 <script>
-import { CheckboxGroup, Checkbox } from "@apimap/input-core";
+// Assets
+
+// Components
+
+// Libs
+// noinspection ES6CheckImport
+import {Checkbox, CheckboxGroup} from "@apimap/input-core";
+
+// Data
 
 export default {
   name: "Level3",
-  props: { 
+  props: {
     items: Array,
-    form: Object 
+    form: Object
   },
   components: {
     CheckboxGroup,
@@ -37,7 +46,7 @@ export default {
   },
   computed: {
     taxonomyOptions() {
-      const data = this.items.map((tax) => {
+      return this.items.map((tax) => {
         return {
           name: tax.attributes.title,
           entities: tax.attributes.entities.map((child) => {
@@ -49,7 +58,6 @@ export default {
           }),
         };
       });
-      return data;
     },
   },
 };
@@ -85,7 +93,7 @@ export default {
   flex-direction: column;
 }
 
-p{
+p {
   margin-bottom: 4em;
 }
 

@@ -1,71 +1,81 @@
 <template>
   <div class="workflow">
     <ContentHeader
-        title="Jenkins Integration"
-        introduction="Apimap is integrated with Jenkins through a plugin available when using Jenkins Pipeline as Code."/>
+        introduction="Apimap is integrated with Jenkins through a plugin available when using Jenkins Pipeline as Code."
+        title="Jenkins Integration"/>
     <Content>
-      Apimap is available through the default Jenkins repository or from their website <a href="https://plugins.jenkins.io/apimap/" target="_blank">https://plugins.jenkins.io/apimap/</a>
+      Apimap is available through the default Jenkins repository or from their website <a
+        href="https://plugins.jenkins.io/apimap/" target="_blank">https://plugins.jenkins.io/apimap/</a>
     </Content>
     <Content>
       <CommandLine
-          title="Validate Apimap files"
-          :command="validate()" />
+          :command="validate()"
+          title="Validate Apimap files"/>
       <p>Validate the metadata and taxonomy file structure before publishing.</p>
       <ParameterGroup
           heading="Required parameters">
         <Parameter
-            name="metadataFile"
+            default-value="apimap/metadata.apimap"
             description="Name of the API to be updated."
-            default-value="apimap/metadata.apimap"/>
+            name="metadataFile"/>
         <Parameter
-            name="taxonomyFile"
+            default-value="apimap/taxonomy.apimap"
             description="Name of the API version to be updated."
-            default-value="apimap/taxonomy.apimap"/>
+            name="taxonomyFile"/>
       </ParameterGroup>
     </Content>
     <Content>
       <CommandLine
-          title="Publish to Apimap"
-          :command="publish()" />
+          :command="publish()"
+          title="Publish to Apimap"/>
       <p>Upload metadata, taxonomy, readme and changelog.</p>
       <ParameterGroup
           heading="Required parameters">
         <Parameter
-            name="metadataFile"
+            default-value="apimap/metadata.apimap"
             description="Name of the API to be updated."
-            default-value="apimap/metadata.apimap"/>
+            name="metadataFile"/>
         <Parameter
-            name="taxonomyFile"
+            default-value="apimap/taxonomy.apimap"
             description="Name of the API version to be updated."
-            default-value="apimap/taxonomy.apimap"/>
+            name="taxonomyFile"/>
         <Parameter
-            name="repositoryURL"
+            default-value=""
             description="Name of the API version to be updated."
-            default-value=""/>
+            name="repositoryURL"/>
       </ParameterGroup>
       <ParameterGroup
           heading="Optional parameters">
         <Parameter
-            name="changelogFile"
+            default-value="CHANGELOG.md"
             description="If a endpoint is pre-configured this is optional."
-            default-value="CHANGELOG.md"/>
+            name="changelogFile"/>
         <Parameter
-            name="readmeFile"
+            default-value="README.md"
             description="If a token is pre-configured this is optional."
-            default-value="README.md"/>
+            name="readmeFile"/>
       </ParameterGroup>
     </Content>
-    <Footer />
+    <Footer/>
   </div>
 </template>
 
 <script>
+// Assets
+
+// Components
 import Footer from "@/components/Elements/Footer";
 import MediumButton from "@/components/Navigation/MediumButton";
-import { Content, ContentHeader } from "@apimap/layout-core"
-import CommandLine from "@apimap/command-line";
 import Parameter from "@/components/Elements/Parameter";
 import ParameterGroup from "@/components/Elements/ParameterGroup";
+
+// Libs
+// noinspection ES6CheckImport
+import {Content, ContentHeader} from "@apimap/layout-core"
+
+import CommandLine from "@apimap/command-line";
+
+// Data
 
 export default {
   name: "Jenkins",
@@ -79,7 +89,7 @@ export default {
     Parameter
   },
   methods: {
-    validate: function(){
+    validate: function () {
       return 'stage(\'Validate Apimap files\'){\n' +
           '  steps{\n' +
           '    script{\n' +

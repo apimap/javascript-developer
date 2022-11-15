@@ -1,29 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" data-build-timestamp-utc="<%= new Date().toISOString() %>">
-  <head>
-    <meta name="robots" content="noindex, nofollow">
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="color-scheme" content="dark light">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <meta name="author" content="Apimap.io version <%= VUE_APP_VERSION %> created <%= VUE_APP_CREATED %>">
+<!--suppress HtmlUnknownTarget -->
+<html data-build-timestamp-utc="<%= new Date().toISOString() %>" lang="en">
+<head>
+    <meta content="noindex, nofollow" name="robots">
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="dark light" name="color-scheme">
+    <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+    <meta content="Apimap.io version <%= VUE_APP_VERSION %> created <%= VUE_APP_CREATED %>" name="author">
     <script src="<%= BASE_URL %>customization.js"></script>
-    <link rel="icon" type="image/svg+xml" href="<%= BASE_URL %>favicon.svg" />
-    <link rel="stylesheet" type="text/css" href="<%= BASE_URL %>global.css" />
-    <link rel="stylesheet" href="<%= BASE_URL %>dark-theme.css" media="(prefers-color-scheme: dark)">
-    <link rel="stylesheet" href="<%= BASE_URL %>light-theme.css" media="(prefers-color-scheme: light)">
+    <link href="<%= BASE_URL %>favicon.svg" rel="icon" type="image/svg+xml"/>
+    <link href="<%= BASE_URL %>global.css" rel="stylesheet" type="text/css"/>
+    <link href="<%= BASE_URL %>dark-theme.css" media="(prefers-color-scheme: dark)" rel="stylesheet">
+    <link href="<%= BASE_URL %>light-theme.css" media="(prefers-color-scheme: light)" rel="stylesheet">
     <style>
-      html {
-          height: 100vh;
-      }
-      body {
-        margin: 0;
-        height: 100vh;
-      }
+        html {
+            height: 100vh;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+        }
     </style>
-  </head>
-  <body>
-    <noscript>Please enable JavaScript to continue on this page.</noscript>
-    <div id="app"></div>
-  </body>
+    <title>Apimap.io</title>
+</head>
+<body>
+<noscript>Please enable JavaScript to continue on this page.</noscript>
+<div id="app"></div>
+</body>
 </html>

@@ -1,58 +1,59 @@
 <template>
   <div class="startpage">
     <ContentHeader
-        title="Discovery functionality"
-        introduction="APIs are much more than just code, they deliver reusable functionality to the organization." />
+        introduction="APIs are much more than just code, they deliver reusable functionality to the organization."
+        title="Discovery functionality"/>
     <Content>
       <div class="columns">
         <div>
-          <router-link to="steps"><div class="center"><img :src="workflowOverview" class="workflowOverview" alt="Workflow Overview"/></div></router-link>
+          <router-link to="steps">
+            <div class="center"><img :src="workflowOverview" alt="Workflow Overview" class="workflowOverview"/></div>
+          </router-link>
         </div>
         <div class="buttons">
-          <router-link to="/folder" class="button large-button">Add a New API</router-link>
-          <a class="inverted-button small-button" :href="portalUrl">Discover available APIs</a>
+          <router-link class="button large-button" to="/folder">Add a New API</router-link>
+          <a :href="portalUrl" class="inverted-button small-button">Discover available APIs</a>
         </div>
       </div>
     </Content>
     <ContentHeader
-        title="Share and Discover"
         introduction="Share and Discover APIs across the organisation.
 
-Application programming interface (API): Point of functional integration between two or more systems connected through commonly known standards. APIs are everything connecting functionality across computers, not just REST." />
+Application programming interface (API): Point of functional integration between two or more systems connected through commonly known standards. APIs are everything connecting functionality across computers, not just REST."
+        title="Share and Discover"/>
     <Content/>
     <ContentHeader
-        title="Publishing your API"
-        introduction="Share and make functionality available to the organization with the following 4 steps." />
+        introduction="Share and make functionality available to the organization with the following 4 steps."
+        title="Publishing your API"/>
     <Content>
       <Steps>
-        <Step title="Create Folder"
-              :image="CreateFolderElement"
-              target="/folder"
+        <Step :image="CreateFolderElement"
               number="1"
+              target="/folder"
+              title="Create Folder"
         />
         <StepIllustration :image="ArrowElement"/>
-        <Step title="Add Metadata"
-              :image="AddToFolderElement"
-              target="/metadata/wizard"
+        <Step :image="AddToFolderElement"
               number="2"
+              target="/metadata/wizard"
+              title="Add Metadata"
         />
         <StepIllustration :image="ArrowElement"/>
-        <Step title="Add Taxonomy"
-              :image="AddToFolderElement"
-              target="/taxonomy/wizard"
+        <Step :image="AddToFolderElement"
               number="3"
+              target="/taxonomy/wizard"
+              title="Add Taxonomy"
         />
         <StepIllustration :image="ArrowElement"/>
-        <Step title="Publish Changes"
-              :image="FolderToCloudElement"
-              target="/workflow"
+        <Step :image="FolderToCloudElement"
               number="4"
+              target="/workflow"
+              title="Publish Changes"
         />
       </Steps>
     </Content>
     <ContentHeader
-          title="Application programming interface (API)"
-          introduction="The abbreviation API is broken up into three parts: Application, Programming and Interface.
+        introduction="The abbreviation API is broken up into three parts: Application, Programming and Interface.
 
 Application means a computer system, Programming means it is used when creating a system and Interface means it hides the implementation details.
 
@@ -65,30 +66,36 @@ In our case an API is usually is implemented by another computer system, but we 
 - A computer systems program → API implemented on a different computer systems program
 - A computer systems program → API implemented in a library provided by someone else
 
-We hope that this will make it easier to understand what we mean by an API." />
-    <Footer />
+We hope that this will make it easier to understand what we mean by an API."
+        title="Application programming interface (API)"/>
+    <Footer/>
   </div>
 </template>
 
 <script>
-import StepIllustration from "@/components/Elements/StepIllustration";
-import Steps from "@/components/Elements/Steps";
-import Step from "@/components/Elements/Step";
-import Footer from "@/components/Elements/Footer";
 
+// Assets
 import AddToFolderElement from "@/assets/elements/add-to-folder-element.svg";
 import FolderToCloudElement from "@/assets/elements/folder-to-cloud-element.svg";
 import CreateFolderElement from "@/assets/elements/folder-element.svg";
 import workflowOverview from "@/assets/illustrations/workflow-illustration.svg";
 import ArrowElement from "@/assets/elements/step-element.svg";
 
-import CodeDisplay from "@apimap/code-display";
-
-import { Content, VerticalStackLayout, CenterLayout, ContentHeader } from "@apimap/layout-core";
-
-import { MetadataExamples } from "@/data/MetadataExamples";
-import { TaxonomyExamples } from "@/data/TaxonomyExamples";
+// Components
+import StepIllustration from "@/components/Elements/StepIllustration";
+import Steps from "@/components/Elements/Steps";
+import Step from "@/components/Elements/Step";
+import Footer from "@/components/Elements/Footer";
 import CallForActionButton from "@/components/Elements/CallForActionButton";
+
+// Libs
+import CodeDisplay from "@apimap/code-display";
+// noinspection ES6CheckImport
+import {Content, ContentHeader} from "@apimap/layout-core";
+
+// Data
+import {MetadataExamples} from "@/data/MetadataExamples";
+import {TaxonomyExamples} from "@/data/TaxonomyExamples";
 
 export default {
   name: "Startpage",
@@ -99,12 +106,10 @@ export default {
     Steps,
     Content,
     Footer,
-    VerticalStackLayout,
     CodeDisplay,
-    ContentHeader,
-    CenterLayout,
+    ContentHeader
   },
-  data: function() {
+  data: function () {
     return {
       workflowOverview,
       AddToFolderElement,
@@ -125,7 +130,7 @@ export default {
 
 <style scoped>
 
-.workflowOverview{
+.workflowOverview {
   padding-top: 2em;
   padding-bottom: 2em;
 }
@@ -147,11 +152,11 @@ export default {
   align-items: center;
 }
 
-.large-button{
+.large-button {
   font-size: 2em;
 }
 
-.small-button{
+.small-button {
   font-size: 1.2em;
 }
 

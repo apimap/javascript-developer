@@ -1,66 +1,66 @@
 <template>
   <div class="api-producer-metadata-wizard">
     <ContentHeader
-        title="Metadata Wizard"
-        introduction="Your API has some technical preferences and architectural decisions that needs to be communicated in order to enable other developer to reuse the functionality." />
+        introduction="Your API has some technical preferences and architectural decisions that needs to be communicated in order to enable other developer to reuse the functionality."
+        title="Metadata Wizard"/>
     <Content>
       <VerticalStackLayout class="content">
         <StepNavigationContainer isSticky>
-          <ImportField @file="fileDropped"
+          <ImportField hover-text="Drop to import"
                        text="Drag your existing metadata.apimap to this drop zone"
-                       hover-text="Drop to import" />
+                       @file="fileDropped"/>
           <StepNavigationElement
-              title="API"
+              :target="scrollToComponent"
               description="Generic API information"
-              :target="scrollToComponent"
-              reference="api" />
+              reference="api"
+              title="API"/>
           <StepNavigationElement
-              title="Version"
+              :target="scrollToComponent"
               description="Information regarding a specific version"
-              :target="scrollToComponent"
-              reference="version" />
+              reference="version"
+              title="Version"/>
           <StepNavigationElement
-              title="Implementation"
+              :target="scrollToComponent"
               description="Technical implementation details"
-              :target="scrollToComponent"
-              reference="implementation"/>
+              reference="implementation"
+              title="Implementation"/>
           <StepNavigationElement
-              title="Organization"
+              :target="scrollToComponent"
               description="Organizational placement"
-              :target="scrollToComponent"
-              reference="organization"/>
+              reference="organization"
+              title="Organization"/>
           <StepNavigationElement
-              title="Generate file"
-              description="Create new content file"
               :target="scrollToComponent"
-              reference="completed"/>
+              description="Create new content file"
+              reference="completed"
+              title="Generate file"/>
         </StepNavigationContainer>
         <div>
           <div class="forms-container">
             <div ref="api">
-              <Api :form="form" />
+              <Api :form="form"/>
             </div>
-            <Separator size="normal" />
-            <MediumButton title="Continue to Version" :target="scrollToVersion" />
-            <Separator size="normal" />
+            <Separator size="normal"/>
+            <MediumButton :target="scrollToVersion" title="Continue to Version"/>
+            <Separator size="normal"/>
             <div ref="version">
-              <ApiVersion :form="form" />
+              <ApiVersion :form="form"/>
             </div>
-            <Separator size="normal" />
-            <MediumButton title="Continue to Implementation Details" :target="scrollToImplementation" />
-            <Separator size="normal" />
+            <Separator size="normal"/>
+            <MediumButton :target="scrollToImplementation" title="Continue to Implementation Details"/>
+            <Separator size="normal"/>
             <div ref="implementation">
-              <Implementation :form="form" />
+              <Implementation :form="form"/>
             </div>
-            <Separator size="normal" />
-            <MediumButton title="Continue to Organization Details" :target="scrollToOrganization" />
-            <Separator size="normal" />
+            <Separator size="normal"/>
+            <MediumButton :target="scrollToOrganization" title="Continue to Organization Details"/>
+            <Separator size="normal"/>
             <div ref="organization">
-              <Organization :form="form" />
+              <Organization :form="form"/>
             </div>
           </div>
-          <Separator size="normal" />
-          <div class="footer" ref="completed">
+          <Separator size="normal"/>
+          <div ref="completed" class="footer">
             <div class="footer-container">
               <div class="all-done-container">
                 <img :src="allDoneIllustration" alt="Metadata Wizard Completed"/>
@@ -79,38 +79,50 @@
     <Content>
       <div class="next">
         <div class="next-content">
-          <router-link to="/folder"><img :src="navigationPreviousElement" height="40px" alt="Create folder"/></router-link>
+          <router-link to="/folder"><img :src="navigationPreviousElement" alt="Create folder" height="40px"/>
+          </router-link>
           <router-link to="/folder">Create folder</router-link>
         </div>
         <div class="next-content">
-          <router-link to="/taxonomy/wizard"><img :src="navigationNextElement" height="40px" alt="Add taxonomy"/></router-link>
+          <router-link to="/taxonomy/wizard"><img :src="navigationNextElement" alt="Add taxonomy" height="40px"/>
+          </router-link>
           <router-link to="/taxonomy/wizard">Add Taxonomy</router-link>
         </div>
       </div>
     </Content>
-    <Footer />
+    <Footer/>
   </div>
 </template>
 
 <script>
+// Assets
 import navigationNextElement from "@/assets/elements/navigation-next-element.svg";
 import navigationPreviousElement from "@/assets/elements/navigation-previous-element.svg";
 import allDoneIllustration from "@/assets/illustrations/all-done-illustration.svg";
+
+// Components
 import Footer from "@/components/Elements/Footer";
+import LargeButton from "@/components/Navigation/LargeButton";
+import MediumButton from "@/components/Navigation/MediumButton";
+import StepNavigationContainer from "@/components/Navigation/StepNavigationContainer";
+import StepNavigationElement from "@/components/Navigation/StepNavigationElement";
+import ImportField from "@/components/Elements/ImportField";
+
+// Pages
 import Api from "@/pages/Metadata/WizardComponents/Api";
 import ApiVersion from "@/pages/Metadata/WizardComponents/ApiVersion";
 import Implementation from "@/pages/Metadata/WizardComponents/Implementation";
 import Organization from "@/pages/Metadata/WizardComponents/Organization";
-import LargeButton from "@/components/Navigation/LargeButton";
-import MediumButton from "@/components/Navigation/MediumButton";
-import StepNavigationContainer from "@/components/Navigation/StepNavigationContainer"
-import StepNavigationElement from "@/components/Navigation/StepNavigationElement"
-import { Content, ContentHeader, Separator, VerticalStackLayout } from "@apimap/layout-core"
-import { saveToFile } from "@/utils/file-management.js";
-import { scrollToComponentWithoutHistory } from "@/utils/window-management.js";
+
+// Libs
+import {saveToFile} from "@/utils/file-management.js";
+import {scrollToComponentWithoutHistory} from "@/utils/window-management.js";
+// noinspection ES6CheckImport
+import {Content, ContentHeader, Separator, VerticalStackLayout} from "@apimap/layout-core";
+
+// Data
 import {RESET_METADATA_FORM, SET_METADATA_FORM_SELECTIONS} from "@/store/forms/store";
 import {LOAD_METADATA_OPTIONS} from "@/store/content/store";
-import ImportField from "@/components/Elements/ImportField";
 
 export default {
   name: "MetadataWizard",
@@ -130,7 +142,7 @@ export default {
     Separator,
     MediumButton
   },
-  data: function() {
+  data: function () {
     return {
       allDoneIllustration,
       navigationPreviousElement,
@@ -138,8 +150,8 @@ export default {
     };
   },
   methods: {
-    fileDropped: function(value){
-      if(value === undefined || value['data'] === undefined) return;
+    fileDropped: function (value) {
+      if (value === undefined || value['data'] === undefined) return;
 
       const data = {
         'api version': value['data']['api version'],
@@ -157,29 +169,29 @@ export default {
 
       this.$store.dispatch(SET_METADATA_FORM_SELECTIONS, data);
     },
-    clearAll: function(){
+    clearAll: function () {
       this.$store.dispatch(RESET_METADATA_FORM);
     },
-    scrollToVersion: function(){
+    scrollToVersion: function () {
       this.scrollToComponent('version');
     },
-    scrollToImplementation: function(){
+    scrollToImplementation: function () {
       this.scrollToComponent('implementation');
     },
-    scrollToOrganization: function(){
+    scrollToOrganization: function () {
       this.scrollToComponent('organization');
     },
-    scrollToComponent: function(refName) {
+    scrollToComponent: function (refName) {
       scrollToComponentWithoutHistory(this, refName);
     },
-    saveFile: function() {
-      const dataobj = { data: { ...this.form } };
+    saveFile: function () {
+      const dataobj = {data: {...this.form}};
       saveToFile(dataobj, "metadata.apimap");
     },
-    copyToClipboard: function() {
-      const dataobj = { data: { ...this.form } };
+    copyToClipboard: function () {
+      const dataobj = {data: {...this.form}};
       dataobj["api catalog version"] = "1";
-      navigator.clipboard.writeText(JSON.stringify(dataobj,null,2));
+      navigator.clipboard.writeText(JSON.stringify(dataobj, null, 2));
     }
   },
   mounted() {
@@ -204,7 +216,7 @@ export default {
 
 <style scoped>
 
-.next-content{
+.next-content {
   width: 10em;
   display: flex;
   flex-direction: column;
@@ -212,7 +224,7 @@ export default {
   line-height: 1.2em;
 }
 
-.next{
+.next {
   border-top: 1px dashed #dbd8e3;
   padding-top: 1em;
   display: flex;
@@ -228,11 +240,8 @@ export default {
   text-align: center;
 }
 
-.download-options{
-  margin-top: 2em;
-  margin-bottom: 2em;
-  margin-left: 4em;
-  margin-right: 4em;
+.download-options {
+  margin: 2em 4em;
   display: flex;
   flex-direction: column;
   font-size: 1.2em;

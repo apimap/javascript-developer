@@ -4,28 +4,35 @@
     <div class="form-body">
       <div class="form-container">
         <RadioGroup
-          label="Architecture Layer"
-          name="architecture-layer"
-          :options="architectureLayerOptions"
-          v-model="data['architecture layer']"
-          :allowCustom="true"
-          customPlaceholder="Architecture layer"
+            v-model="data['architecture layer']"
+            :allowCustom="true"
+            :options="architectureLayerOptions"
+            customPlaceholder="Architecture layer"
+            label="Architecture Layer"
+            name="architecture-layer"
         ></RadioGroup>
         <RadioGroup
-          label="Business Unit"
-          name="business-unit"
-          :options="businessUnitOptions"
-          v-model="data['business unit']"
-          :allowCustom="true"
-          customPlaceholder="Business Unit"
+            v-model="data['business unit']"
+            :allowCustom="true"
+            :options="businessUnitOptions"
+            customPlaceholder="Business Unit"
+            label="Business Unit"
+            name="business-unit"
         ></RadioGroup>
       </div>
     </div>
   </div>
 </template>
 <script>
+// Assets
 
-import { RadioGroup } from "@apimap/input-core";
+// Components
+
+// Libs
+// noinspection ES6CheckImport
+import {RadioGroup} from "@apimap/input-core";
+
+// Data
 
 export default {
   name: "Organization",
@@ -43,7 +50,7 @@ export default {
     businessUnitOptions: function () {
       return this.$store.getters.metadataOptions['organizationOptions'] ? this.$store.getters.metadataOptions['organizationOptions']['businessUnitOptions'] : [];
     },
-    data: function(){
+    data: function () {
       return this.form
     }
   }

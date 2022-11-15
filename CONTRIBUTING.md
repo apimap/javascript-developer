@@ -103,11 +103,11 @@ becomes to great, we will ask you to rebase.
 
 - **A clear and descriptive branch name** that starts with feature/ or bugfix/
 - A clear and **"to the point"** summary of the changes within
-- A **up-to-date** code merge with our development branch
+- An **up-to-date** code merge with our development branch
 
 **Remember**: No change is too small
 
 ### Where can I ask for help?
 ___
 
-Didn't find what you where looking for? I want to contribute but still have questions? Please [contact us](SUPPORT.md) after reading our [FAQ](FAQ.md).
+Didn't find what you were looking for? I want to contribute but still have questions? Please [contact us](SUPPORT.md) after reading our [FAQ](FAQ.md).

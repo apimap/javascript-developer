@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 export const SET_METADATA_FORM_SELECTIONS = 'SET_METADATA_FORM_SELECTIONS';
 export const RESET_METADATA_FORM = 'RESET_METADATA_FORM';
 export const SET_TAXONOMY_FORM_SELECTIONS = 'SET_TAXONOMY_FORM_SELECTIONS';
@@ -16,7 +18,7 @@ const defaultMetadata = {
         "architecture layer": "",
         "business unit": "",
         "system identifier": "",
-        "documentation" : []
+        "documentation": []
     },
     "api catalog version": "1"
 };
@@ -39,8 +41,8 @@ export default {
         }
     },
     state: {
-        metadata: { ...defaultMetadata.data },
-        taxonomy: { ...defaultTaxonomy.data },
+        metadata: {...defaultMetadata.data},
+        taxonomy: {...defaultTaxonomy.data},
     },
     mutations: {
         [SET_METADATA_FORM_SELECTIONS](state, payload) {
@@ -63,16 +65,16 @@ export default {
         SET_METADATA_FORM_SELECTIONS({commit}, payload) {
             commit(SET_METADATA_FORM_SELECTIONS, payload)
         },
-        SET_TAXONOMY_FORM_SELECTIONS({commit}, payload){
+        SET_TAXONOMY_FORM_SELECTIONS({commit}, payload) {
             commit(SET_TAXONOMY_FORM_SELECTIONS, payload)
         },
-        RESET_TAXONOMY_FORM_SELECTIONS({commit}){
+        RESET_TAXONOMY_FORM_SELECTIONS({commit}) {
             commit(RESET_TAXONOMY_FORM_SELECTIONS)
         },
-        RESET_TAXONOMY_FORM({commit}){
+        RESET_TAXONOMY_FORM({commit}) {
             commit(RESET_TAXONOMY_FORM)
         },
-        RESET_METADATA_FORM({commit}){
+        RESET_METADATA_FORM({commit}) {
             commit(RESET_METADATA_FORM)
         },
     }

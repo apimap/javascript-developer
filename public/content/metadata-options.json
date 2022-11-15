@@ -75,13 +75,13 @@
       {
         "label": "JAVA 11",
         "value": "JAVA 11",
-        "filter":"[metadata][interface specification]",
+        "filter": "[metadata][interface specification]",
         "type": "SDK"
       },
       {
         "label": "C# 8",
         "value": "C# 8",
-        "filter":"[metadata][interface specification]",
+        "filter": "[metadata][interface specification]",
         "type": "SDK"
       }
     ],
@@ -89,19 +89,19 @@
       {
         "label": "JSON:API v1.1",
         "value": "JSON:API v1.1",
-        "filter":"[metadata][interface specification]",
+        "filter": "[metadata][interface specification]",
         "type": "REST"
       },
       {
         "label": "KAFKA TOPIC",
         "value": "KAFKA TOPIC",
-        "filter":"[metadata][interface specification]",
+        "filter": "[metadata][interface specification]",
         "type": "KAFKA TOPIC"
       },
       {
         "label": "SOAP",
         "value": "SOAP",
-        "filter":"[metadata][interface specification]",
+        "filter": "[metadata][interface specification]",
         "type": "SOAP"
       }
     ],
@@ -109,17 +109,17 @@
       {
         "label": "SDK",
         "value": "SDK",
-        "filter":"[metadata][interface description language]"
+        "filter": "[metadata][interface description language]"
       },
       {
         "label": "WSDL",
         "value": "WSDL",
-        "filter":"[metadata][interface description language]"
+        "filter": "[metadata][interface description language]"
       },
       {
         "label": "OpenAPI Specification",
         "value": "OpenAPI Specification",
-        "filter":"[metadata][interface description language]"
+        "filter": "[metadata][interface description language]"
       }
     ]
   }

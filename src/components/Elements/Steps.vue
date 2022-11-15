@@ -4,6 +4,13 @@
   </div>
 </template>
 <script>
+// Assets
+
+// Components
+
+// Libs
+
+// Data
 
 export default {
   name: "Steps",
@@ -11,7 +18,7 @@ export default {
 </script>
 <style scoped>
 
-.steps{
+.steps {
   display: flex;
   flex-direction: row;
   align-items: flex-start;

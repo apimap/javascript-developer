@@ -4,6 +4,13 @@
   </div>
 </template>
 <script>
+// Assets
+
+// Components
+
+// Libs
+
+// Data
 
 export default {
   name: "Badge",
@@ -14,7 +21,7 @@ export default {
 </script>
 <style scoped>
 
-.badge{
+.badge {
   font-size: 1em;
   margin-right: 0.4em;
   height: 2em;

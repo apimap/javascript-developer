@@ -1,19 +1,25 @@
 <template>
-  <div class="drop-field"
-       :data-active="active"
+  <div :data-active="active"
+       class="drop-field"
        @dragenter.prevent="setActive"
        @dragover.prevent="setActive"
        @dragleave.prevent="setInactive"
        @drop.prevent="onDrop">
-    <img :src="documentIcon" height="40px" alt="Drop Zone"/>
+    <img :src="documentIcon" alt="Drop Zone" height="40px"/>
     <span v-if="active">{{ hoverText }}</span>
     <span v-else>{{ text }}</span>
   </div>
 </template>
 
 <script>
-
+// Assets
 import documentIcon from "@/assets/icons/document-icon.svg";
+
+// Components
+
+// Libs
+
+// Data
 
 export default {
   name: "ImportField",
@@ -21,24 +27,24 @@ export default {
     text: String,
     hoverText: String
   },
-  data: function() {
+  data: function () {
     return {
       active: false,
       documentIcon
     };
   },
   methods: {
-    setActive: function(){
+    setActive: function () {
       this.active = true;
     },
-    setInactive: function(){
+    setInactive: function () {
       this.active = false;
     },
-    onDrop: function(file){
-      if(file.dataTransfer.files[0] !== undefined){
+    onDrop: function (file) {
+      if (file.dataTransfer.files[0] !== undefined) {
         file.dataTransfer.files[0].text().then(value => {
           const content = JSON.parse(value);
-          if(content['api catalog version'] === "1"){
+          if (content['api catalog version'] === "1") {
             this.$emit('file', content);
           }
         });
@@ -71,7 +77,7 @@ export default {
   opacity: 0.5;
 }
 
-.drop-field:hover{
+.drop-field:hover {
   color: var(--drop-field-text-color);
   border: 1px dashed var(--drop-field-hover-border-color);
 }

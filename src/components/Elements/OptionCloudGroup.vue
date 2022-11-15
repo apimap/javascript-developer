@@ -2,12 +2,13 @@
   <div class="option-cloud-group">
     <h4>{{ heading }}</h4>
     <div v-if="description" class="description">{{ description }}</div>
-    <ul class="options" v-show="visible" >
-      <li class="option" v-for="option in options" :style="getStyle(option)" v-bind:class="{active: isSelected(option)}" @click.stop="selectOption(option)">
-        <img :src="getIcon(option)"  alt="Option"/> {{ option.label }}
+    <ul v-show="visible" class="options">
+      <li v-for="option in options" :style="getStyle(option)" class="option" v-bind:class="{active: isSelected(option)}"
+          @click.stop="selectOption(option)">
+        <img :src="getIcon(option)" alt="Option"/> {{ option.label }}
       </li>
     </ul>
-    <div @click.stop="toggleOptions" class="view-options button" v-show="enableToggle">
+    <div v-show="enableToggle" class="view-options button" @click.stop="toggleOptions">
       <span v-if="this.visible">Hide</span>
       <span v-else>Show Options</span>
     </div>
@@ -16,11 +17,18 @@
 
 <script>
 
+// Assets
 import typeSdkIcon from "@/assets/icons/type-sdk-icon.svg";
 import typeTopicIcon from "@/assets/icons/type-topic-icon.svg";
 import typeRestIcon from "@/assets/icons/type-rest-icon.svg";
 import typeUnknownIcon from "@/assets/icons/type-unknown-icon.svg";
 import typeSoapIcon from "@/assets/icons/type-soap-icon.svg";
+
+// Components
+
+// Libs
+
+// Data
 
 export default {
   name: "OptionCloudGroup",
@@ -32,9 +40,8 @@ export default {
     setValue: Object,
     enableToggle: Boolean
   },
-  components: {
-  },
-  data: function() {
+  components: {},
+  data: function () {
     return {
       visible: !this.enableToggle,
       typeSdkIcon,
@@ -45,38 +52,38 @@ export default {
     };
   },
   computed: {
-    data: function(){
+    data: function () {
       return this.value
     }
   },
   methods: {
-    toggleOptions: function(){
+    toggleOptions: function () {
       this.visible = !this.visible;
     },
-    isSelected: function(option){
+    isSelected: function (option) {
       return option.value === this.data;
     },
-    selectOption: function(option){
+    selectOption: function (option) {
       this.setValue(option.value);
     },
-    getStyle: function(option){
-      if(option !== undefined){
-        if(option['type'] === 'REST') return "color:#00d4aa;border-color:#00d4aa";
-        if(option['type'] === 'SDK') return "color:#ff6600;border-color:#ff6600";
-        if(option['type'] === 'KAFKA TOPIC') return "color:#71c837;border-color:#71c837";
-        if(option['type'] === 'SOAP') return "color:#ff5555;border-color:#ff5555";
-        if(option['type'] === 'BINARY') return "color:#ffd42a;border-color:#ffd42a";
-        if(option['type'] !== undefined) return "color:#b3b3b3;border-color:#b3b3b3";
+    getStyle: function (option) {
+      if (option !== undefined) {
+        if (option['type'] === 'REST') return "color:#00d4aa;border-color:#00d4aa";
+        if (option['type'] === 'SDK') return "color:#ff6600;border-color:#ff6600";
+        if (option['type'] === 'KAFKA TOPIC') return "color:#71c837;border-color:#71c837";
+        if (option['type'] === 'SOAP') return "color:#ff5555;border-color:#ff5555";
+        if (option['type'] === 'BINARY') return "color:#ffd42a;border-color:#ffd42a";
+        if (option['type'] !== undefined) return "color:#b3b3b3;border-color:#b3b3b3";
       }
 
       return "color:var(--link-color);border-color:var(--link-color)";
     },
-    getIcon: function(option){
-      if(option !== undefined){
-          if (option['type'] === 'REST') return typeRestIcon;
-          if (option['type'] === 'SDK') return typeSdkIcon;
-          if (option['type'] === 'KAFKA TOPIC') return typeTopicIcon;
-          if (option['type'] === 'SOAP') return typeSoapIcon;
+    getIcon: function (option) {
+      if (option !== undefined) {
+        if (option['type'] === 'REST') return typeRestIcon;
+        if (option['type'] === 'SDK') return typeSdkIcon;
+        if (option['type'] === 'KAFKA TOPIC') return typeTopicIcon;
+        if (option['type'] === 'SOAP') return typeSoapIcon;
       }
 
       return typeUnknownIcon;
@@ -88,31 +95,31 @@ export default {
 
 <style scoped>
 
-.view-options{
+.view-options {
   padding: 0.4em;
   border-radius: 0.2em;
   text-align: center;
   font-size: 0.8em;
 }
 
-.active{
+.active {
   border-style: solid !important;
   font-weight: bold;
 }
 
-.description{
+.description {
   display: inline-block;
   margin-bottom: 1em;
 }
 
-.options{
+.options {
   display: inline-block;
   list-style: none;
   margin: 0;
   padding: 1em 0 1em;
 }
 
-.option{
+.option {
   display: inline-block;
   margin-right: 1em;
   margin-bottom: 0.6em;
@@ -122,13 +129,13 @@ export default {
   cursor: pointer;
 }
 
-.option-cloud-group{
+.option-cloud-group {
   border: 1px solid var(--box-border-color);
   color: var(--box-text-color);
   padding: 0 1em 1em 1em;
 }
 
-img{
+img {
   vertical-align: middle;
 }
 

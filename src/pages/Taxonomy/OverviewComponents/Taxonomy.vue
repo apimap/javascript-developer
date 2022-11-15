@@ -6,6 +6,14 @@
 </template>
 
 <script>
+// Assets
+
+// Components
+
+// Libs
+
+// Data
+
 export default {
   name: "Taxonomy",
   props: {
@@ -17,7 +25,7 @@ export default {
 
 <style scoped>
 
-.taxonomy{
+.taxonomy {
   text-align: center;
   line-height: 2em;
 }

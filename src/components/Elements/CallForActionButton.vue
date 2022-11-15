@@ -8,6 +8,13 @@
   </div>
 </template>
 <script>
+// Assets
+
+// Components
+
+// Libs
+
+// Data
 
 export default {
   name: "CallForActionButton",
@@ -19,7 +26,7 @@ export default {
 </script>
 <style scoped>
 
-.call-for-action-button{
+.call-for-action-button {
   width: 100%;
   display: flex;
   flex-wrap: nowrap;
@@ -29,7 +36,7 @@ export default {
   align-items: center;
 }
 
-.button{
+.button {
   width: 10em;
   text-align: center;
 }

@@ -1,69 +1,72 @@
 <template>
   <div id="app">
-      <TheSideBar :width="16" class="sidebar">
-        <SideBarSection title="">
-          <a :href="portalUrl" class="inverted-button portal">Discover available APIs</a>
-        </SideBarSection>
-        <SideBarSection title="Step 1: Create Folder">
-          <SideBarSectionAction title="Create Folder" target="/folder" />
-        </SideBarSection>
-        <SideBarSection title="Step 2: Metadata" :sections="metadata">
-          <SideBarSectionAction title="Add Metadata" target="/metadata/wizard" />
-        </SideBarSection>
-        <SideBarSection title="Step 3: Taxonomy" :sections="taxonomy">
-          <SideBarSectionAction title="Add Taxonomy" target="/taxonomy/wizard" />
-        </SideBarSection>
-        <SideBarSection title="Step 4: Publish Changes" :sections="publish">
-          <SideBarSectionAction title="Publish Changes" target="/workflow" />
-        </SideBarSection>
-        <SideBarSection title="Advanced" :sections="advanced"/>
-      </TheSideBar>
-      <CenterLayout width="60em" offset="true">
-        <TheBreadcrumbs/>
-        <router-view/>
-      </CenterLayout>
+    <TheSideBar :width="16" class="sidebar">
+      <img :src="logo" alt="Apimap.io" class="logo"/>
+      <SideBarSection title="">
+        <a :href="portalUrl" class="inverted-button portal">Discover available APIs</a>
+      </SideBarSection>
+      <SideBarSection title="Step 1: Create Folder">
+        <SideBarSectionAction target="/folder" title="Create Folder"/>
+      </SideBarSection>
+      <SideBarSection :sections="metadata" title="Step 2: Metadata">
+        <SideBarSectionAction target="/metadata/wizard" title="Add Metadata"/>
+      </SideBarSection>
+      <SideBarSection :sections="taxonomy" title="Step 3: Taxonomy">
+        <SideBarSectionAction target="/taxonomy/wizard" title="Add Taxonomy"/>
+      </SideBarSection>
+      <SideBarSection :sections="publish" title="Step 4: Publish Changes">
+        <SideBarSectionAction target="/workflow" title="Publish Changes"/>
+      </SideBarSection>
+      <SideBarSection :sections="advanced" title="Advanced"/>
+    </TheSideBar>
+    <CenterLayout offset="true" width="60em">
+      <TheBreadcrumbs/>
+      <router-view/>
+    </CenterLayout>
   </div>
 </template>
 
+<!--suppress JSUnresolvedVariable -->
 <script>
-import home from "@/assets/elements/home-element.svg";
 
+// Assets
+import home from "@/assets/elements/home-element.svg";
+import logo from "@/assets/illustrations/logo-illustration.svg";
+
+// Components
+// Libs
 import TheBreadcrumbs from "@apimap/the-breadcrumbs";
-import { Paths } from "./router/paths.js";
-import { ContentHeader, CenterLayout, VerticalStackLayout, TheSideBar, SideBarSection, SideBarAction, AppContent, SideBarSectionAction } from "@apimap/layout-core";
-import { NavigationBar } from "@/router/navigation";
+
+// noinspection ES6CheckImport
+import {CenterLayout, SideBarSection, SideBarSectionAction, TheSideBar} from "@apimap/layout-core";
+
+// Data
+import {Paths} from "./router/paths.js";
+import {NavigationBar} from "@/router/navigation";
 
 export default {
   name: "App",
   components: {
-    ContentHeader,
     TheBreadcrumbs,
     TheSideBar,
     CenterLayout,
-    VerticalStackLayout,
     SideBarSection,
-    SideBarAction,
-    AppContent,
     SideBarSectionAction
-  },
-  methods: {
-    redirectToConsumer: function() {
-      window.location.href = APIMAP_PORTAL_URL
-    }
   },
   computed: {
     portalUrl() {
       return APIMAP_PORTAL_URL;
     }
   },
-  data: function(){
+  data: function () {
     return {
       home,
       rootUrl: Paths.root.url,
       metadata: NavigationBar.metadata,
       taxonomy: NavigationBar.taxonomy,
       publish: NavigationBar.publish,
-      advanced: NavigationBar.advanced
+      advanced: NavigationBar.advanced,
+      logo
     }
   }
 };
@@ -83,7 +86,11 @@ export default {
 
 <style scoped>
 
-.portal{
+.logo {
+  width: 60%;
+}
+
+.portal {
   width: 100%;
 }
 

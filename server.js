@@ -1,5 +1,3 @@
-const HOST = '0.0.0.0'
-
 const path = require('path')
 const express = require('express')
 const http = require('http')
@@ -10,7 +8,7 @@ app.use(express.static(path.join(__dirname, 'dist')))
 /*
 * Status endpoint
 */
-app.get( "/actuator/health", ( request, response, next) => {
+app.get( "/actuator/health", ( request, response) => {
         response.json({"status": "UP"})
     }
 )
@@ -18,7 +16,7 @@ app.get( "/actuator/health", ( request, response, next) => {
 /*
 * Provide global variables to the frontend app from dynamically included server environment variables
 */
-app.get( "/customization.js", ( request, response, next) => {
+app.get( "/customization.js", ( request, response) => {
         response.header("Content-Type", "application/javascript")
         response.header("Cache-Control", "no-cache")
         response.header("robots", "no-cache")

@@ -1,11 +1,19 @@
 <template>
-  <div class="step-navigation-element button" @click="triggerCallback(reference)" v-bind:class="{ disabled: disabled }">
+  <div class="step-navigation-element button" v-bind:class="{ disabled: disabled }" @click="triggerCallback(reference)">
     <h3>{{ title }}</h3>
     <p>{{ description }}</p>
   </div>
 </template>
 
 <script>
+// Assets
+
+// Components
+
+// Libs
+
+// Data
+
 export default {
   name: "StepNavigationElement",
   props: {
@@ -20,7 +28,7 @@ export default {
   },
   methods: {
     triggerCallback: function (reference) {
-      if(!this.disabled) this.target(reference)
+      if (!this.disabled) this.target(reference)
     }
   }
 };
@@ -28,13 +36,10 @@ export default {
 
 <style scoped>
 
-.step-navigation-element{
-  padding-top: 0.1em;
-  padding-bottom: 0.1em;
+.step-navigation-element {
   margin-bottom: 1em;
   border-radius: 0.2em;
-  padding-left: 0.4em;
-  padding-right: 0.4em;
+  padding: 0.1em 0.4em;
 }
 
 </style>

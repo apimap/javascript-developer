@@ -17,7 +17,7 @@ export const definition = {
             }
         ]
     },
-    data:{
+    data: {
         title: "Data Object",
         entities: [
             {

@@ -1,10 +1,17 @@
 <template>
   <div class="step-illustration">
-    <img :src="image" />
+    <img :src="image" alt="Step"/>
   </div>
 </template>
 
 <script>
+// Assets
+
+// Components
+
+// Libs
+
+// Data
 
 export default {
   name: "StepIllustration",

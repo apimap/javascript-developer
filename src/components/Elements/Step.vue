@@ -1,13 +1,21 @@
 <template>
   <div class="step">
     <router-link :to="target">
-      <img :src="image" class="svg" />
+      <img :src="image" alt="Step" class="svg"/>
       <div class="number">{{ number }}</div>
       <div class="title">{{ title }}</div>
     </router-link>
   </div>
 </template>
+
 <script>
+// Assets
+
+// Components
+
+// Libs
+
+// Data
 
 export default {
   name: "Step",
@@ -21,18 +29,18 @@ export default {
 </script>
 <style scoped>
 
-.number{
+.number {
   font-size: 1.2em;
   font-weight: lighter;
 }
 
-.step{
+.step {
   text-align: center;
   width: 10em;
   height: 10em;
 }
 
-.step:last-of-type{
+.step:last-of-type {
   text-align: center;
   width: 10em;
   height: 10em;

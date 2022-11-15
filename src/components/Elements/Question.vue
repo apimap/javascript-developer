@@ -6,15 +6,22 @@
 </template>
 
 <script>
+// Assets
+
+// Components
+
+// Libs
+
+// Data
+
 export default {
   name: "FaqQuestion",
   props: {
     question: String,
     answer: String
   },
-  components: {
-  },
-  data: function() {
+  components: {},
+  data: function () {
     return {};
   },
 };
@@ -22,7 +29,7 @@ export default {
 
 <style scoped>
 
-.faq-question{
+.faq-question {
   text-align: left;
   margin-bottom: 4em;
 }
@@ -31,10 +38,7 @@ export default {
   line-height: 1.2em;
   color: #DBD8E3;
   background-color: #5c5470;
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-top: 0.4em;
-  padding-bottom: 0.4em;
+  padding: 0.4em 1em;
   font-size: 1.4em;
   margin-bottom: 1em;
 }

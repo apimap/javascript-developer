@@ -1,23 +1,23 @@
 <template>
   <div class="api-producer-metadata-specification">
     <ContentHeader
-        title="Metadata Specification"
-        introduction="This specification contains all options and values available to describe the technical preferences and architectural decisions that needs to be communicated in order to enable other developer to reuse the functionality." />
+        introduction="This specification contains all options and values available to describe the technical preferences and architectural decisions that needs to be communicated in order to enable other developer to reuse the functionality."
+        title="Metadata Specification"/>
     <Content>
       <HorizontalLargeSmallStackLayout>
         <HorizontalStackLayout>
           <TableOfContents>
-            <TableOfContentsItem :scroll="introduction" title="Introduction" section="I." />
-            <TableOfContentsItem :scroll="apimap" title="Apimap" section="II." />
-            <TableOfContentsItem :scroll="metadatadocument" title="Metadata Document" section="III.">
-              <TableOfContentsItem :scroll="namingconventions" title="Naming Conventions" />
-              <TableOfContentsItem :scroll="usage" title="Usage" />
+            <TableOfContentsItem :scroll="introduction" section="I." title="Introduction"/>
+            <TableOfContentsItem :scroll="apimap" section="II." title="Apimap"/>
+            <TableOfContentsItem :scroll="metadatadocument" section="III." title="Metadata Document">
+              <TableOfContentsItem :scroll="namingconventions" title="Naming Conventions"/>
+              <TableOfContentsItem :scroll="usage" title="Usage"/>
             </TableOfContentsItem>
-            <TableOfContentsItem :scroll="structure" title="Metadata Document Structure" section="IV.">
-              <TableOfContentsItem :scroll="rootsection" title="Root Section" />
-              <TableOfContentsItem :scroll="datasection" title="Data Section" />
+            <TableOfContentsItem :scroll="structure" section="IV." title="Metadata Document Structure">
+              <TableOfContentsItem :scroll="rootsection" title="Root Section"/>
+              <TableOfContentsItem :scroll="datasection" title="Data Section"/>
             </TableOfContentsItem>
-            <TableOfContentsItem :scroll="changemanagement" title="Change Management" section="V."/>
+            <TableOfContentsItem :scroll="changemanagement" section="V." title="Change Management"/>
           </TableOfContents>
           <ContentSection ref="introduction" title="I. Introduction">
             <p>
@@ -61,7 +61,8 @@
           <ContentSection ref="apimap" title="II. Apimap">
             <h5>Focus on API and not API Instances</h5>
             <p>
-              Apimap is a part of the source code and not the instances of the API thereby becoming a integrated part of any git workflow and not operations.
+              Apimap is a part of the source code and not the instances of the API thereby becoming a integrated part of
+              any git workflow and not operations.
             </p>
             <p>
               Please note the important difference between an API and the
@@ -77,9 +78,10 @@
           <ContentSection ref="metadatadocument" title="III. Metadata Document">
             <h4 ref="namingconventions">Naming Conventions</h4>
             <p>
-              It is recommened to name your metadata file metadata.apimap . This will ensure automatic recognition from current and future tools.
+              It is recommened to name your metadata file metadata.apimap . This will ensure automatic recognition from
+              current and future tools.
             </p>
-            <Recommendation recommendation="Recommended filename: metadata.apimap" />
+            <Recommendation recommendation="Recommended filename: metadata.apimap"/>
             <h4 ref="usage">Usage</h4>
             <p>
               None of the Apimap tools nor the Apimap API enforce a specific workflow,
@@ -94,7 +96,8 @@
               your repository.
             </p>
             <p>
-              Keeping your metadata and taxonomy files in the same folder will enable easy usage of the tools provided by
+              Keeping your metadata and taxonomy files in the same folder will enable easy usage of the tools provided
+              by
               Apimap. If the location is not appropriate you must specify
               the custom location when using the provided tools and implementation.
             </p>
@@ -104,49 +107,54 @@
               frequently adopted approach. This approach requires the use of input arguments and configuration
               when using the tools provided by Apimap and is not supported by default.
             </p>
-            <Recommendation recommendation="Although not a requirement it is recommended to create individual folders for each API and use the default metadata and taxonomy filenames."/>
+            <Recommendation
+                recommendation="Although not a requirement it is recommended to create individual folders for each API and use the default metadata and taxonomy filenames."/>
           </ContentSection>
           <ContentSection ref="structure" title="IV. Metadata Document Structure">
-            <Recommendation recommendation="A key concept of the metadata.apimap file is that there will never be a requirement to updated the content unless your API features changes." />
+            <Recommendation
+                recommendation="A key concept of the metadata.apimap file is that there will never be a requirement to updated the content unless your API features changes."/>
             <h3 ref="rootsection">Root Section</h3>
             <SpecificationDefinition
-              v-for="option in rootObject"
-              :key="option.title"
-              :dataType="option.dataType"
-              :description="option.description"
-              :required="option.required"
-              :title="option.title"
-              :example="option.example"
-              :allowedValues="allowedValues(option.valuesKey)"
+                v-for="option in rootObject"
+                :key="option.title"
+                :allowedValues="allowedValues(option.valuesKey)"
+                :dataType="option.dataType"
+                :description="option.description"
+                :example="option.example"
+                :required="option.required"
+                :title="option.title"
             />
             <h3 ref="datasection">Data Section</h3>
             <SpecificationDefinition
-              v-for="option in dataObject"
-              :key="option.title"
-              :dataType="option.dataType"
-              :description="option.description"
-              :required="option.required"
-              :title="option.title"
-              :example="option.example"
-              :allowedValues="allowedValues(option.valuesKey)"
+                v-for="option in dataObject"
+                :key="option.title"
+                :allowedValues="allowedValues(option.valuesKey)"
+                :dataType="option.dataType"
+                :description="option.description"
+                :example="option.example"
+                :required="option.required"
+                :title="option.title"
             />
           </ContentSection>
           <ContentSection ref="changemanagement" title="V. Change Management">
             <p>
-              The Apimap.io project governs the content of this document and the Metadata Specification herein. Any organization that
-              needs other attributes and changes is encouraged to fork the project and/or contact us to get the official specification
+              The Apimap.io project governs the content of this document and the Metadata Specification herein. Any
+              organization that
+              needs other attributes and changes is encouraged to fork the project and/or contact us to get the official
+              specification
               updated.
             </p>
-            <Recommendation recommendation="All future updates will be backwards compatible, if not possible the version identifier will be changed to ensure no breaking changes in existing data." />
+            <Recommendation
+                recommendation="All future updates will be backwards compatible, if not possible the version identifier will be changed to ensure no breaking changes in existing data."/>
           </ContentSection>
         </HorizontalStackLayout>
         <SideTableOfContents isSticky>
           <SideTableOfContents>
-            <SideTableOfContentsItem :scroll="introduction" title="Introduction" />
-            <SideTableOfContentsItem :scroll="apimap" title="Apimap" />
-            <SideTableOfContentsItem :scroll="metadatadocument" title="Metadata Document" />
-            <SideTableOfContentsItem :scroll="structure" title="Metadata Document Structure" />
-            <SideTableOfContentsItem :scroll="changemanagement" title="Change Management" />
+            <SideTableOfContentsItem :scroll="introduction" title="Introduction"/>
+            <SideTableOfContentsItem :scroll="apimap" title="Apimap"/>
+            <SideTableOfContentsItem :scroll="metadatadocument" title="Metadata Document"/>
+            <SideTableOfContentsItem :scroll="structure" title="Metadata Document Structure"/>
+            <SideTableOfContentsItem :scroll="changemanagement" title="Change Management"/>
           </SideTableOfContents>
         </SideTableOfContents>
       </HorizontalLargeSmallStackLayout>
@@ -156,20 +164,24 @@
 </template>
 
 <script>
+// Assets
+
+// Components
 import Footer from "@/components/Elements/Footer";
 import SpecificationDefinition from "@/components/Elements/SpecificationDefintion";
-
-import {LOAD_METADATA_OPTIONS} from "@/store/content/store";
-
-import { Content, ContentHeader, HorizontalStackLayout, ContentTable, ContentSection, HorizontalLargeSmallStackLayout } from "@apimap/layout-core";
-
 import TableOfContents from "@/components/Navigation/TableOfContents";
 import TableOfContentsItem from "@/components/Navigation/TableOfContentsItem";
 import SideTableOfContentsItem from "@/components/Navigation/SideTableOfContentsItem";
 import SideTableOfContents from "@/components/Navigation/SideTableOfContents";
-
-import { definition } from "@/data/MetadataDefinition";
 import Recommendation from "@/components/Elements/Recommendation";
+
+// Libs
+// noinspection ES6CheckImport
+import {  Content,  ContentHeader,  ContentSection,  HorizontalLargeSmallStackLayout,  HorizontalStackLayout} from "@apimap/layout-core";
+
+// Data
+import {LOAD_METADATA_OPTIONS} from "@/store/content/store";
+import {definition} from "@/data/MetadataDefinition";
 
 export default {
   name: "MetadataSpecification",
@@ -183,12 +195,11 @@ export default {
     SideTableOfContentsItem,
     SideTableOfContents,
     HorizontalLargeSmallStackLayout,
-    ContentTable,
     SpecificationDefinition,
     Content,
     ContentHeader
   },
-  data: function() {
+  data: function () {
     return {
       rootObject: definition.root.entities,
       dataObject: definition.data.entities
@@ -198,82 +209,82 @@ export default {
     this.$store.dispatch(LOAD_METADATA_OPTIONS);
   },
   methods: {
-    allowedValues: function(valuesKey){
-      if(valuesKey === "version"){
+    allowedValues: function (valuesKey) {
+      if (valuesKey === "version") {
         return this.$store.getters.metadataOptions['fileOptions'] ? this.$store.getters.metadataOptions['fileOptions']['version'] : [];
-      }else if(valuesKey === "releaseStatusOptions"){
+      } else if (valuesKey === "releaseStatusOptions") {
         return this.$store.getters.metadataOptions['apiVersionOptions'] ? this.$store.getters.metadataOptions['apiVersionOptions']['releaseStatusOptions'] : [];
-      }else if(valuesKey === "visibilityOptions"){
+      } else if (valuesKey === "visibilityOptions") {
         return this.$store.getters.metadataOptions['apiOptions'] ? this.$store.getters.metadataOptions['apiOptions']['visibilityOptions'] : [];
-      }else if(valuesKey === "architectureLayerOptions"){
+      } else if (valuesKey === "architectureLayerOptions") {
         return this.$store.getters.metadataOptions['organizationOptions'] ? this.$store.getters.metadataOptions['organizationOptions']['architectureLayerOptions'] : [];
-      }else if(valuesKey === "businessUnitOptions"){
+      } else if (valuesKey === "businessUnitOptions") {
         return this.$store.getters.metadataOptions['organizationOptions'] ? this.$store.getters.metadataOptions['organizationOptions']['businessUnitOptions'] : [];
-      }else if(valuesKey === "interfaceSpecificationImplementationOptions"){
+      } else if (valuesKey === "interfaceSpecificationImplementationOptions") {
         return this.$store.getters.metadataOptions['implementationDetailsOptions'] ? this.$store.getters.metadataOptions['implementationDetailsOptions']['interfaceSpecificationImplementationOptions'] : [];
-      }else if(valuesKey === "interfaceSpecificationSpecificationOptions"){
+      } else if (valuesKey === "interfaceSpecificationSpecificationOptions") {
         return this.$store.getters.metadataOptions['implementationDetailsOptions'] ? this.$store.getters.metadataOptions['implementationDetailsOptions']['interfaceSpecificationSpecificationOptions'] : [];
-      }else{
+      } else {
         return null;
       }
     },
-    introduction: function() {
+    introduction: function () {
       this.$refs["introduction"].$el.scrollIntoView({
         behavior: "smooth",
         block: "start",
         inline: "nearest",
       });
     },
-    apimap: function() {
+    apimap: function () {
       this.$refs["apimap"].$el.scrollIntoView({
         behavior: "smooth",
         block: "start",
         inline: "nearest",
       });
     },
-    metadatadocument: function() {
+    metadatadocument: function () {
       this.$refs["metadatadocument"].$el.scrollIntoView({
         behavior: "smooth",
         block: "start",
         inline: "nearest",
       });
     },
-    namingconventions: function() {
+    namingconventions: function () {
       this.$refs["namingconventions"].scrollIntoView({
         behavior: "smooth",
         block: "start",
         inline: "nearest",
       });
     },
-    usage: function() {
+    usage: function () {
       this.$refs["usage"].scrollIntoView({
         behavior: "smooth",
         block: "start",
         inline: "nearest",
       });
     },
-    structure: function() {
+    structure: function () {
       this.$refs["structure"].$el.scrollIntoView({
         behavior: "smooth",
         block: "start",
         inline: "nearest",
       });
     },
-    rootsection: function() {
+    rootsection: function () {
       this.$refs["rootsection"].scrollIntoView({
         behavior: "smooth",
         block: "start",
         inline: "nearest",
       });
     },
-    datasection: function() {
+    datasection: function () {
       this.$refs["datasection"].scrollIntoView({
         behavior: "smooth",
         block: "start",
         inline: "nearest",
       });
     },
-    changemanagement: function() {
+    changemanagement: function () {
       this.$refs["changemanagement"].$el.scrollIntoView({
         behavior: "smooth",
         block: "start",

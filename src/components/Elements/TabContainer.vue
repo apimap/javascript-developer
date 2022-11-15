@@ -1,12 +1,13 @@
 <template>
   <div class="tab-container">
     <div class="titles">
-      <div class="title button" v-for="title in titles" :key="title" @click="displayTab(title)" v-bind:class="{active: isTabActive(title)}">
+      <div v-for="title in titles" :key="title" class="title button" v-bind:class="{active: isTabActive(title)}"
+           @click="displayTab(title)">
         {{ title }}
       </div>
     </div>
     <div class="content">
-      <div v-for="title in titles" :key="title" v-if="isTabActive(title)" >
+      <div v-for="title in titles" v-if="isTabActive(title)" :key="title">
         <slot :name="title"/>
       </div>
     </div>
@@ -14,6 +15,13 @@
 </template>
 
 <script>
+// Assets
+
+// Components
+
+// Libs
+
+// Data
 
 export default {
   name: "TabContainer",
@@ -24,15 +32,15 @@ export default {
     displayTab: function (refName) {
       this.activeTabName = refName;
     },
-    isTabActive: function(refName) {
-      if(!this.activeTabName){
+    isTabActive: function (refName) {
+      if (!this.activeTabName) {
         this.activeTabName = refName;
       }
 
       return refName === this.activeTabName;
     }
   },
-  data: function() {
+  data: function () {
     return {
       activeTabName: ""
     };
@@ -43,10 +51,7 @@ export default {
 <style scoped>
 
 .title {
-  padding-top: 0.6em;
-  padding-bottom: 0.6em;
-  padding-left: 1em;
-  padding-right: 1em;
+  padding: 0.6em 1em;
   font-weight: bolder;
   border-top-left-radius: 0.4em;
   border-top-right-radius: 0.4em;
@@ -61,7 +66,7 @@ export default {
   gap: 1em;
 }
 
-.content{
+.content {
   border: 0.2em solid #5c5470;
   color: #5c5470;
 }

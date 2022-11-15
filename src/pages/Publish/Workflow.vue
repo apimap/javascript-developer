@@ -1,49 +1,58 @@
 <template>
   <div class="workflow">
     <ContentHeader
-        title="Publish Changes"
-        introduction="Upload your changes using a supported CI/CD pipeline, our CLI tool or directly using the Apimap API."/>
+        introduction="Upload your changes using a supported CI/CD pipeline, our CLI tool or directly using the Apimap API."
+        title="Publish Changes"/>
     <ContentHeader
-        title="Continuous Build System (CI/CD) Workflow"
         introduction="The build system workflow targets users that uses a CI/CD pipeline alongside a code repository. It becomes a integrated
-part of any git-ops environment and automatically manages the API information." />
+part of any git-ops environment and automatically manages the API information."
+        title="Continuous Build System (CI/CD) Workflow"/>
     <Content>
-      <MediumButton title="Read more about the CI/CD Workflow" route="/workflow/build-system"/>
+      <MediumButton route="/workflow/build-system" title="Read more about the CI/CD Workflow"/>
     </Content>
     <ContentHeader
-        title="Command-line interface (CLI) Workflow"
-        introduction="The CLI workflow targets users that does not use CI/CD pipelines, or a CI/CD pipeline that is not supported by Apimap." />
+        introduction="The CLI workflow targets users that does not use CI/CD pipelines, or a CI/CD pipeline that is not supported by Apimap."
+        title="Command-line interface (CLI) Workflow"/>
     <Content>
-      <MediumButton title="Read more about the CLI Workflow" route="/workflow/cli"/>
+      <MediumButton route="/workflow/cli" title="Read more about the CLI Workflow"/>
     </Content>
     <ContentHeader
-        title="API Workflow"
-        introduction="The API workflow targets advanced system-to-system integrations that is not already supported by a Apimap component."/>
+        introduction="The API workflow targets advanced system-to-system integrations that is not already supported by a Apimap component."
+        title="API Workflow"/>
     <Content>
-      <MediumButton title="Read more about the API Workflow" route="/workflow/api"/>
+      <MediumButton route="/workflow/api" title="Read more about the API Workflow"/>
     </Content>
     <Content>
       <div class="next">
         <div class="next-content">
-          <router-link to="/taxonomy/wizard"><img :src="navigationPreviousElement" height="40px" alt="Add Taxonomy"/></router-link>
+          <router-link to="/taxonomy/wizard"><img :src="navigationPreviousElement" alt="Add Taxonomy" height="40px"/>
+          </router-link>
           <router-link to="/taxonomy/wizard">Add Taxonomy</router-link>
         </div>
         <div class="next-content">
-          <a :href="portalUrl"><img :src="navigationNextElement" height="40px" alt="Add Taxonomy"/></a>
+          <a :href="portalUrl"><img :src="navigationNextElement" alt="Add Taxonomy" height="40px"/></a>
           <a :href="portalUrl">Discover your API</a>
         </div>
       </div>
     </Content>
-    <Footer />
+    <Footer/>
   </div>
 </template>
 
 <script>
-import Footer from "@/components/Elements/Footer";
-import MediumButton from "@/components/Navigation/MediumButton";
-import { Content, ContentHeader } from "@apimap/layout-core"
+// Assets
 import navigationPreviousElement from "@/assets/elements/navigation-previous-element.svg";
 import navigationNextElement from "@/assets/elements/navigation-next-element.svg";
+
+// Components
+import Footer from "@/components/Elements/Footer";
+import MediumButton from "@/components/Navigation/MediumButton";
+
+// Libs
+// noinspection ES6CheckImport
+import {Content, ContentHeader} from "@apimap/layout-core";
+
+// Data
 
 export default {
   name: "Workflow",
@@ -53,7 +62,7 @@ export default {
     Footer,
     MediumButton
   },
-  data: function(){
+  data: function () {
     return {
       navigationPreviousElement,
       navigationNextElement
@@ -69,7 +78,7 @@ export default {
 
 <style scoped>
 
-.next-content{
+.next-content {
   width: 10em;
   display: flex;
   flex-direction: column;
@@ -77,7 +86,7 @@ export default {
   line-height: 1.2em;
 }
 
-.next{
+.next {
   border-top: 1px dashed #dbd8e3;
   padding-top: 1em;
   display: flex;

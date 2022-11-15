@@ -1,35 +1,44 @@
 <template>
   <div class="form-section">
     <h2>Level 2</h2>
-    <p>Choose one or multiple classifications within your chosen <b>"Level 1"</b> classification that best fits your application.</p>
+    <p>Choose one or multiple classifications within your chosen <b>"Level 1"</b> classification that best fits your
+      application.</p>
     <div class="level-container">
       <CheckboxGroup
-        v-for="parent in taxonomyOptions"
-        :key="parent.name"
-        :label="parent.name"
-        labelSize="normal"
-        name="level1"
+          v-for="parent in taxonomyOptions"
+          :key="parent.name"
+          :label="parent.name"
+          labelSize="normal"
+          name="level1"
       >
         <Checkbox
-          v-for="option in parent.entities"
-          :key="option.name"
-          :label="option.label"
-          :option="option.name"
-          :description="option.description"
-          v-model="form.classifications"
+            v-for="option in parent.entities"
+            :key="option.name"
+            v-model="form.classifications"
+            :description="option.description"
+            :label="option.label"
+            :option="option.name"
         />
       </CheckboxGroup>
     </div>
   </div>
 </template>
 <script>
-import { CheckboxGroup, Checkbox } from "@apimap/input-core";
+// Assets
+
+// Components
+
+// Libs
+// noinspection ES6CheckImport
+import {Checkbox, CheckboxGroup} from "@apimap/input-core";
+
+// Data
 
 export default {
   name: "Level2",
-  props: { 
+  props: {
     items: Array,
-    form: Object 
+    form: Object
   },
   components: {
     CheckboxGroup,
@@ -37,7 +46,7 @@ export default {
   },
   computed: {
     taxonomyOptions() {
-      const data = this.items.map((tax) => {
+      return this.items.map((tax) => {
         return {
           name: tax.title,
           entities: tax.entities.map((child) => {
@@ -49,7 +58,6 @@ export default {
           }),
         };
       });
-      return data;
     },
   },
 };
@@ -74,11 +82,11 @@ export default {
   margin-right: 2em;
 }
 
-h2{
-  margin-bottom: 0em;
+h2 {
+  margin-bottom: 0;
 }
 
-p{
+p {
   margin-bottom: 4em;
 }
 

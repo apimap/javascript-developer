@@ -3,14 +3,14 @@
     <h3 v-show="label">{{ label }}</h3>
     <div v-for="(val, index) in data" class="inputs">
       <input
-          type="text"
           :key="index"
           :value="val"
+          type="text"
           @input="updatedValue(index)"
       />
-      <div @click.stop="removeInputField(index)" class="dangerous-button">Remove URL</div>
+      <div class="dangerous-button" @click.stop="removeInputField(index)">Remove URL</div>
     </div>
-    <div @click.stop="addInputField" class="add-input button" >
+    <div class="add-input button" @click.stop="addInputField">
       {{ actionLabel }}
     </div>
     <div v-if="description" class="description">{{ description }}</div>
@@ -18,6 +18,13 @@
 </template>
 
 <script>
+// Assets
+
+// Components
+
+// Libs
+
+// Data
 
 export default {
   name: "InputGroup",
@@ -31,12 +38,12 @@ export default {
     }
   },
   computed: {
-    data: function(){
+    data: function () {
       return (this.value !== undefined) ? this.value : [];
     }
   },
   methods: {
-    updatedValue: function(index){
+    updatedValue: function (index) {
       this.value[index] = event.target.value
       this.$emit('input', this.value.filter((e) => e !== undefined));
     },
@@ -63,7 +70,7 @@ export default {
   align-content: center;
 }
 
-.description{
+.description {
   padding: 1em;
   border-radius: 0.2em;
   margin-top: 0.1em;
@@ -71,7 +78,7 @@ export default {
   color: #5c5470;
 }
 
-.add-input{
+.add-input {
   padding: 0.4em;
   border-radius: 0.2em;
   text-align: center;

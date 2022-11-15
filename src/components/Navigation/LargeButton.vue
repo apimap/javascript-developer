@@ -1,9 +1,9 @@
 <template>
   <div class="large-button">
-    <div class="button" @click="target" v-if="target">
+    <div v-if="target" class="button" @click="target">
       {{ title }}
     </div>
-    <router-link :to="route" v-if="route">
+    <router-link v-if="route" :to="route">
       <div class="button">
         {{ title }}
       </div>
@@ -12,6 +12,13 @@
 </template>
 
 <script>
+// Assets
+
+// Components
+
+// Libs
+
+// Data
 
 export default {
   name: "LargeButton",
@@ -27,10 +34,7 @@ export default {
 
 .button {
   border-radius: 0.2em;
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-top: 0.6em;
-  padding-bottom: 0.6em;
+  padding: 0.6em 1em;
   text-align: center;
   font-size: 1.4em;
   line-height: 1.6em;

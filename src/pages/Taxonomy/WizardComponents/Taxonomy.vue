@@ -1,21 +1,29 @@
 <template>
   <div class="form-section">
     <h2>Taxonomy</h2>
-    <p>Select the taxonomy you want to categorize your functionality according to. Your API can only be categorized using one taxonomy and all sub-levels will be according to this.</p>
+    <p>Select the taxonomy you want to categorize your functionality according to. Your API can only be categorized
+      using one taxonomy and all sub-levels will be according to this.</p>
     <div>
       <RadioGroup
-        label="Available taxonomies"
-        name="taxonomy"
-        :options="taxonomyOptions"
-        v-model="form.taxonomy"
-        :allowCustom="false"
+          v-model="form.taxonomy"
+          :allowCustom="false"
+          :options="taxonomyOptions"
+          label="Available taxonomies"
+          name="taxonomy"
       />
     </div>
   </div>
 </template>
 <script>
+// Assets
 
-import { RadioGroup } from "@apimap/input-core"
+// Components
+
+// Libs
+// noinspection ES6CheckImport
+import {RadioGroup} from "@apimap/input-core"
+
+// Data
 
 export default {
   name: "Taxonomy",
@@ -26,7 +34,7 @@ export default {
   components: {
     RadioGroup,
   },
-  data: function() {
+  data: function () {
     return {
       hints: [
         "Taxonomy (general) is the practice and science of classification of things or concepts, including the principles that underlie such classification",
@@ -36,7 +44,11 @@ export default {
   computed: {
     taxonomyOptions() {
       return Object.keys(this.taxonomy).map((key) => {
-        return { label: this.taxonomy[key].name + " (Identifier: " + this.taxonomy[key].nid + ")", value: this.taxonomy[key].nid, description: this.taxonomy[key].description };
+        return {
+          label: this.taxonomy[key].name + " (Identifier: " + this.taxonomy[key].nid + ")",
+          value: this.taxonomy[key].nid,
+          description: this.taxonomy[key].description
+        };
       });
     },
   },
@@ -48,8 +60,8 @@ export default {
   line-height: 1.2em;
 }
 
-h2{
-  margin-bottom: 0em;
+h2 {
+  margin-bottom: 0;
 }
 
 </style>

@@ -1,8 +1,8 @@
 import client from "../client.js";
 
-import { jsonapiModule } from 'jsonapi-vuex'
+import {jsonapiModule} from 'jsonapi-vuex'
 
-const config = { recurseRelationships: true }
+const config = {recurseRelationships: true}
 
 export default {
     modules: {

@@ -1,7 +1,7 @@
 <template>
   <div class="guide-step">
     <div class="header">
-      <Badge :value="number" />
+      <Badge :value="number"/>
       <div class="title"><h1>{{ title }}</h1></div>
     </div>
     <div class="guide-step-description">
@@ -11,8 +11,14 @@
 </template>
 
 <script>
+// Assets
 
+// Components
 import Badge from "@/components/Elements/Badge";
+
+// Libs
+
+// Data
 
 export default {
   name: "GuideStep",

@@ -7,6 +7,13 @@
   </div>
 </template>
 <script>
+// Assets
+
+// Components
+
+// Libs
+
+// Data
 
 export default {
   name: "Guide",
@@ -17,13 +24,13 @@ export default {
 </script>
 <style scoped>
 
-.guide{
+.guide {
   width: 100%;
   padding-top: 2em;
   padding-bottom: 2em;
 }
 
-.title{
+.title {
   height: 3em;
 }
 
